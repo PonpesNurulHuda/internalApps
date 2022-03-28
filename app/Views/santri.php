@@ -81,5 +81,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/sample.js?y=').date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/santri.js?y=').date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

@@ -21,13 +21,13 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Vendor CSS Files -->
-  <link rel="stylesheet" href="<?php echo base_url('vendor/bootstrap/css/bootstrap.min.css') ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendor/bootstrap-icons/bootstrap-icons.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendor/boxicons/css/boxicons.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendor/quill/quill.snow.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendor/quill/quill.bubble.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendor/remixicon/remixicon.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendor/simple-datatables/style.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/bootstrap/css/bootstrap.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/bootstrap-icons/bootstrap-icons.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/boxicons/css/boxicons.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/quill/quill.snow.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/quill/quill.bubble.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/remixicon/remixicon.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/simple-datatables/style.css'); ?>">
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="<?php echo base_url('css/style.css?y=').date("Yhis"); ?>">
@@ -534,13 +534,13 @@
 
   <!-- Vendor JS Files -->
   
-  <script src="<?php echo base_url('vendor/apexcharts/apexcharts.min.js') ?>"></script>
-  <script src="<?php echo base_url('vendor/chart.js/chart.min.js') ?>"></script>
-  <script src="<?php echo base_url('vendor/echarts/echarts.min.js'); ?>"></script>
-  <script src="<?php echo base_url('vendor/quill/quill.min.js')?>"></script>
-  <script src="<?php echo base_url('vendor/simple-datatables/simple-datatables.js'); ?>"></script>
-  <script src="<?php echo base_url('vendor/tinymce/tinymce.min.js'); ?>"></script>
-  <script src="<?php echo base_url('vendor/php-email-form/validate.js'); ?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/apexcharts/apexcharts.min.js') ?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/chart.js/chart.min.js') ?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/echarts/echarts.min.js'); ?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/quill/quill.min.js')?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/simple-datatables/simple-datatables.js'); ?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/tinymce/tinymce.min.js'); ?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/php-email-form/validate.js'); ?>"></script>
 
   <!-- Template Main JS File -->
   <script src="<?php echo base_url('js/main.js?y=').date("Yhis"); ?>"></script>
