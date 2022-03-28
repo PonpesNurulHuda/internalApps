@@ -31,15 +31,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach($dtSantri as $santri): ?>
                             <tr>
-                                <td>111</td>
-                                <td>222</td>
-                                <td>333</td>
-                                <td>Rifki</td>
-                                <td>1213121</td>
-                                <td>Laki - laki</td>
+                                <td hidden><?= $santri['id'] ?></td>
+                                <td>
+                                    <?= $santri['kk'] ?>
+                                </td>
+                                <td>
+                                    <?= $santri['nik'] ?>
+                                </td>
+                                <td>
+                                    <?= $santri['nis'] ?>
+                                </td>
+                                <td>
+                                    <?= $santri['nama'] ?>
+                                </td>
+                                <td>
+                                    <?= $santri['tanggal_lahir'] ?>
+                                </td>
+                                <td>
+                                    <?= $santri['gender'] ?>
+                                </td>
+                                <td>
+                                    <button>Edit</button>
+                                    <button>Detail</button>
+                                </td>
                             </tr>
-                            
+                            <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>

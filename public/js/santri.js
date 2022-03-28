@@ -11,8 +11,13 @@ $(document).on("click", "#btnAddSantri", function () {
             <td><input type='text' class="form-control kk" id=''></td>
             <td><input type='text' class="form-control nis" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control tanggal_lahir" id=''></td>
-            <td><input type='text' class="form-control jenis_kelamin" id=''></td>
+            <td><input type='date' class="form-control tanggal_lahir" id=''></td>
+            <td>
+                <select class="form-control">
+                    <option value="L">Laki - Laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+            </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
                 <button class='btn btn-danger btnCancel' id="btnCancel_${className}">Batal</button>
