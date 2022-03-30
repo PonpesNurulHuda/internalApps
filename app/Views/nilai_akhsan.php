@@ -32,19 +32,19 @@
                             <?php foreach ($dtNilai_akhsan as $nilai_akhsan) : ?>
                                 <tr>
                                     <td hidden><?= $nilai_akhsan['id'] ?></td>
-                                    <td>
+                                    <td class="id_santri">
                                         <?= $nilai_akhsan['id_santri'] ?>
                                     </td>
-                                    <td>
+                                    <td class="id_semester">
                                         <?= $nilai_akhsan['id_semester'] ?>
                                     </td>
-                                    <td>
+                                    <td class="akhlaq">
                                         <?= $nilai_akhsan['akhlaq'] ?>
                                     </td>
-                                    <td>
+                                    <td class="kerapihan">
                                         <?= $nilai_akhsan['kerapihan'] ?>
                                     </td>
-                                    <td>
+                                    <td class="kerajinan">
                                         <?= $nilai_akhsan['kerajinan'] ?>
                                     </td>
                                     <td>
