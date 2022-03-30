@@ -31,32 +31,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($dtSantri as $santri): ?>
-                            <tr>
-                                <td hidden><?= $santri['id'] ?></td>
-                                <td>
-                                    <?= $santri['kk'] ?>
-                                </td>
-                                <td>
-                                    <?= $santri['nik'] ?>
-                                </td>
-                                <td>
-                                    <?= $santri['nis'] ?>
-                                </td>
-                                <td>
-                                    <?= $santri['nama'] ?>
-                                </td>
-                                <td>
-                                    <?= $santri['tanggal_lahir'] ?>
-                                </td>
-                                <td>
-                                    <?= $santri['gender'] ?>
-                                </td>
-                                <td>
-                                    <button>Edit</button>
-                                    <button>Detail</button>
-                                </td>
-                            </tr>
+                            <?php foreach ($dtSantri as $santri) : ?>
+                                <tr>
+                                    <td hidden><?= $santri['id'] ?></td>
+                                    <td>
+                                        <?= $santri['kk'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $santri['nik'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $santri['nis'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $santri['nama'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $santri['tanggal_lahir'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $santri['gender'] ?>
+                                    </td>
+                                    <td>
+                                        <button>Edit</button>
+                                        <button>Detail</button>
+                                    </td>
+                                </tr>
                             <?php endforeach ?>
                         </tbody>
                         <tfoot>
@@ -81,5 +81,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/santri.js?y=').date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/santri.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

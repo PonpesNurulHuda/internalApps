@@ -16,45 +16,40 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtKelas">
-                    <h5 class="card-title">Data Kelas</h5>
+                <div class="card-body dtMapel_kls">
+                    <h5 class="card-title">Data Mapel_kls</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tingkat_id</th>
-                                <th>Tahun_ajaran_id</th>
-                                <th>Walikelas</th>
-                                <th>Is_active</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
+                                <th>Kelas_id</th>
+                                <th>Semester_id</th>
+                                <th>Maple_id</th>
+                                <th>Mustahiq</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtKelas as $kelas) : ?>
+                            <?php foreach ($dtMapel_kls as $mapel_kls) : ?>
                                 <tr>
-                                    <td hidden><?= $kelas['id'] ?></td>
+                                    <td hidden><?= $mapel_kls['id'] ?></td>
                                     <td>
-                                        <?= $kelas['kode'] ?>
+                                        <?= $mapel_kls['nama'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['tingkat_id'] ?>
+                                        <?= $mapel_kls['kelas_id'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['tahun_ajaran_id'] ?>
+                                        <?= $mapel_kls['semester_id'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['walikelas'] ?>
+                                        <?= $mapel_kls['maple_id'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['is_active'] ?>
+                                        <?= $mapel_kls['mustahiq'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['created_at'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $kelas['updated_at'] ?>
+                                        <?= $mapel_kls['keterangan'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -65,14 +60,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tingkat_id</th>
-                                <th>Tahun_ajaran_id</th>
-                                <th>Walikelas</th>
-                                <th>Is_active</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
+                                <th>Kelas_id</th>
+                                <th>Semester_id</th>
+                                <th>Maple_id</th>
+                                <th>Mustahiq</th>
+                                <th>Keterangan</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -86,5 +79,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/kelas.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/mapel_kls.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

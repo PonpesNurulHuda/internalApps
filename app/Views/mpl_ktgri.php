@@ -16,45 +16,28 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtKelas">
-                    <h5 class="card-title">Data Kelas</h5>
+                <div class="card-body dtMpl_ktgri">
+                    <h5 class="card-title">Data Mpl_ktgri</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tingkat_id</th>
-                                <th>Tahun_ajaran_id</th>
-                                <th>Walikelas</th>
+                                <th>Deskripsi</th>
                                 <th>Is_active</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtKelas as $kelas) : ?>
+                            <?php foreach ($dtMpl_ktgri as $mpl_ktgri) : ?>
                                 <tr>
-                                    <td hidden><?= $kelas['id'] ?></td>
+                                    <td hidden><?= $mpl_ktgri['id'] ?></td>
                                     <td>
-                                        <?= $kelas['kode'] ?>
+                                        <?= $mpl_ktgri['nama'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['tingkat_id'] ?>
+                                        <?= $mpl_ktgri['deskripsi'] ?>
                                     </td>
                                     <td>
-                                        <?= $kelas['tahun_ajaran_id'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $kelas['walikelas'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $kelas['is_active'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $kelas['created_at'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $kelas['updated_at'] ?>
+                                        <?= $mpl_ktgri['is_active'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -65,14 +48,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tingkat_id</th>
-                                <th>Tahun_ajaran_id</th>
-                                <th>Walikelas</th>
+                                <th>Deskripsi</th>
                                 <th>Is_active</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -86,5 +64,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/kelas.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/mpl_ktgri.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>
