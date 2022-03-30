@@ -33,3 +33,43 @@ function getData(tr){
 
     return dataPost;
 }
+
+$(document).on("click", ".btnSave", function () {
+    var idRow = $(this).attr("id").replace("btnSave_", "");
+    var dataPost = getData(idRow);
+    console.log("dataPost", dataPost);
+  
+    $.ajax({
+      url: "mapel_kategori/add ",
+      type: "POST",
+  
+      data: dataPost,
+      success: function (response) {
+        console.log(response);
+  
+        var data = response;
+        if (data.id != "0") {
+          $("tbody").prepend(`
+                  <tr class="tr_${data.id}">
+                      <td class="nama">${dataPost.nama}</td>
+                      <td class="deskripsi">${dataPost.deskripsi}</td>
+                      <td class="is_active">${dataPost.is_active}</td>  
+                      <td>
+                          <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
+                          <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
+                      </td>
+                  </tr>
+              `);
+  
+          $(".DataTable td").css({ "font-size": 20 });
+          $(`.tr_${idRow}`).remove();
+        }else{
+            alert(data.pesan);
+        }
+      },
+      error: function () {
+        alert("Terjadi kesalahan");
+      },
+    });
+  });
+  

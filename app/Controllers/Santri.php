@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\SantriModel;
 use CodeIgniter\API\ResponseTrait;
 
@@ -9,16 +10,17 @@ class Santri extends BaseController
     use ResponseTrait;
     public function index()
     {
-		$santri = new SantriModel();
+        $santri = new SantriModel();
         $dtSantri = $santri->findAll();
         $data['dtSantri'] = $dtSantri;
-        
+
         //dd($santri->findAll());
         // kirim data ke view
         return view('santri', $data);
     }
 
-    public function add(){
+    public function add()
+    {
 
         $validation =  \Config\Services::validation();
         // setiap kolom kasih validasi is required
@@ -31,7 +33,7 @@ class Santri extends BaseController
         $isDataValid = $validation->withRequest($this->request)->run();
 
         // jika data valid, simpan ke database
-        if($isDataValid){
+        if ($isDataValid) {
             $data = new SantriModel();
 
             $id = $data->insert([
@@ -43,21 +45,20 @@ class Santri extends BaseController
                 "jenis_kelamin" => $this->request->getPost('jenis_kelamin')
             ]);
 
-            if($id > 0 ){
+            if ($id > 0) {
                 $data = [
                     'id' => $id,
                     'pesan' => 'data santri tersimpan',
                 ];
                 return $this->respond($data, 200);
             }
-        }else{
-            
+        } else {
+
             $data = [
                 'id' => 0,
                 'pesan' => 'data gagal tersimpan',
             ];
             return $this->respond($data, 200);
         }
-
     }
 }

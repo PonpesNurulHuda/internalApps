@@ -36,6 +36,24 @@ $routes->get('/', 'Home::index');
 //santri
 $routes->add('santri/add', 'santri::add');
 
+//kelas
+$routes->add('kelas/add', 'kelas::add');
+
+//mapel_kategori
+$routes->add('mapel_kategori/add', 'kelas::add');
+
+//mapel_kelas
+$routes->add('mapel_kelas/add', 'kelas::add');
+
+//mapel_tipe
+$routes->add('mapel_tipe/add', 'kelas::add');
+
+//mapel
+$routes->add('mapel/add', 'kelas::add');
+
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
