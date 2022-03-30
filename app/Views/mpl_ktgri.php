@@ -30,13 +30,13 @@
                             <?php foreach ($dtMpl_ktgri as $mpl_ktgri) : ?>
                                 <tr>
                                     <td hidden><?= $mpl_ktgri['id'] ?></td>
-                                    <td>
+                                    <td class="nama">
                                         <?= $mpl_ktgri['nama'] ?>
                                     </td>
-                                    <td>
+                                    <td class="deskripsi">
                                         <?= $mpl_ktgri['deskripsi'] ?>
                                     </td>
-                                    <td>
+                                    <td class="is_active">
                                         <?= $mpl_ktgri['is_active'] ?>
                                     </td>
                                     <td>

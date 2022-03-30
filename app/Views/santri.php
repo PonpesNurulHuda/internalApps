@@ -34,22 +34,22 @@
                             <?php foreach ($dtSantri as $santri) : ?>
                                 <tr>
                                     <td hidden><?= $santri['id'] ?></td>
-                                    <td>
+                                    <td class="kk">
                                         <?= $santri['kk'] ?>
                                     </td>
-                                    <td>
+                                    <td class="nik">
                                         <?= $santri['nik'] ?>
                                     </td>
-                                    <td>
+                                    <td class="nis">
                                         <?= $santri['nis'] ?>
                                     </td>
-                                    <td>
+                                    <td class="nama">
                                         <?= $santri['nama'] ?>
                                     </td>
-                                    <td>
+                                    <td class="tanggal_lahir">
                                         <?= $santri['tanggal_lahir'] ?>
                                     </td>
-                                    <td>
+                                    <td class="gender">
                                         <?= $santri['gender'] ?>
                                     </td>
                                     <td>

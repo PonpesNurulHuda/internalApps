@@ -35,25 +35,25 @@
                             <?php foreach ($dtKelas as $kelas) : ?>
                                 <tr>
                                     <td hidden><?= $kelas['id'] ?></td>
-                                    <td>
+                                    <td class="kode">
                                         <?= $kelas['kode'] ?>
                                     </td>
-                                    <td>
+                                    <td class="tingkat_id">
                                         <?= $kelas['tingkat_id'] ?>
                                     </td>
-                                    <td>
+                                    <td class="tahun_ajaran_id">
                                         <?= $kelas['tahun_ajaran_id'] ?>
                                     </td>
-                                    <td>
+                                    <td class="walikelas">
                                         <?= $kelas['walikelas'] ?>
                                     </td>
-                                    <td>
+                                    <td class="is_active">
                                         <?= $kelas['is_active'] ?>
                                     </td>
-                                    <td>
+                                    <td class="created_at">
                                         <?= $kelas['created_at'] ?>
                                     </td>
-                                    <td>
+                                    <td class="updated_at">
                                         <?= $kelas['updated_at'] ?>
                                     </td>
                                     <td>

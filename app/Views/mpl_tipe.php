@@ -17,13 +17,13 @@
                             <?php foreach ($dtMpl_tipe as $mpl_tipe) : ?>
                                 <tr>
                                     <td hidden><?= $mpl_tipe['id'] ?></td>
-                                    <td>
+                                    <td class="nama">
                                         <?= $mpl_tipe['nama'] ?>
                                     </td>
-                                    <td>
+                                    <td class="deskripsi">
                                         <?= $mpl_tipe['deskripsi'] ?>
                                     </td>
-                                    <td>
+                                    <td class="is_active">
                                         <?= $mpl_tipe['is_active'] ?>
                                     </td>
                                     <td>

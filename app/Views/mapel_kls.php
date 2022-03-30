@@ -33,22 +33,22 @@
                             <?php foreach ($dtMapel_kls as $mapel_kls) : ?>
                                 <tr>
                                     <td hidden><?= $mapel_kls['id'] ?></td>
-                                    <td>
+                                    <td class="nama">
                                         <?= $mapel_kls['nama'] ?>
                                     </td>
-                                    <td>
+                                    <td class="kelas_id">
                                         <?= $mapel_kls['kelas_id'] ?>
                                     </td>
-                                    <td>
+                                    <td class="semester_id">
                                         <?= $mapel_kls['semester_id'] ?>
                                     </td>
-                                    <td>
+                                    <td class="maple_id">
                                         <?= $mapel_kls['maple_id'] ?>
                                     </td>
-                                    <td>
+                                    <td class="mustahiq">
                                         <?= $mapel_kls['mustahiq'] ?>
                                     </td>
-                                    <td>
+                                    <td class="keterangan">
                                         <?= $mapel_kls['keterangan'] ?>
                                     </td>
                                     <td>

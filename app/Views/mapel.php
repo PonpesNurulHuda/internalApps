@@ -19,19 +19,19 @@
                             <?php foreach ($dtMapel as $mapel) : ?>
                                 <tr>
                                     <td hidden><?= $mapel['id'] ?></td>
-                                    <td>
+                                    <td class="nama">
                                         <?= $mapel['nama'] ?>
                                     </td>
-                                    <td>
+                                    <td class="deskripsi">
                                         <?= $mapel['deskripsi'] ?>
                                     </td>
-                                    <td>
+                                    <td class="mapel_kategori_id">
                                         <?= $mapel['mapel_kategori_id'] ?>
                                     </td>
-                                    <td>
+                                    <td class="mapel_type">
                                         <?= $mapel['mapel_type'] ?>
                                     </td>
-                                    <td>
+                                    <td class="is_active">
                                         <?= $mapel['is_active'] ?>
                                     </td>
                                     <td>
