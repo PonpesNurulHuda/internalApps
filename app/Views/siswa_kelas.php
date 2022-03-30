@@ -21,36 +21,27 @@
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>NIK</th>
-                                <th>KK</th>
-                                <th>NIS</th>
-                                <th>Nama</th>
-                                <th>Tanggal Lahir</th>
-                                <th style="width: 10px;"> Gender</th>
-                                <th>Aksi</th>
+                                <th>id_siswa</th>
+                                <th>id_kelas</th>
+                                <th>is_active</th>
+                                <th>created_at</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtSantri as $santri) : ?>
                                 <tr>
                                     <td hidden><?= $santri['id'] ?></td>
-                                    <td class="kk">
-                                        <?= $santri['kk'] ?>
+                                    <td>
+                                        <?= $santri['id_siswa'] ?>
                                     </td>
-                                    <td class="nik">
-                                        <?= $santri['nik'] ?>
+                                    <td>
+                                        <?= $santri['id_kelas'] ?>
                                     </td>
-                                    <td class="nis">
-                                        <?= $santri['nis'] ?>
+                                    <td>
+                                        <?= $santri['is_active'] ?>
                                     </td>
-                                    <td class="nama">
-                                        <?= $santri['nama'] ?>
-                                    </td>
-                                    <td class="tanggal_lahir">
-                                        <?= $santri['tanggal_lahir'] ?>
-                                    </td>
-                                    <td class="gender">
-                                        <?= $santri['gender'] ?>
+                                    <td>
+                                        <?= $santri['created_at'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -61,13 +52,10 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>NIK</th>
-                                <th>KK</th>
-                                <th>NIS</th>
-                                <th>Nama</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Gender</th>
-                                <th>Aksi</th>
+                                <th>id_siswa</th>
+                                <th>id_kelas</th>
+                                <th>is_active</th>
+                                <th>created_at</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -81,5 +69,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/santri.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/siswa_kelas.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

@@ -29,30 +29,32 @@
                                 <th>Is_active</th>
                                 <th>Created_at</th>
                                 <th>Updated_at</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtKelas as $kelas) : ?>
                                 <tr>
                                     <td hidden><?= $kelas['id'] ?></td>
-                                    <td>
-                                        <?= $kelas['kk'] ?>
+                                    <td class="kode">
+                                        <?= $kelas['kode'] ?>
                                     </td>
-                                    <td>
-                                        <?= $kelas['nik'] ?>
+                                    <td class="tingkat_id">
+                                        <?= $kelas['tingkat_id'] ?>
                                     </td>
-                                    <td>
-                                        <?= $kelas['nis'] ?>
+                                    <td class="tahun_ajaran_id">
+                                        <?= $kelas['tahun_ajaran_id'] ?>
                                     </td>
-                                    <td>
-                                        <?= $kelas['nama'] ?>
+                                    <td class="walikelas">
+                                        <?= $kelas['walikelas'] ?>
                                     </td>
-                                    <td>
-                                        <?= $kelas['tanggal_lahir'] ?>
+                                    <td class="is_active">
+                                        <?= $kelas['is_active'] ?>
                                     </td>
-                                    <td>
-                                        <?= $kelas['gender'] ?>
+                                    <td class="created_at">
+                                        <?= $kelas['created_at'] ?>
+                                    </td>
+                                    <td class="updated_at">
+                                        <?= $kelas['updated_at'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -63,13 +65,14 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>NIK</th>
-                                <th>KK</th>
-                                <th>NIS</th>
+                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Gender</th>
-                                <th>Aksi</th>
+                                <th>Tingkat_id</th>
+                                <th>Tahun_ajaran_id</th>
+                                <th>Walikelas</th>
+                                <th>Is_active</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -83,5 +86,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/santri.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/kelas.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>
