@@ -4,16 +4,16 @@ namespace App\Controllers;
 
 use App\Models\Mapel_tipeModel;
 
-class Mpl_tipe extends BaseController
+class Mapel_tipe extends BaseController
 {
     public function index()
     {
-        $mpl_tipe = new Mapel_tipeModel();
-        $dtMpl_tipe = $mpl_tipe->findAll();
-        $data['dtMpl_tipe'] = $dtMpl_tipe;
+        $mapel_tipe = new Mapel_tipeModel();
+        $dtMapel_tipe = $mapel_tipe->findAll();
+        $data['dtMapel_tipe'] = $dtMapel_tipe;
 
-        //dd($mpl_tipe->findAll());
+        //dd($mapel_tipe->findAll());
         // kirim data ke view
-        return view('mpl_tipe', $data);
+        return view('mapel_tipe', $data);
     }
 }

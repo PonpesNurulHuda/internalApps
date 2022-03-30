@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    $(".dtMpl_ktgri .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMpl_ktgri'>Tambah Data </button>  ");
+    $(".dtMapel_kategori .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMapel_kategori'>Tambah Data </button>  ");
 
 });
 
-$(document).on("click", "#btnAddMpl_ktgri", function () {
+$(document).on("click", "#btnAddMapel_kategori", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
         <tr class="tr_${className}">

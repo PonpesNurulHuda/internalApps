@@ -16,8 +16,8 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtMapel_kls">
-                    <h5 class="card-title">Data Mapel_kls</h5>
+                <div class="card-body dtMapel_kelas">
+                    <h5 class="card-title">Data Mapel_kelas</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
@@ -30,26 +30,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtMapel_kls as $mapel_kls) : ?>
+                            <?php foreach ($dtMapel_kelas as $mapel_kelas) : ?>
                                 <tr>
-                                    <td hidden><?= $mapel_kls['id'] ?></td>
+                                    <td hidden><?= $mapel_kelas['id'] ?></td>
                                     <td class="nama">
-                                        <?= $mapel_kls['nama'] ?>
+                                        <?= $mapel_kelas['nama'] ?>
                                     </td>
                                     <td class="kelas_id">
-                                        <?= $mapel_kls['kelas_id'] ?>
+                                        <?= $mapel_kelas['kelas_id'] ?>
                                     </td>
                                     <td class="semester_id">
-                                        <?= $mapel_kls['semester_id'] ?>
+                                        <?= $mapel_kelas['semester_id'] ?>
                                     </td>
                                     <td class="maple_id">
-                                        <?= $mapel_kls['maple_id'] ?>
+                                        <?= $mapel_kelas['maple_id'] ?>
                                     </td>
                                     <td class="mustahiq">
-                                        <?= $mapel_kls['mustahiq'] ?>
+                                        <?= $mapel_kelas['mustahiq'] ?>
                                     </td>
                                     <td class="keterangan">
-                                        <?= $mapel_kls['keterangan'] ?>
+                                        <?= $mapel_kelas['keterangan'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -79,5 +79,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/mapel_kls.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/mapel_kelas.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

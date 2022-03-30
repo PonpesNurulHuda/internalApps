@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    $(".dtMpl_tipe .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMpl_tipe'>Tambah Data </button>  ");
+    $(".dtMapel_tipe .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMapel_tipe'>Tambah Data </button>  ");
 
 });
 
-$(document).on("click", "#btnAddMpl_tipe", function () {
+$(document).on("click", "#btnAddMapel_tipe", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
         <tr class="tr_${className}">

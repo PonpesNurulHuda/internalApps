@@ -16,8 +16,8 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtMpl_ktgri">
-                    <h5 class="card-title">Data Mpl_ktgri</h5>
+                <div class="card-body dtMapel_kategori">
+                    <h5 class="card-title">Data Mapel_kategori</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
@@ -27,17 +27,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtMpl_ktgri as $mpl_ktgri) : ?>
+                            <?php foreach ($dtMapel_kategori as $mapel_kategori) : ?>
                                 <tr>
-                                    <td hidden><?= $mpl_ktgri['id'] ?></td>
+                                    <td hidden><?= $mapel_kategori['id'] ?></td>
                                     <td class="nama">
-                                        <?= $mpl_ktgri['nama'] ?>
+                                        <?= $mapel_kategori['nama'] ?>
                                     </td>
                                     <td class="deskripsi">
-                                        <?= $mpl_ktgri['deskripsi'] ?>
+                                        <?= $mapel_kategori['deskripsi'] ?>
                                     </td>
                                     <td class="is_active">
-                                        <?= $mpl_ktgri['is_active'] ?>
+                                        <?= $mapel_kategori['is_active'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -64,5 +64,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/mpl_ktgri.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/mapel_kategori.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

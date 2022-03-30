@@ -3,8 +3,8 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtMpl_tipe">
-                    <h5 class="card-title">Data Mpl_tipe</h5>
+                <div class="card-body dtMapel_tipe">
+                    <h5 class="card-title">Data Mapel_tipe</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
@@ -14,17 +14,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtMpl_tipe as $mpl_tipe) : ?>
+                            <?php foreach ($dtMapel_tipe as $mapel_tipe) : ?>
                                 <tr>
-                                    <td hidden><?= $mpl_tipe['id'] ?></td>
+                                    <td hidden><?= $mapel_tipe['id'] ?></td>
                                     <td class="nama">
-                                        <?= $mpl_tipe['nama'] ?>
+                                        <?= $mapel_tipe['nama'] ?>
                                     </td>
                                     <td class="deskripsi">
-                                        <?= $mpl_tipe['deskripsi'] ?>
+                                        <?= $mapel_tipe['deskripsi'] ?>
                                     </td>
                                     <td class="is_active">
-                                        <?= $mpl_tipe['is_active'] ?>
+                                        <?= $mapel_tipe['is_active'] ?>
                                     </td>
                                     <td>
                                         <button>Edit</button>
@@ -51,5 +51,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/mpl_tipe.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/mapel_tipe.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

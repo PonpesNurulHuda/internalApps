@@ -4,16 +4,16 @@ namespace App\Controllers;
 
 use App\Models\Mapel_kategoriModel;
 
-class Mpl_ktgri extends BaseController
+class Mapel_kategori extends BaseController
 {
     public function index()
     {
-        $mpl_ktgri = new Mapel_kategoriModel();
-        $dtMpl_ktgri = $mpl_ktgri->findAll();
-        $data['dtMpl_ktgri'] = $dtMpl_ktgri;
+        $mapel_kategori = new Mapel_kategoriModel();
+        $dtMapel_kategori = $mapel_kategori->findAll();
+        $data['dtMapel_kategori'] = $dtMapel_kategori;
 
-        //dd($mpl_ktgri->findAll());
+        //dd($mapel_kategori->findAll());
         // kirim data ke view
-        return view('mpl_ktgri', $data);
+        return view('mapel_kategori', $data);
     }
 }

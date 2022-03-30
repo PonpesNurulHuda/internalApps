@@ -4,16 +4,16 @@ namespace App\Controllers;
 
 use App\Models\Mapel_kelasModel;
 
-class Mapel_kls extends BaseController
+class Mapel_kelas extends BaseController
 {
     public function index()
     {
-        $mapel_kls = new Mapel_kelasModel();
-        $dtMapel_kls = $mapel_kls->findAll();
-        $data['dtMapel_kls'] = $dtMapel_kls;
+        $mapel_kelas = new Mapel_kelasModel();
+        $dtMapel_kelas = $mapel_kelas->findAll();
+        $data['dtMapel_kelas'] = $dtMapel_kelas;
 
-        //dd($mapel_kls->findAll());
+        //dd($mapel_kelas->findAll());
         // kirim data ke view
-        return view('mapel_kls', $data);
+        return view('mapel_kelas', $data);
     }
 }
