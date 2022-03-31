@@ -35,7 +35,7 @@ function getData(tr){
     dataPost.kode = $(`.tr_${tr} .kode`).val();
     dataPost.kode = $(`.tr_${tr} .nama`).val();
     dataPost.tingkat_id =  $(`.tr_${tr} .tingkat_id`).val();
-    dataPost.tahun_ajaran_id = $(`.tr_${tr} .tahun_ajaran`).val();
+    dataPost.tahun_ajaran_id = $(`.tr_${tr} .tahun_ajaran_id`).val();
     dataPost.walikelas = $(`.tr_${tr} .walikelas`).val();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
     dataPost.created_at = $(`.tr_${tr} .created_at`).val();
@@ -64,7 +64,7 @@ $(document).on("click", ".btnSave", function () {
                       <td class="kode">${dataPost.kode}</td>
                       <td class="kode">${dataPost.nama}</td>
                       <td class="tingkat_id">${dataPost.tingkat_id}</td>
-                      <td class="tahun_ajaran">${dataPost.tahun_ajaran}</td> 
+                      <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td> 
                       <td class="walikelas">${dataPost.walikelas}</td> 
                       <td class="is_active">${dataPost.is_active}</td> 
                       <td class="created_at">${dataPost.created_at}</td>
