@@ -52,6 +52,7 @@ $routes->add('mapel_tipe/add', 'kelas::add');
 //mapel
 $routes->add('mapel/add', 'kelas::add');
 
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
