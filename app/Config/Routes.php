@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 //santri
+$routes->get('/santri', 'Santri::index');
 $routes->add('santri/add', 'santri::add');
 
 //kelas
@@ -50,9 +51,6 @@ $routes->add('mapel_tipe/add', 'kelas::add');
 
 //mapel
 $routes->add('mapel/add', 'kelas::add');
-
-
-
 
 /*
  * --------------------------------------------------------------------

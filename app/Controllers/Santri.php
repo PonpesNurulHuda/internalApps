@@ -61,4 +61,4 @@ class Santri extends BaseController
             return $this->respond($data, 200);
         }
     }
-}
+} 
