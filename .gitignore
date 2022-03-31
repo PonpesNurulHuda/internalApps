@@ -88,8 +88,8 @@ vendor/
 #-------------------------
 # SETTING - SETTING
 #-------------------------
-app/Database.php
-app/App.php
+app/Config/Database.php
+app/Config/App.php
 
 
 #-------------------------
