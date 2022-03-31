@@ -1,3 +1,16 @@
+<?= $this->extend('template/admin') ?>
+
+<?= $this->section('content') ?>
+<div class="pagetitle">
+    <h1>Sample Page</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Sample</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
@@ -22,13 +35,13 @@
                                     <td class="nama">
                                         <?= $mapel['nama'] ?>
                                     </td>
-                                    <td class="deskripsi">
+                                    <td class="deskripsi_id">
                                         <?= $mapel['deskripsi'] ?>
                                     </td>
-                                    <td class="mapel_kategori_id">
+                                    <td class="mapel_kategori_id_id">
                                         <?= $mapel['mapel_kategori_id'] ?>
                                     </td>
-                                    <td class="mapel_type">
+                                    <td class="mapel_type_id">
                                         <?= $mapel['mapel_type'] ?>
                                     </td>
                                     <td class="is_active">
@@ -44,10 +57,11 @@
                         <tfoot>
                             <tr>
                                 <th>Nama</th>
-                                <th>Deskripsi</th>
-                                <th>Mapel_kategori_id</th>
-                                <th>Mapel_type</th>
-                                <th>Is_active</th>
+                                <th>Kelas_id</th>
+                                <th>Semester_id</th>
+                                <th>Maple_id</th>
+                                <th>Mustahiq</th>
+                                <th>Keterangan</th>
                             </tr>
                         </tfoot>
                     </table>
