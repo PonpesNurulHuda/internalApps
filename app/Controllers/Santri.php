@@ -60,4 +60,4 @@ class Santri extends BaseController
         }
 
     }
-}
+} 
