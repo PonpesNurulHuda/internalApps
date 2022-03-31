@@ -2,7 +2,7 @@
 
 ## Apa itu Internal Applikasi En Ha ?
 
-Internal Applikasi En Ha merupakan sistem informasi internal TPQ & PonPes yang diharapkan dapat digunakan sebagai pesat data admistrasi PonPes & TPQ EnHa maupun yang lainnya. Sistem ini dibuat menggunakan freamwork  [CodeIgniter 4](http://codeigniter.com)
+Internal Applikasi En Ha merupakan sistem informasi internal TPQ & PonPes yang diharapkan dapat digunakan sebagai pesat data administrasi PonPes & TPQ EnHa maupun yang lainnya. Sistem ini dibuat menggunakan freamwork [CodeIgniter 4](http://codeigniter.com)
 
 ## Installation & updates
 
