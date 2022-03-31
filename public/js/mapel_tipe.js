@@ -28,8 +28,47 @@ function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
     dataPost.nama = $(`.tr_${tr} .nama`).val();
-    dataPost.deskripsi = $(`.tr_${tr} .deskripsi`).val();
+    dataPost.deskripsi =  $(`.tr_${tr} .deskripsi`).val();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
 
     return dataPost;
 }
+
+$(document).on("click", ".btnSave", function () {
+    var idRow = $(this).attr("id").replace("btnSave_", "");
+    var dataPost = getData(idRow);
+    console.log("dataPost", dataPost);
+  
+    $.ajax({
+      url: "mapel_tipe/add ",
+      type: "POST",
+  
+      data: dataPost,
+      success: function (response) {
+        console.log(response);
+  
+        var data = response;
+        if (data.id != "0") {
+          $("tbody").prepend(`
+                  <tr class="tr_${data.id}">
+                      <td class="nama">${dataPost.nama}</td>
+                      <td class="deskripsi">${dataPost.deskripsi}</td>
+                      <td class="is_active">${dataPost.is_active}</td>  
+                      <td>
+                          <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
+                          <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
+                      </td>
+                  </tr>
+              `);
+  
+          $(".DataTable td").css({ "font-size": 20 });
+          $(`.tr_${idRow}`).remove();
+        }else{
+            alert(data.pesan);
+        }
+      },
+      error: function () {
+        alert("Terjadi kesalahan");
+      },
+    });
+  });
