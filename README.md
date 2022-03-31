@@ -27,4 +27,8 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
 - xml (diaktifkan umumnya - jangan dimatikan)
 
 ## Pengembang sistem
-[Rifki Ahmad Sururi](https://avatars.githubusercontent.com/u/57984062?s=96&v=4)
+<img
+  src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
