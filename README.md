@@ -27,6 +27,7 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
 - xml (diaktifkan umumnya - jangan dimatikan)
 
 ## Pengembang sistem
+ <a href="url"><img src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4" height="auto" width="200" style="border-radius:50%"></a>
 <img
   src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4"
   alt="Rifki Ahmad Sururi"
