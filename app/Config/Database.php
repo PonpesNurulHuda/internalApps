@@ -32,7 +32,7 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => '	s465z7sj4pwhp7fn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        'hostname' => 's465z7sj4pwhp7fn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         'username' => 'b5podehynkk04egz',
         'password' => 'j82d6bokq4f87v1q',
         'database' => 'o45yl9g81h0noemd',
