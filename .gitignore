@@ -88,7 +88,9 @@ vendor/
 #-------------------------
 # SETTING - SETTING
 #-------------------------
-app/config
+app/Database.php
+app/App.php
+
 
 #-------------------------
 # IDE / Development Files
