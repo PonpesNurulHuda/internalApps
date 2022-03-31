@@ -29,6 +29,6 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
 ## Pengembang sistem
 <img
   src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  alt="Rifki Ahmad Sururi"
+  title="Rifki Ahmad Sururi"
+  style="display: inline-block; margin: 0 auto; max-width: 300px; border-radius: 200px; -webkit-border-radius: 200px; -moz-border-radius: 200px;">
