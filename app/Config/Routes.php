@@ -41,16 +41,16 @@ $routes->add('santri/add', 'santri::add');
 $routes->add('kelas/add', 'kelas::add');
 
 //mapel_kategori
-$routes->add('mapel_kategori/add', 'kelas::add');
+$routes->add('mapel_kategori/add', 'mapel_kategori::add');
 
 //mapel_kelas
-$routes->add('mapel_kelas/add', 'kelas::add');
+$routes->add('mapel_kelas/add', 'mapel_kelas::add');
 
 //mapel_tipe
-$routes->add('mapel_tipe/add', 'kelas::add');
+$routes->add('mapel_tipe/add', 'mapel_tipe::add');
 
 //mapel
-$routes->add('mapel/add', 'kelas::add');
+$routes->add('mapel/add', 'mapel::add');
 
 
 /*

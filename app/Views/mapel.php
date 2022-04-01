@@ -30,26 +30,26 @@
                         </thead>
                         <tbody>
                             <?php foreach ($dtMapel as $mapel) : ?>
-                                <tr>
+                                <tr class="tr_<?= $mapel['id'] ?>">
                                     <td hidden><?= $mapel['id'] ?></td>
                                     <td class="nama">
                                         <?= $mapel['nama'] ?>
                                     </td>
-                                    <td class="deskripsi_id">
+                                    <td class="deskripsi">
                                         <?= $mapel['deskripsi'] ?>
                                     </td>
-                                    <td class="mapel_kategori_id_id">
+                                    <td class="mapel_kategori_id">
                                         <?= $mapel['mapel_kategori_id'] ?>
                                     </td>
-                                    <td class="mapel_type_id">
+                                    <td class="mapel_type">
                                         <?= $mapel['mapel_type'] ?>
                                     </td>
                                     <td class="is_active">
                                         <?= $mapel['is_active'] ?>
                                     </td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $mapel['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -57,11 +57,10 @@
                         <tfoot>
                             <tr>
                                 <th>Nama</th>
-                                <th>Kelas_id</th>
-                                <th>Semester_id</th>
-                                <th>Maple_id</th>
-                                <th>Mustahiq</th>
-                                <th>Keterangan</th>
+                                <th>Deskripsi</th>
+                                <th>Mapel_kategori_id</th>
+                                <th>mapel_type</th>
+                                <th>Is_active</th>
                             </tr>
                         </tfoot>
                     </table>

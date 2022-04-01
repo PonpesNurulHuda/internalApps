@@ -10,5 +10,5 @@ class mapel_kelasModel extends Model
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['nama', 'kelas_id', 'semester_id', 'maple_id', 'mustahiq', 'keterangan'];
+    protected $allowedFields = ['nama', 'kelas_id', 'semester_id', 'mapel_id', 'mustahiq', 'keterangan'];
 }

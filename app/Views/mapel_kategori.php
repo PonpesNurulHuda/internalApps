@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($dtMapel_kategori as $mapel_kategori) : ?>
-                                <tr>
+                                <tr class="tr_<?= $mapel_kategori['id'] ?>">
                                     <td hidden><?= $mapel_kategori['id'] ?></td>
                                     <td class="nama">
                                         <?= $mapel_kategori['nama'] ?>
@@ -40,8 +40,8 @@
                                         <?= $mapel_kategori['is_active'] ?>
                                     </td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel_kategori['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $mapel_kategori['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
