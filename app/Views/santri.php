@@ -35,7 +35,6 @@
                                 <tr class="tr_<?= $santri['id'] ?>">
                                     <td hidden><?= $santri['id'] ?></td>
                                     <td class="nik">
-                                        <?= $santri['nik'] ?>
                                     </td>
                                     <td class="kk">
                                         <?= $santri['kk'] ?>
@@ -53,7 +52,7 @@
                                         <?= $santri['gender'] ?>
                                     </td>
                                     <td>
-                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $santri['id'] ?>">Edit</button> 
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $santri['id'] ?>">Edit</button>
                                         <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $santri['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>

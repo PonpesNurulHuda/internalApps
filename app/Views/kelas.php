@@ -33,10 +33,13 @@
                         </thead>
                         <tbody>
                             <?php foreach ($dtKelas as $kelas) : ?>
-                                <tr>
+                                <tr class="tr_<?= $kelas['id'] ?>">
                                     <td hidden><?= $kelas['id'] ?></td>
                                     <td class="kode">
                                         <?= $kelas['kode'] ?>
+                                    </td>
+                                    <td class="nama">
+                                        <?= $kelas['nama'] ?>
                                     </td>
                                     <td class="tingkat_id">
                                         <?= $kelas['tingkat_id'] ?>
@@ -57,8 +60,8 @@
                                         <?= $kelas['updated_at'] ?>
                                     </td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $kelas['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $kelas['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($dtMapel_tipe as $mapel_tipe) : ?>
-                                <tr>
+                                <tr class="tr_<?= $mapel_tipe['id'] ?>">
                                     <td hidden><?= $mapel_tipe['id'] ?></td>
                                     <td class="nama">
                                         <?= $mapel_tipe['nama'] ?>
@@ -40,17 +40,16 @@
                                         <?= $mapel_tipe['is_active'] ?>
                                     </td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel_tipe['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $mapel_tipe['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Deskripsi</th>
-                                <th>Is_active</th>
+                            <th>Nama</th>
+                            <th>Deskripsi</th>
+                            <th>Is_active</th>
                             </tr>
                         </tfoot>
                     </table>

@@ -12,8 +12,8 @@ $(document).on("click", "#btnAddKelas", function () {
             <td><input type='text' class="form-control tingkat_id" id=''></td>
             <td><input type='text' class="form-control tahun_ajaran_id" id=''></td>
             <td><input type='text' class="form-control walikelas" id=''></td>
-            <td><input type='date' class="form-control is_active" id=''></td>
-            <td><input type='text' class="form-control created_at" id=''></td>
+            <td><input type='text' class="form-control is_active" id=''></td>
+            <td><input type='date' class="form-control created_at" id=''></td>
             <td><input type='date' class="form-control updated_at" id=''></td>
             </td>
             <td>
@@ -30,7 +30,7 @@ $(document).on("click", ".btnCancel", function () {
 });
 
 function getData(tr){
-    var dataPost = new Object();
+    var dataPost = new Object(); 
     dataPost.id =  tr;
     dataPost.kode = $(`.tr_${tr} .kode`).val();
     dataPost.kode = $(`.tr_${tr} .nama`).val();
@@ -86,4 +86,39 @@ $(document).on("click", ".btnSave", function () {
         alert("Terjadi kesalahan");
       },
     });
+  });
+  
+// edit data
+
+$(document).on("click", ".btnEdit", function () {
+    var idRow = $(this).attr("id").replace("btnEdit_", "");
+    console.log('idRow', idRow)
+    var dataPost = getData(idRow);
+    console.log(dataPost);
+    var kode = $(`.tr_${idRow} .kode`).html().trim();;
+    var nama = $(`.tr_${idRow} .nama`).html().trim();;
+    var tahun_ajaran_id = $(`.tr_${idRow} .tahun_ajaran_id`).html().trim();;
+    var walikelas = $(`.tr_${idRow} .walikelas`).html().trim();;
+    var is_active = $(`.tr_${idRow} .is_active`).html().trim();;
+    var created_at = $(`.tr_${idRow} .created_at`).html().trim();;
+    var updated_at = $(`.tr_${idRow} .updated_at`).html().trim();;
+  
+    $(`.tr_${idRow}`).hide();
+    $(`.tr_${idRow}`).addClass(`lama_${idRow}`);
+  
+    $(`.tr_${idRow}`).before(`
+        <tr class="tr_${idRow} formEdit_${idRow}">
+            <td><input type='text' class="form-control kode" id='' value='${kode}'></td>
+            <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
+            <td><input type='text' class="form-control tahun_ajaran_id" id='' value='${tahun_ajaran_id}'></td>
+            <td><input type='text' class="form-control walikelas" id='' value='${walikelas}'></td>
+            <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
+            <td><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
+            <td><input type='date' class="form-control updated_at" id='' value='${updated_at}'></td>
+            <td>
+                <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
+                <button class='btn btn-danger btnCancelEdit' id="btnCancel_${idRow}">Batal</button>
+            </td>
+        </tr>
+    `);
   });

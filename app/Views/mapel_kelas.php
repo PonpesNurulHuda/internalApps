@@ -24,14 +24,14 @@
                                 <th>Nama</th>
                                 <th>Kelas_id</th>
                                 <th>Semester_id</th>
-                                <th>Maple_id</th>
+                                <th>Mapel_id</th>
                                 <th>Mustahiq</th>
                                 <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtMapel_kelas as $mapel_kelas) : ?>
-                                <tr>
+                                <tr class="tr_<?= $mapel_kelas['id'] ?>">
                                     <td hidden><?= $mapel_kelas['id'] ?></td>
                                     <td class="nama">
                                         <?= $mapel_kelas['nama'] ?>
@@ -42,8 +42,8 @@
                                     <td class="semester_id">
                                         <?= $mapel_kelas['semester_id'] ?>
                                     </td>
-                                    <td class="maple_id">
-                                        <?= $mapel_kelas['maple_id'] ?>
+                                    <td class="mapel_id">
+                                        <?= $mapel_kelas['mapel_id'] ?>
                                     </td>
                                     <td class="mustahiq">
                                         <?= $mapel_kelas['mustahiq'] ?>
@@ -52,8 +52,8 @@
                                         <?= $mapel_kelas['keterangan'] ?>
                                     </td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel_kelas['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $mapel_kelas['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -63,7 +63,7 @@
                                 <th>Nama</th>
                                 <th>Kelas_id</th>
                                 <th>Semester_id</th>
-                                <th>Maple_id</th>
+                                <th>Mapel_id</th>
                                 <th>Mustahiq</th>
                                 <th>Keterangan</th>
                             </tr>

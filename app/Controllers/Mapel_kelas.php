@@ -29,7 +29,7 @@ class Mapel_kelas extends BaseController
         $validation->setRules(['nama' => 'required']);
         $validation->setRules(['kelas_id' => 'required']);
         $validation->setRules(['semester_id' => 'required']);
-        $validation->setRules(['maple_id' => 'required']);
+        $validation->setRules(['mapel_id' => 'required']);
         $validation->setRules(['mustahiq' => 'required']);
         $validation->setRules(['keterangan' => 'required']);
 
@@ -43,7 +43,7 @@ class Mapel_kelas extends BaseController
                 "nama" => $this->request->getPost('nama'),
                 "kelas_id" => $this->request->getPost('kelas_id'),
                 "semester_id" => $this->request->getPost('semester_id'),
-                "maple_id" => $this->request->getPost('maple_id'),
+                "mapel_id" => $this->request->getPost('mapel_id'),
                 "mustahiq" => $this->request->getPost('mustahiq'),
                 "keterangan" => $this->request->getPost('keterangan')
             ]);
@@ -59,7 +59,7 @@ class Mapel_kelas extends BaseController
 
             $data = [
                 'id' => 0,
-                'pesan' => 'data gagal tersimpan',
+                'pesan' => 'validasi data gagal tersimpan',
             ];
             return $this->respond($data, 200);
         }
