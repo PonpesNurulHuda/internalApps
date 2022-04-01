@@ -34,11 +34,11 @@
                             <?php foreach ($dtSantri as $santri) : ?>
                                 <tr class="tr_<?= $santri['id'] ?>">
                                     <td hidden><?= $santri['id'] ?></td>
-                                    <td class="kk">
-                                        <?= $santri['kk'] ?>
-                                    </td>
                                     <td class="nik">
                                         <?= $santri['nik'] ?>
+                                    </td>
+                                    <td class="kk">
+                                        <?= $santri['kk'] ?>
                                     </td>
                                     <td class="nis">
                                         <?= $santri['nis'] ?>

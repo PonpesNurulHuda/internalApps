@@ -51,7 +51,7 @@ $(document).on("click", ".btnSave", function () {
   console.log("dataPost", dataPost);
 
   $.ajax({
-    url: "santri/add ",
+    url: "santri/add",
     type: "POST",
 
     data: dataPost,
@@ -95,11 +95,11 @@ $(document).on("click", ".btnEdit", function () {
   var dataPost = getData(idRow);
   console.log(dataPost);
   var nik = $(`.tr_${idRow} .nik`).html().trim();;
-  var kk = $(`.tr_${idRow} .nik`).html().trim();;
-  var nis = $(`.tr_${idRow} .nik`).html().trim();;
-  var nama = $(`.tr_${idRow} .nik`).html().trim();;
-  var tanggal_lahir = $(`.tr_${idRow} .nik`).html().trim();;
-  var gender = $(`.tr_${idRow} .nik`).html().trim();;
+  var kk = $(`.tr_${idRow} .kk`).html().trim();;
+  var nis = $(`.tr_${idRow} .nis`).html().trim();;
+  var nama = $(`.tr_${idRow} .nama`).html().trim();;
+  var tanggal_lahir = $(`.tr_${idRow} .tanggal_lahir`).html().trim();;
+  var gender = $(`.tr_${idRow} .gender`).html().trim();;
 
   $(`.tr_${idRow}`).hide();
   $(`.tr_${idRow}`).addClass(`lama_${idRow}`);
@@ -118,4 +118,56 @@ $(document).on("click", ".btnEdit", function () {
           </td>
       </tr>
   `);
+});
+
+// action update data
+$(document).on("click", ".btnSaveEdit", function () {
+  var yakin = confirm("Apakah anda yakin akan merubah data ini?");
+  var idRow = $(this).attr("id").replace("btnSave_", "");
+  
+  if (yakin) {
+      var dataPost = getData(idRow);
+      console.log(dataPost);
+      
+      $.ajax({
+          url: "santri/update",
+          type:"POST",
+
+          data:dataPost,
+          success:function(response) {
+              var data = response;
+              var dataTd = data.data;
+              console.log('response', response);
+              console.log('data id', response);
+              $(`.formEdit_${idRow}`).before(`
+                  <tr class="tr_${data.id}">
+                      <td class="nik">${dataPost.nik}</td>
+                      <td class="kk">${dataPost.kk}</td>
+                      <td class="nis">${dataPost.nis}</td>
+                      <td class="nama">${dataPost.nama}</td>
+                      <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td>
+                      <td class="gender">${dataPost.gender}</td>
+                      <td>
+                          <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
+                          <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
+                      </td>
+                  </tr>
+              `);
+
+              $(".DataTable td").css({ 'font-size': 20 });
+              $(`.formEdit_${idRow}`).remove();
+              $(`.lama_${idRow}`).remove();
+          },
+          error:function(){
+              alert("Terjadi kesalahan");
+          }
+
+      });
+  } else {
+      console.log('batal', idRow);
+      $(`.tr_${idRow}`).show();
+      $(`.formEdit_${idRow}`).remove();
+      $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+  }
+  
 });
