@@ -86,3 +86,36 @@ $(document).on("click", ".btnSave", function () {
     },
   });
 });
+
+// edit data
+
+$(document).on("click", ".btnEdit", function () {
+  var idRow = $(this).attr("id").replace("btnEdit_", "");
+  console.log('idRow', idRow)
+  var dataPost = getData(idRow);
+  console.log(dataPost);
+  var nik = $(`.tr_${idRow} .nik`).html().trim();;
+  var kk = $(`.tr_${idRow} .nik`).html().trim();;
+  var nis = $(`.tr_${idRow} .nik`).html().trim();;
+  var nama = $(`.tr_${idRow} .nik`).html().trim();;
+  var tanggal_lahir = $(`.tr_${idRow} .nik`).html().trim();;
+  var gender = $(`.tr_${idRow} .nik`).html().trim();;
+
+  $(`.tr_${idRow}`).hide();
+  $(`.tr_${idRow}`).addClass(`lama_${idRow}`);
+
+  $(`.tr_${idRow}`).before(`
+      <tr class="tr_${idRow} formEdit_${idRow}">
+          <td><input type='text' class="form-control nik" id='' value='${nik}'></td>
+          <td><input type='text' class="form-control kk" id='' value='${kk}'></td>
+          <td><input type='text' class="form-control nis" id='' value='${nis}'></td>
+          <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
+          <td><input type='date' class="form-control tanggal_lahir" id='' value='${tanggal_lahir}'></td>
+          <td><input type='text' class="form-control gender" id='' value='${gender}'></td>
+          <td>
+              <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
+              <button class='btn btn-danger btnCancelEdit' id="btnCancel_${idRow}">Batal</button>
+          </td>
+      </tr>
+  `);
+});
