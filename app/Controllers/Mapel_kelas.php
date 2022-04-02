@@ -64,4 +64,48 @@ class Mapel_kelas extends BaseController
             return $this->respond($data, 200);
         }
     }
+
+    public function update()
+    {
+        $validation =  \Config\Services::validation();
+        // setiap kolom kasih validasi is required
+        // kecuali created_at, updated_at dan id 
+
+        $validation->setRules(['nama' => 'required']);
+        $validation->setRules(['kelas_id' => 'required']);
+        $validation->setRules(['semester_id' => 'required']);
+        $validation->setRules(['is_active' => 'required']);
+        $validation->setRules(['mustahiq' => 'required']);
+        $validation->setRules(['keterangan' => 'required']);
+
+        $isDataValid = $validation->withRequest($this->request)->run();
+        // jika data valid, simpan ke database
+        if ($isDataValid) {
+            $data = new Mapel_kelasModel();
+
+            $id = $data->update($this->request->getPost('id'), [
+                "nama" => $this->request->getPost('nama'),
+                "kelas_id" => $this->request->getPost('kelas_id'),
+                "semester_id" => $this->request->getPost('semester_id'),
+                "is_active" => $this->request->getPost('is_active'),
+                "mustahiq" => $this->request->getPost('mustahiq'),
+                "keterangan" => $this->request->getPost('keterangan')
+            ]);
+
+            if ($id > 0) {
+                $data = [
+                    'id' => $id,
+                    'pesan' => 'data mapel_kelas tersimpan',
+                ];
+                return $this->respond($data, 200);
+            }
+        } else {
+
+            $data = [
+                'id' => 0,
+                'pesan' => 'data gagal tersimpan',
+            ];
+            return $this->respond($data, 200);
+        }
+    }
 }

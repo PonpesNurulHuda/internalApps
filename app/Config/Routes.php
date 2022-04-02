@@ -40,18 +40,24 @@ $routes->add('santri/update', 'santri::update');
 
 //kelas
 $routes->add('kelas/add', 'kelas::add');
+$routes->add('kelas/update', 'kelas::update');
 
 //mapel_kategori
 $routes->add('mapel_kategori/add', 'mapel_kategori::add');
+$routes->add('mapel_kategori/update', 'mapel_kategori::update');
+
 
 //mapel_kelas
 $routes->add('mapel_kelas/add', 'mapel_kelas::add');
+$routes->add('mapel_kelas/update', 'mapel_kelas::update');
 
 //mapel_tipe
 $routes->add('mapel_tipe/add', 'mapel_tipe::add');
+$routes->add('mapel_tipe/update', 'mapel_tipe::update');
 
 //mapel
 $routes->add('mapel/add', 'mapel::add');
+$routes->add('mapel/update', 'mapel::update');
 
 
 /*

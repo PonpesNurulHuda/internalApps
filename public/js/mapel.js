@@ -109,3 +109,53 @@ $(document).on("click", ".btnEdit", function () {
         </tr>
     `);
   });
+  
+// action update data
+$(document).on("click", ".btnSaveEdit", function () {
+    var yakin = confirm("Apakah anda yakin akan merubah data ini?");
+    var idRow = $(this).attr("id").replace("btnSave_", "");
+  
+    if (yakin) {
+        var dataPost = getData(idRow);
+        console.log(dataPost);
+  
+        $.ajax({
+            url: "mapel/update",
+            type:"POST",
+  
+            data:dataPost,
+            success:function(response) {
+                var data = response;
+                var dataTd = data.data;
+                console.log('response', response);
+                console.log('data id', response);
+                $(`.formEdit_${idRow}`).before(`
+                    <tr class="tr_${data.id}">
+                        <td class="nama">${dataPost.nama}</td>
+                        <td class="deskripsi">${dataPost.deskripsi}</td>
+                        <td class="mapel_kategori_id">${dataPost.mapel_kategori_id}</td>
+                        <td class="mapel_type">${dataPost.mapel_type}</td>
+                        <td class="is_active">${dataPost.is_active}</td>
+                        <td>
+                            <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
+                            <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
+                        </td>
+                    </tr>
+                `);
+  
+                $(".DataTable td").css({ 'font-size': 20 });
+                $(`.formEdit_${idRow}`).remove();
+                $(`.lama_${idRow}`).remove();
+            },
+            error:function(){
+                alert("Terjadi kesalahan");
+            }
+  
+        });
+    } else {
+        console.log('batal', idRow);
+        $(`.tr_${idRow}`).show();
+        $(`.formEdit_${idRow}`).remove();
+        $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+    }
+});
