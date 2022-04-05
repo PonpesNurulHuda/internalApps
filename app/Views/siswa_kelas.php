@@ -16,46 +16,51 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtSantri">
-                    <h5 class="card-title">Data Santri</h5>
+                <div class="card-body dtSiswa_kelas">
+                    <h5 class="card-title">Data Siswa_kelas</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>id_siswa</th>
-                                <th>id_kelas</th>
-                                <th>is_active</th>
-                                <th>created_at</th>
+                                <th>Id_siswa</th>
+                                <th>Id_kelas</th>
+                                <th>Is_active</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtSantri as $santri) : ?>
-                                <tr>
-                                    <td hidden><?= $santri['id'] ?></td>
-                                    <td>
-                                        <?= $santri['id_siswa'] ?>
+                            <?php foreach ($dtSiswa_kelas as $siswa_kelas) : ?>
+                                <tr class="tr_<?= $siswa_kelas['id'] ?>">
+                                    <td hidden><?= $siswa_kelas['id'] ?></td>
+                                    <td class="id_siswa">
+                                        <?= $siswa_kelas['id_siswa'] ?>
+                                    </td>
+                                    <td class="id_kelas">
+                                        <?= $siswa_kelas['id_kelas'] ?>
+                                    </td>
+                                    <td class="is_active">
+                                        <?= $siswa_kelas['is_active'] ?>
+                                    </td>
+                                    <td class="created_at">
+                                        <?= $siswa_kelas['created_at'] ?>
+                                    </td>
+                                    <td class="updated_at">
+                                        <?= $siswa_kelas['updated_at'] ?>
                                     </td>
                                     <td>
-                                        <?= $santri['id_kelas'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $santri['is_active'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $santri['created_at'] ?>
-                                    </td>
-                                    <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $siswa_kelas['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $siswa_kelas['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>id_siswa</th>
-                                <th>id_kelas</th>
-                                <th>is_active</th>
-                                <th>created_at</th>
+                                <th>Id_siswa</th>
+                                <th>Id_kelas</th>
+                                <th>Is_active</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
                             </tr>
                         </tfoot>
                     </table>

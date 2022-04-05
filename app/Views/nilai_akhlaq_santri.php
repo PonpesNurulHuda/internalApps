@@ -16,8 +16,8 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtNilai_akhsan">
-                    <h5 class="card-title">Data Nilai_akhsan</h5>
+                <div class="card-body dtNilai_akhlaq_santri">
+                    <h5 class="card-title">Data Nilai_akhlaq_santri</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
@@ -29,30 +29,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtNilai_akhsan as $nilai_akhsan) : ?>
-                                <tr>
-                                    <td hidden><?= $nilai_akhsan['id'] ?></td>
+                            <?php foreach ($dtNilai_akhlaq_santri as $nilai_akhlaq_santri) : ?>
+                                <<tr class="tr_<?= $nilai_akhlaq_santri['id'] ?>">
+                                    <td hidden><?= $nilai_akhlaq_santri['id'] ?></td>
                                     <td class="id_santri">
-                                        <?= $nilai_akhsan['id_santri'] ?>
+                                        <?= $nilai_akhlaq_santri['id_santri'] ?>
                                     </td>
                                     <td class="id_semester">
-                                        <?= $nilai_akhsan['id_semester'] ?>
+                                        <?= $nilai_akhlaq_santri['id_semester'] ?>
                                     </td>
                                     <td class="akhlaq">
-                                        <?= $nilai_akhsan['akhlaq'] ?>
+                                        <?= $nilai_akhlaq_santri['akhlaq'] ?>
                                     </td>
                                     <td class="kerapihan">
-                                        <?= $nilai_akhsan['kerapihan'] ?>
+                                        <?= $nilai_akhlaq_santri['kerapihan'] ?>
                                     </td>
                                     <td class="kerajinan">
-                                        <?= $nilai_akhsan['kerajinan'] ?>
+                                        <?= $nilai_akhlaq_santri['kerajinan'] ?>
                                     </td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $nilai_akhlaq_santri['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $nilai_akhlaq_santri['id'] ?>">Hapus</button>
                                     </td>
-                                </tr>
-                            <?php endforeach ?>
+                                    </tr>
+                                <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -73,5 +73,5 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/nilai_akhsan.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/nilai_akhlaq_santri.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

@@ -4,11 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SantriModel extends Model
+class santriModel extends Model
 {
     protected $table      = 'santri';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['kk', 'nik', 'nis', 'nana', 'tanggal_lahir', 'gender'];
+    protected $allowedFields = ['kk', 'nik', 'nis', 'nama', 'tanggal_lahir', 'gender'];
 }

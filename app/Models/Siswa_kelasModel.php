@@ -10,5 +10,5 @@ class siswa_kelasModel extends Model
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['id_siswa', 'id_kelas', 'is_active', 'created_at'];
+    protected $allowedFields = ['id_siswa', 'id_kelas', 'is_active', 'created_at', 'updated_at'];
 }

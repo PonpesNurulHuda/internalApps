@@ -74,7 +74,7 @@ class Mapel_kelas extends BaseController
         $validation->setRules(['nama' => 'required']);
         $validation->setRules(['kelas_id' => 'required']);
         $validation->setRules(['semester_id' => 'required']);
-        $validation->setRules(['is_active' => 'required']);
+        $validation->setRules(['mapel_id' => 'required']);
         $validation->setRules(['mustahiq' => 'required']);
         $validation->setRules(['keterangan' => 'required']);
 
@@ -87,7 +87,7 @@ class Mapel_kelas extends BaseController
                 "nama" => $this->request->getPost('nama'),
                 "kelas_id" => $this->request->getPost('kelas_id'),
                 "semester_id" => $this->request->getPost('semester_id'),
-                "is_active" => $this->request->getPost('is_active'),
+                "mapel_id" => $this->request->getPost('mapel_id'),
                 "mustahiq" => $this->request->getPost('mustahiq'),
                 "keterangan" => $this->request->getPost('keterangan')
             ]);

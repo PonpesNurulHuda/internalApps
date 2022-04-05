@@ -21,23 +21,23 @@
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>NIK</th>
                                 <th>KK</th>
+                                <th>NIK</th>
                                 <th>NIS</th>
                                 <th>Nama</th>
-                                <th>Tanggal Lahir</th>
+                                <th>Tanggal_lahir</th>
                                 <th style="width: 10px;"> Gender</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtSantri as $santri) : ?>
                                 <tr class="tr_<?= $santri['id'] ?>">
                                     <td hidden><?= $santri['id'] ?></td>
-                                    <td class="nik">
-                                    </td>
                                     <td class="kk">
                                         <?= $santri['kk'] ?>
+                                    </td>
+                                    <td class="nik">
+                                        <?= $santri['nik'] ?>
                                     </td>
                                     <td class="nis">
                                         <?= $santri['nis'] ?>
@@ -60,13 +60,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>NIK</th>
                                 <th>KK</th>
+                                <th>NIK</th>
                                 <th>NIS</th>
                                 <th>Nama</th>
-                                <th>Tanggal Lahir</th>
+                                <th>Tanggal_lahir</th>
                                 <th>Gender</th>
-                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                     </table>

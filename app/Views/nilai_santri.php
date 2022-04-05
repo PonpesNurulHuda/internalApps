@@ -16,8 +16,8 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtSantri">
-                    <h5 class="card-title">Data Nisan</h5>
+                <div class="card-body dtNilai_santri">
+                    <h5 class="card-title">Data Nilai_santri</h5>
                     <table id="example" class="display datatable " style="width:100%">
                         <thead>
                             <tr>
@@ -27,22 +27,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtNisan as $Nisan) : ?>
-                                <tr>
-                                    <td hidden><?= $Nisan['id'] ?></td>
+                            <?php foreach ($dtNilai_santri as $nilai_santri) : ?>
+                                <tr class="tr_<?= $nilai_santri['id'] ?>">
+                                    <td hidden><?= $nilai_santri['id'] ?></td>
                                     <td class="id_siswa_kelas">
-                                        <?= $Nisan['id_siswa_kelas'] ?>
+                                        <?= $nilai_santri['id_siswa_kelas'] ?>
                                     </td>
                                     <td class="id_mapel_kelas">
-                                        <?= $Nisan['id_mapel_kelas'] ?>
+                                        <?= $nilai_santri['id_mapel_kelas'] ?>
                                     </td>
                                     <td class="nilai">
-                                        <?= $Nisan['nilai'] ?>
+                                        <?= $nilai_santri['nilai'] ?>
                                     </td>
                                     <td>
-                                    <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $nilai_santri['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $nilai_santri['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -65,5 +64,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/nisan.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/nilai_santri.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

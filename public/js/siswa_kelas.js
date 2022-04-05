@@ -1,17 +1,14 @@
 $(document).ready(function () {
-    $(".dtKelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddKelas'>Tambah Data </button>  ");
+    $(".dtSiswa_kelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddSiswa_kelas'>Tambah Data </button>  ");
 
 });
 
-$(document).on("click", "#btnAddKelas", function () {
+$(document).on("click", "#btnAddSiswa_kelas", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
         <tr class="tr_${className}">
-            <td><input type='text' class="form-control kode" id=''></td>
-            <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control tingkat_id" id=''></td>
-            <td><input type='text' class="form-control tahun_ajaran_id" id=''></td>
-            <td><input type='text' class="form-control walikelas" id=''></td>
+            <td><input type='text' class="form-control id_siswa" id=''></td>
+            <td><input type='text' class="form-control id_kelas" id=''></td>
             <td><input type='text' class="form-control is_active" id=''></td>
             <td><input type='date' class="form-control created_at" id=''></td>
             <td><input type='date' class="form-control updated_at" id=''></td>
@@ -30,13 +27,10 @@ $(document).on("click", ".btnCancel", function () {
 });
 
 function getData(tr){
-    var dataPost = new Object(); 
+    var dataPost = new Object();
     dataPost.id =  tr;
-    dataPost.kode = $(`.tr_${tr} .kode`).val();
-    dataPost.nama = $(`.tr_${tr} .nama`).val();
-    dataPost.tingkat_id =  $(`.tr_${tr} .tingkat_id`).val();
-    dataPost.tahun_ajaran_id = $(`.tr_${tr} .tahun_ajaran_id`).val();
-    dataPost.walikelas = $(`.tr_${tr} .walikelas`).val();
+    dataPost.id_siswa = $(`.tr_${tr} .id_siswa`).val();
+    dataPost.id_kelas =  $(`.tr_${tr} .id_kelas`).val();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
     dataPost.created_at = $(`.tr_${tr} .created_at`).val();
     dataPost.updated_at = $(`.tr_${tr} .updated_at`).val();
@@ -50,7 +44,7 @@ $(document).on("click", ".btnSave", function () {
     console.log("dataPost", dataPost);
   
     $.ajax({
-      url: "kelas/add ",
+      url: "siswa_kelas/add ",
       type: "POST",
   
       data: dataPost,
@@ -61,14 +55,11 @@ $(document).on("click", ".btnSave", function () {
         if (data.id != "0") {
           $("tbody").prepend(`
                   <tr class="tr_${data.id}">
-                      <td class="kode">${dataPost.kode}</td>
-                      <td class="nama">${dataPost.nama}</td>
-                      <td class="tingkat_id">${dataPost.tingkat_id}</td>
-                      <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td> 
-                      <td class="walikelas">${dataPost.walikelas}</td> 
-                      <td class="is_active">${dataPost.is_active}</td> 
+                      <td class="id_siswa">${dataPost.id_siswa}</td>
+                      <td class="id_kelas">${dataPost.id_kelas}</td>
+                      <td class="is_active">${dataPost.is_active}</td>
                       <td class="created_at">${dataPost.created_at}</td>
-                      <td class="updated_at">${dataPost.updated_at}</td> 
+                      <td class="updated_at">${dataPost.updated_at}</td>  
                       <td>
                           <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                           <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -95,11 +86,8 @@ $(document).on("click", ".btnEdit", function () {
     console.log('idRow', idRow)
     var dataPost = getData(idRow);
     console.log(dataPost);
-    var kode = $(`.tr_${idRow} .kode`).html().trim();;
-    var nama = $(`.tr_${idRow} .nama`).html().trim();;
-    var tingkat_id = $(`.tr_${idRow} .tingkat_id`).html().trim();;
-    var tahun_ajaran_id = $(`.tr_${idRow} .tahun_ajaran_id`).html().trim();;
-    var walikelas = $(`.tr_${idRow} .walikelas`).html().trim();;
+    var id_siswa = $(`.tr_${idRow} .id_siswa`).html().trim();;
+    var id_kelas = $(`.tr_${idRow} .id_kelas`).html().trim();;
     var is_active = $(`.tr_${idRow} .is_active`).html().trim();;
     var created_at = $(`.tr_${idRow} .created_at`).html().trim();;
     var updated_at = $(`.tr_${idRow} .updated_at`).html().trim();;
@@ -109,11 +97,8 @@ $(document).on("click", ".btnEdit", function () {
   
     $(`.tr_${idRow}`).before(`
         <tr class="tr_${idRow} formEdit_${idRow}">
-            <td><input type='text' class="form-control kode" id='' value='${kode}'></td>
-            <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
-            <td><input type='text' class="form-control tingkat_id" id='' value='${tingkat_id}'></td>
-            <td><input type='text' class="form-control tahun_ajaran_id" id='' value='${tahun_ajaran_id}'></td>
-            <td><input type='text' class="form-control walikelas" id='' value='${walikelas}'></td>
+            <td><input type='text' class="form-control id_siswa" id='' value='${id_siswa}'></td>
+            <td><input type='text' class="form-control id_kelas" id='' value='${id_kelas}'></td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
             <td><input type='date' class="form-control updated_at" id='' value='${updated_at}'></td>
@@ -123,7 +108,7 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
-});
+  });
 
   // action update data
 $(document).on("click", ".btnSaveEdit", function () {
@@ -135,7 +120,7 @@ $(document).on("click", ".btnSaveEdit", function () {
         console.log(dataPost);
   
         $.ajax({
-            url: "kelas/update",
+            url: "siswa_kelas/update",
             type:"POST",
   
             data:dataPost,
@@ -146,11 +131,8 @@ $(document).on("click", ".btnSaveEdit", function () {
                 console.log('data id', response);
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
-                        <td class="kode">${dataPost.kode}</td>
-                        <td class="nama">${dataPost.nama}</td>
-                        <td class="tingkat_id">${dataPost.tingkat_id}</td>
-                        <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
-                        <td class="walikelas">${dataPost.walikelas}</td>
+                        <td class="id_siswa">${dataPost.id_siswa}</td>
+                        <td class="id_kelas">${dataPost.id_kelas}</td>
                         <td class="is_active">${dataPost.is_active}</td>
                         <td class="created_at">${dataPost.created_at}</td>
                         <td class="updated_at">${dataPost.updated_at}</td>
@@ -174,6 +156,7 @@ $(document).on("click", ".btnSaveEdit", function () {
         console.log('batal', idRow);
         $(`.tr_${idRow}`).show();
         $(`.formEdit_${idRow}`).remove();
-    }    $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
-
+        $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+    }
 });
+  

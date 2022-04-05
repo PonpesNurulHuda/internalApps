@@ -75,9 +75,9 @@ class Mapel_kategori extends BaseController
             $data = new Mapel_kategoriModel();
 
             $id = $data->update($this->request->getPost('id'), [
-                "nama" => $this->request->getPost('nik'),
-                "deskripsi" => $this->request->getPost('kk'),
-                "is_active" => $this->request->getPost('nama')
+                "nama" => $this->request->getPost('nama'),
+                "deskripsi" => $this->request->getPost('deskripis'),
+                "is_active" => $this->request->getPost('is_active')
             ]);
 
             if ($id > 0) {

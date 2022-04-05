@@ -16,7 +16,7 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtSantri">
+                <div class="card-body dtTbl01">
                     <h5 class="card-title">Data tbl01</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
@@ -27,23 +27,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtSantri as $santri) : ?>
-                                <tr>
-                                    <td hidden><?= $santri['id'] ?></td>
-                                    <td>
-                                        <?= $santri['seqno'] ?>
+                            <?php foreach ($dtTbl01 as $tbl01) : ?>
+                                <<tr class="tr_<?= $tbl01['id'] ?>">
+                                    <td hidden><?= $tbl01['id'] ?></td>
+                                    <td class="seqno">
+                                        <?= $tbl01['seqno'] ?>
+                                    </td>
+                                    <td class="nama">
+                                        <?= $tbl01['nama'] ?>
+                                    </td>
+                                    <td class="is_active">
+                                        <?= $tbl01['is_active'] ?>
                                     </td>
                                     <td>
-                                        <?= $santri['nama'] ?>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $tbl01['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $tbl01['id'] ?>">Hapus</button>
                                     </td>
-                                    <td>
-                                        <?= $santri['is_active'] ?>
-                                    </td>
-                                    <button>Edit</button>
-                                    <button>Detail</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
+                                    </tr>
+                                <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>

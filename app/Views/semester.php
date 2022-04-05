@@ -17,45 +17,43 @@
 
             <div class="card">
                 <div class="card-body dtSemester">
-                    <h5 class="card-title">Data Santri</h5>
+                    <h5 class="card-title">Data Semester</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th> protected $allowedFields =tahun_ajaran_id</th>
-                                <th> protected $allowedFields =seqno</th>
-                                <th> protected $allowedFields =nama</th>
-                                <th> protected $allowedFields =dimulai </th>
-                                <th> protected $allowedFields =selesai </th>
-                                <th> protected $allowedFields =status </th>
-                                <th style="width: 10px;"> Gender</th>
-                                <th>Aksi</th>
+                                <th>Tahun_ajaran_id</th>
+                                <th>Seqno</th>
+                                <th>Nama</th>
+                                <th>Dimulai</th>
+                                <th>Selesai</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtsemestet as $semestar) : ?>
-                                <tr>
+                            <?php foreach ($dtSemester as $semester) : ?>
+                                <tr class="tr_<?= $semester['id'] ?>">
                                     <td hidden><?= $semester['id'] ?></td>
-                                    <td>
+                                    <td class="tahun_ajaran_id">
                                         <?= $semester['tahun_ajaran_id'] ?>
                                     </td>
-                                    <td>
-                                        <?= $santri['seqno'] ?>
+                                    <td class="seqno">
+                                        <?= $semester['seqno'] ?>
+                                    </td>
+                                    <td class="nama">
+                                        <?= $semester['nama'] ?>
+                                    </td>
+                                    <td class="dimulai">
+                                        <?= $semester['dimulai'] ?>
+                                    </td>
+                                    <td class="selesai">
+                                        <?= $semester['selesai'] ?>
+                                    </td>
+                                    <td class="status">
+                                        <?= $semester['status'] ?>
                                     </td>
                                     <td>
-                                        <?= $santri['nama'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $santri['dimulai'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $santri['selesai'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $santri['status'] ?>
-                                    </td>
-                                    <td>
-                                        <button>Edit</button>
-                                        <button>Detail</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $semester['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $semester['id'] ?>">Hapus</button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -65,10 +63,9 @@
                                 <th>tahun_ajaran_id</th>
                                 <th>seqno</th>
                                 <th>Nama</th>
-                                <th>dimulai</th>
-                                <th>selesai Lahir</th>
-                                <th>status</th>
-                                <th>Aksi</th>
+                                <th>Dimulai</th>
+                                <th>Selesai</th>
+                                <th>Status</th>
                             </tr>
                         </tfoot>
                     </table>

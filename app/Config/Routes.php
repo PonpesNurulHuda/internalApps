@@ -59,6 +59,30 @@ $routes->add('mapel_tipe/update', 'mapel_tipe::update');
 $routes->add('mapel/add', 'mapel::add');
 $routes->add('mapel/update', 'mapel::update');
 
+//nilai_akhlaq_santri
+$routes->add('nilai_akhlaq_santri/add', 'nilai_akhlaq_santri::add');
+$routes->add('nilai_akhlaq_santri/update', 'nilai_akhlaq_santri::update');
+
+//nilai_santri
+$routes->add('nilai_santri/add', 'nilai_santri::add');
+$routes->add('nilai_santri/update', 'nilai_santri::update');
+
+//siswa_kelas
+$routes->add('siswa_kelas/add', 'siswa_kelas::add');
+$routes->add('siswa_kelas/update', 'siswa_kelas::update');
+
+//tahun_ajaran
+$routes->add('tahun_ajaran/add', 'tahun_ajaran::add');
+$routes->add('tahun_ajaran/update', 'tahun_ajaran::update');
+
+//semester
+$routes->add('semester/add', 'semester::add');
+$routes->add('semester/update', 'semester::update');
+
+//tbl01
+$routes->add('tbl01/add', 'tbl01::add');
+$routes->add('tbl01/update', 'tbl01::update');
+
 
 /*
  * --------------------------------------------------------------------

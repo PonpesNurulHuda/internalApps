@@ -8,13 +8,13 @@ $(document).on("click", "#btnAddSantri", function () {
   var className = makeid(10);
   $("tbody").prepend(`
         <tr class="tr_${className}">
-            <td><input type='text' class="form-control nik" id=''></td>
             <td><input type='text' class="form-control kk" id=''></td>
+            <td><input type='text' class="form-control nik" id=''></td>
             <td><input type='text' class="form-control nis" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='date' class="form-control tanggal_lahir" id=''></td>
             <td>
-                <select class="form-control jenis_kelamin">
+                <select class="form-control gender">
                     <option value="L">Laki - Laki</option>
                     <option value="P">Perempuan</option>
                 </select>
@@ -35,12 +35,12 @@ $(document).on("click", ".btnCancel", function () {
 function getData(tr) {
   var dataPost = new Object();
   dataPost.id = tr;
-  dataPost.nik = $(`.tr_${tr} .nik`).val();
   dataPost.kk = $(`.tr_${tr} .kk`).val();
+  dataPost.nik = $(`.tr_${tr} .nik`).val();
   dataPost.nis = $(`.tr_${tr} .nis`).val();
   dataPost.nama = $(`.tr_${tr} .nama`).val();
   dataPost.tanggal_lahir = $(`.tr_${tr} .tanggal_lahir`).html();
-  dataPost.jenis_kelamin = $(`.tr_${tr} .jenis_kelamin`).html();
+  dataPost.gender = $(`.tr_${tr} .gender`).html();
 
   return dataPost;
 }
@@ -62,12 +62,12 @@ $(document).on("click", ".btnSave", function () {
       if (data.id != "0") {
         $("tbody").prepend(`
                 <tr class="tr_${data.id}">
-                    <td class="nik">${dataPost.nik}</td>
                     <td class="kk">${dataPost.kk}</td>
+                    <td class="nik">${dataPost.nik}</td>
                     <td class="nis">${dataPost.nis}</td> 
                     <td class="nama">${dataPost.nama}</td> 
                     <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td> 
-                    <td class="jenis_kelamin">${dataPost.jenis_kelamin}</td> 
+                    <td class="gender">${dataPost.gender}</td> 
                     <td>
                         <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                         <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -94,8 +94,8 @@ $(document).on("click", ".btnEdit", function () {
   console.log('idRow', idRow)
   var dataPost = getData(idRow);
   console.log(dataPost);
-  var nik = $(`.tr_${idRow} .nik`).html().trim();;
   var kk = $(`.tr_${idRow} .kk`).html().trim();;
+  var nik = $(`.tr_${idRow} .nik`).html().trim();;
   var nis = $(`.tr_${idRow} .nis`).html().trim();;
   var nama = $(`.tr_${idRow} .nama`).html().trim();;
   var tanggal_lahir = $(`.tr_${idRow} .tanggal_lahir`).html().trim();;
@@ -106,8 +106,8 @@ $(document).on("click", ".btnEdit", function () {
 
   $(`.tr_${idRow}`).before(`
       <tr class="tr_${idRow} formEdit_${idRow}">
-          <td><input type='text' class="form-control nik" id='' value='${nik}'></td>
           <td><input type='text' class="form-control kk" id='' value='${kk}'></td>
+          <td><input type='text' class="form-control nik" id='' value='${nik}'></td>
           <td><input type='text' class="form-control nis" id='' value='${nis}'></td>
           <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
           <td><input type='date' class="form-control tanggal_lahir" id='' value='${tanggal_lahir}'></td>
@@ -141,8 +141,8 @@ $(document).on("click", ".btnSaveEdit", function () {
               console.log('data id', response);
               $(`.formEdit_${idRow}`).before(`
                   <tr class="tr_${data.id}">
-                      <td class="nik">${dataPost.nik}</td>
                       <td class="kk">${dataPost.kk}</td>
+                      <td class="nik">${dataPost.nik}</td>
                       <td class="nis">${dataPost.nis}</td>
                       <td class="nama">${dataPost.nama}</td>
                       <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td>
