@@ -1,6 +1,69 @@
+var dropdownKelas = "";
+var dropdownSemester = "";
+var dropdownMapel = "";
+
 $(document).ready(function () {
     $(".dtMapel_kelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMapel_kelas'>Tambah Data </button>  ");
 
+    // mengambil data kelas
+    $.ajax({
+        url: "UniversalGetData/kelas",
+        type:"Get",
+        success:function(response) {
+            dtKelas = response;
+            console.log('dtKelas', dtKelas);
+
+            var i;
+            for (i = 0; i < dtKelas.length; ++i) {
+                dropdownKelas += `<option value="${dtKelas[i]["id"]}">${dtKelas[i]["nama"]}</option>`;
+            }
+            dropdownKelas = `<select class="form-control kelas_id">${dropdownKelas} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data kelas");
+        }
+
+    });
+
+    // mengambil data semester
+    $.ajax({
+        url: "UniversalGetData/semester",
+        type:"Get",
+        success:function(response) {
+            dtSemester = response;
+            console.log('dtSemester', dtSemester);
+
+            var i;
+            for (i = 0; i < dtSemester.length; ++i) {
+                dropdownSemester += `<option value="${dtSemester[i]["id"]}">${dtSemester[i]["nama"]}</option>`;
+            }
+            dropdownSemester = `<select class="form-control semester_id">${dropdownSemester} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data semester");
+        }
+
+    });
+
+    // mengambil data mapel
+    $.ajax({
+        url: "UniversalGetData/mapel",
+        type:"Get",
+        success:function(response) {
+            dtMapel = response;
+            console.log('dtMapel', dtMapel);
+
+            var i;
+            for (i = 0; i < dtMapel.length; ++i) {
+                dropdownMapel += `<option value="${dtMapel[i]["id"]}">${dtMapel[i]["nama"]}</option>`;
+            }
+            dropdownMapel = `<select class="form-control mapel_id">${dropdownMapel} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data mapel");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddMapel_kelas", function () {
@@ -8,9 +71,15 @@ $(document).on("click", "#btnAddMapel_kelas", function () {
     $("tbody").prepend(`
         <tr class="tr_${className}">
             <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control kelas_id" id=''></td>
-            <td><input type='text' class="form-control semester_id" id=''></td>
-            <td><input type='text' class="form-control mapel_id" id=''></td>
+            <td>
+                ${dropdownKelas}     
+            </td>
+            <td>
+                ${dropdownSemester}    
+            </td>
+            <td>
+                ${dropdownMapel}    
+            </td>
             <td><input type='text' class="form-control mustahiq" id=''></td>
             <td><input type='text' class="form-control keterangan" id=''></td>
             <td>

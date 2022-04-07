@@ -1,14 +1,60 @@
+var dropdownSantri = "";
+var dropdownSemester = "";
+
 $(document).ready(function () {
     $(".dtNilai_akhlaq_santri .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddNilai_akhlaq_santri'>Tambah Data </button>  ");
 
+    // mengambil data santri
+    $.ajax({
+        url: "UniversalGetData/santri",
+        type:"Get",
+        success:function(response) {
+            dtSantri = response;
+            console.log('dtSantri', dtSantri);
+
+            var i;
+            for (i = 0; i < dtSantri.length; ++i) {
+                dropdownSantri += `<option value="${dtSantri[i]["id"]}">${dtSantri[i]["nama"]}</option>`;
+            }
+            dropdownSantri = `<select class="form-control id_santri">${dropdownSantri} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data santri");
+        }
+
+    });
+
+    // mengambil data semester
+    $.ajax({
+        url: "UniversalGetData/semester",
+        type:"Get",
+        success:function(response) {
+            dtSemester = response;
+            console.log('dtSemester', dtSemester);
+
+            var i;
+            for (i = 0; i < dtSemester.length; ++i) {
+                dropdownSemester += `<option value="${dtSemester[i]["id"]}">${dtSemester[i]["nama"]}</option>`;
+            }
+            dropdownSemester = `<select class="form-control id_semester">${dropdownSemester} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data semester");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddNilai_akhlaq_santri", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
         <tr class="tr_${className}">
-            <td><input type='text' class="form-control id_santri" id=''></td>
-            <td><input type='text' class="form-control id_semester" id=''></td>
+            <td>
+                ${dropdownSantri}    
+            </td>
+            <td>
+                ${dropdownSemester}
+            </td>
             <td><input type='text' class="form-control akhlaq" id=''></td>
             <td><input type='text' class="form-control kerapihan" id=''></td>
             <td><input type='text' class="form-control kerajinan" id=''></td>

@@ -1,14 +1,64 @@
+var dropdownKelas = "";
+var dropdownSantri = "";
+
 $(document).ready(function () {
     $(".dtSiswa_kelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddSiswa_kelas'>Tambah Data </button>  ");
 
+        // mengambil data kelas
+        $.ajax({
+            url: "UniversalGetData/kelas",
+            type:"Get",
+            success:function(response) {
+                dtKelas = response;
+                console.log('dtKelas', dtKelas);
+    
+                var i;
+                for (i = 0; i < dtKelas.length; ++i) {
+                    dropdownKelas += `<option value="${dtKelas[i]["id"]}">${dtKelas[i]["nama"]}</option>`;
+                }
+
+                dropdownKelas = `<select class="form-control kelas_id">${dropdownKelas} </select>`;
+                console.log('dropdownKelas', dropdownKelas);
+            },
+            error:function(){
+                alert("Gagal ambil data kelas");
+            }
+    
+        });
+
+        // siswa id
+        $.ajax({
+            url: "UniversalGetData/santri",
+            type:"Get",
+            success:function(response) {
+                dtSantri = response;
+                console.log('dtSantri', dtSantri);
+    
+                var i;
+                for (i = 0; i < dtSantri.length; ++i) {
+                    dropdownSantri += `<option value="${dtSantri[i]["id"]}">${dtSantri[i]["nama"]}</option>`;
+                }
+
+                dropdownSantri = `<select class="form-control id_siswa">${dropdownSantri} </select>`;
+            },
+            error:function(){
+                alert("Gagal ambil data santri");
+            }
+    
+        });
 });
 
 $(document).on("click", "#btnAddSiswa_kelas", function () {
     var className =  makeid(10);
+
     $("tbody").prepend(`
         <tr class="tr_${className}">
-            <td><input type='text' class="form-control id_siswa" id=''></td>
-            <td><input type='text' class="form-control id_kelas" id=''></td>
+            <td>
+                ${dropdownSantri}
+            </td>
+            <td>
+                ${dropdownKelas}
+            </td>
             <td><input type='text' class="form-control is_active" id=''></td>
             <td><input type='date' class="form-control created_at" id=''></td>
             <td><input type='date' class="form-control updated_at" id=''></td>

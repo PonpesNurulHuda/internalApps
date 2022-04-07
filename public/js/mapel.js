@@ -1,16 +1,63 @@
+var dropdownMapelTipe = "";
+var dropdownMapel_kategori = "";
+
 $(document).ready(function () {
     $(".dtMapel .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMapel'>Tambah Data </button>  ");
+    
+    // mengambil data mapel tipe
+    $.ajax({
+        url: "UniversalGetData/mapelTipe",
+        type:"Get",
+        success:function(response) {
+            dtMapelType = response;
+            console.log('dtMapelType', dtMapelType);
 
+            var i;
+            for (i = 0; i < dtMapelType.length; ++i) {
+                dropdownMapelTipe += `<option value="${dtMapelType[i]["id"]}">${dtMapelType[i]["nama"]}</option>`;
+            }
+            dropdownMapelTipe = `<select class="form-control mapel_type">${dropdownMapelTipe} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data mapel tipe");
+        }
+
+    });
+    
+    // mapel_kategori
+    $.ajax({
+        url: "UniversalGetData/mapel_kategori",
+        type:"Get",
+        success:function(response) {
+            dtMapel_kategori = response;
+            console.log('dtMapel_kategori', dtMapel_kategori);
+
+            var i;
+            for (i = 0; i < dtMapel_kategori.length; ++i) {
+                dropdownMapel_kategori += `<option value="${dtMapel_kategori[i]["id"]}">${dtMapel_kategori[i]["nama"]}</option>`;
+            }
+            dropdownMapel_kategori = `<select class="form-control mapel_kategori_id">${dropdownMapel_kategori} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data Mapel_kategori");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddMapel", function () {
     var className =  makeid(10);
+    
     $("tbody").prepend(`
         <tr class="tr_${className}">
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='text' class="form-control deskripsi" id=''></td>
-            <td><input type='text' class="form-control mapel_kategori_id" id=''></td>
-            <td><input type='text' class="form-control mapel_type" id=''></td>
+            <td>
+                ${dropdownMapel_kategori}    
+            </td>
+            <td>
+                ${dropdownMapelTipe}
+            </td>
             <td><input type='text' class="form-control is_active" id=''></td>
             </td>
             <td>

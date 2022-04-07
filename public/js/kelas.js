@@ -1,6 +1,27 @@
+var dropdownTahun_ajaran = "";
+
 $(document).ready(function () {
     $(".dtKelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddKelas'>Tambah Data </button>  ");
 
+    // mengambil data mapel tipe
+    $.ajax({
+        url: "UniversalGetData/tahun_ajaran",
+        type:"Get",
+        success:function(response) {
+            dtTahun_ajaran = response;
+            console.log('dtTahun_ajaran', dtTahun_ajaran);
+
+            var i;
+            for (i = 0; i < dtTahun_ajaran.length; ++i) {
+                dropdownTahun_ajaran += `<option value="${dtTahun_ajaran[i]["id"]}">${dtTahun_ajaran[i]["nama"]}</option>`;
+            }
+            dropdownTahun_ajaran = `<select class="form-control Tahun_ajaran_id">${dropdownTahun_ajaran} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data tahun_ajaran");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddKelas", function () {
@@ -10,7 +31,9 @@ $(document).on("click", "#btnAddKelas", function () {
             <td><input type='text' class="form-control kode" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='text' class="form-control tingkat_id" id=''></td>
-            <td><input type='text' class="form-control tahun_ajaran_id" id=''></td>
+            <td>
+                ${dropdownTahun_ajaran}    
+            </td>
             <td><input type='text' class="form-control walikelas" id=''></td>
             <td><input type='text' class="form-control is_active" id=''></td>
             <td><input type='date' class="form-control created_at" id=''></td>

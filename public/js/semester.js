@@ -1,13 +1,36 @@
+var dropdownTahun_ajaran = "";
+
 $(document).ready(function () {
     $(".dtSemester .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddSemester'>Tambah Data </button>  ");
 
+    // mengambil data tahun_ajaran
+    $.ajax({
+        url: "UniversalGetData/tahun_ajaran",
+        type:"Get",
+        success:function(response) {
+            dtTahun_ajaran = response;
+            console.log('dtTahun_ajaran', dtTahun_ajaran);
+
+            var i;
+            for (i = 0; i < dtTahun_ajaran.length; ++i) {
+                dropdownTahun_ajaran += `<option value="${dtTahun_ajaran[i]["id"]}">${dtTahun_ajaran[i]["nama"]}</option>`;
+            }
+            dropdownTahun_ajaran = `<select class="form-control id_tahun_ajaran">${dropdownTahun_ajaran} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data tahun_ajaran");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddSemester", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
         <tr class="tr_${className}">
-            <td><input type='text' class="form-control tahun_ajaran_id" id=''></td>
+            <td>
+                ${dropdownTahun_ajaran}
+            </td>
             <td><input type='text' class="form-control seqno" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='date' class="form-control dimulai" id=''></td>

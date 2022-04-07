@@ -1,6 +1,27 @@
+var dropdownMapel_kelas = "";
+
 $(document).ready(function () {
   $(".dtNilai_santri .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddNilai_santri'>Tambah Data </button>  ");
 
+  // mengambil data mapel_kelas
+  $.ajax({
+    url: "UniversalGetData/mapel_kelas",
+    type:"Get",
+    success:function(response) {
+        dtMapel_kelas = response;
+        console.log('dtMapel_kelas', dtMapel_kelas);
+
+        var i;
+        for (i = 0; i < dtMapel_kelas.length; ++i) {
+          dropdownMapel_kelas += `<option value="${dtMapel_kelas[i]["id"]}">${dtMapel_kelas[i]["nama"]}</option>`;
+        }
+        dropdownMapel_kelas = `<select class="form-control id_mapel_kelas">${dropdownMapel_kelas} </select>`;
+    },
+    error:function(){
+        alert("Gagal ambil data mapel_kelas");
+    }
+
+});
 });
 
 $(document).on("click", "#btnAddNilai_santri", function () {
@@ -8,7 +29,9 @@ $(document).on("click", "#btnAddNilai_santri", function () {
   $("tbody").prepend(`
       <tr class="tr_${className}">
           <td><input type='text' class="form-control id_siswa_kelas" id=''></td>
-          <td><input type='text' class="form-control id_mapel_kelas" id=''></td>
+          <td>
+              ${dropdownMapel_kelas}
+          </td>
           <td><input type='text' class="form-control nilai" id=''></td>
           </td>
           <td>
