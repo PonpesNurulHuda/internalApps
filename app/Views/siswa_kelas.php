@@ -21,25 +21,40 @@
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Id_siswa</th>
-                                <th>Id_kelas</th>
+                                <th hidden>Id_siswa</th>
+                                <th>Siswa</th>
+                                <th hidden>Id_kelas</th>
+                                <th>Kelas</th>
                                 <th>Is_active</th>
                                 <th>Created_at</th>
                                 <th>Updated_at</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtSiswa_kelas as $siswa_kelas) : ?>
                                 <tr class="tr_<?= $siswa_kelas['id'] ?>">
                                     <td hidden><?= $siswa_kelas['id'] ?></td>
-                                    <td class="id_siswa">
+                                    <td hidden class="id_siswa">
                                         <?= $siswa_kelas['id_siswa'] ?>
                                     </td>
-                                    <td class="id_kelas">
+                                    <td class="namaSiswa">
+                                        <?= $siswa_kelas['namaSiswa'] ?>
+                                    </td>
+                                    <td hidden class="id_kelas">
                                         <?= $siswa_kelas['id_kelas'] ?>
                                     </td>
+                                    <td class="namaKelas">
+                                        <?= $siswa_kelas['namaKelas'] ?>
+                                    </td>
                                     <td class="is_active">
-                                        <?= $siswa_kelas['is_active'] ?>
+                                        <?php
+                                        if ($siswa_kelas['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td class="created_at">
                                         <?= $siswa_kelas['created_at'] ?>

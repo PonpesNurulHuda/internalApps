@@ -1,9 +1,10 @@
 var dropdownTahun_ajaran = "";
+var dropdownTingkat = "";
 
 $(document).ready(function () {
     $(".dtKelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddKelas'>Tambah Data </button>  ");
 
-    // mengambil data mapel tipe
+    // mengambil data tahun_ajaran
     $.ajax({
         url: "UniversalGetData/tahun_ajaran",
         type:"Get",
@@ -15,10 +16,30 @@ $(document).ready(function () {
             for (i = 0; i < dtTahun_ajaran.length; ++i) {
                 dropdownTahun_ajaran += `<option value="${dtTahun_ajaran[i]["id"]}">${dtTahun_ajaran[i]["nama"]}</option>`;
             }
-            dropdownTahun_ajaran = `<select class="form-control Tahun_ajaran_id">${dropdownTahun_ajaran} </select>`;
+            dropdownTahun_ajaran = `<select class="form-control tahun_ajaran_id">${dropdownTahun_ajaran} </select>`;
         },
         error:function(){
             alert("Gagal ambil data tahun_ajaran");
+        }
+
+    });
+
+    // mengambil data tingkat
+    $.ajax({
+        url: "UniversalGetData/tingkat",
+        type:"Get",
+        success:function(response) {
+            dtTingkat = response;
+            console.log('dtTingkat', dtTingkat);
+
+            var i;
+            for (i = 0; i < dtTingkat.length; ++i) {
+                dropdownTingkat += `<option value="${dtTingkat[i]["id"]}">${dtTingkat[i]["nama"]}</option>`;
+            }
+            dropdownTingkat = `<select class="form-control tingkat_id">${dropdownTingkat} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data tingkat");
         }
 
     });
@@ -27,15 +48,23 @@ $(document).ready(function () {
 $(document).on("click", "#btnAddKelas", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
+    
         <tr class="tr_${className}">
             <td><input type='text' class="form-control kode" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control tingkat_id" id=''></td>
+            <td>
+                ${dropdownTingkat} 
+            </td>
             <td>
                 ${dropdownTahun_ajaran}    
             </td>
             <td><input type='text' class="form-control walikelas" id=''></td>
-            <td><input type='text' class="form-control is_active" id=''></td>
+            <td>
+                <select class='form-control is_active'>
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+            </td>
             <td><input type='date' class="form-control created_at" id=''></td>
             <td><input type='date' class="form-control updated_at" id=''></td>
             </td>
@@ -58,7 +87,9 @@ function getData(tr){
     dataPost.kode = $(`.tr_${tr} .kode`).val();
     dataPost.nama = $(`.tr_${tr} .nama`).val();
     dataPost.tingkat_id =  $(`.tr_${tr} .tingkat_id`).val();
+    dataPost.namaTingkat = $(`.tr_${tr} .tingkat_id option:selected`).text();
     dataPost.tahun_ajaran_id = $(`.tr_${tr} .tahun_ajaran_id`).val();
+    dataPost.namaAjaran = $(`.tr_${tr} .tahun_ajaran_id option:selected`).text();
     dataPost.walikelas = $(`.tr_${tr} .walikelas`).val();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
     dataPost.created_at = $(`.tr_${tr} .created_at`).val();
@@ -86,8 +117,10 @@ $(document).on("click", ".btnSave", function () {
                   <tr class="tr_${data.id}">
                       <td class="kode">${dataPost.kode}</td>
                       <td class="nama">${dataPost.nama}</td>
-                      <td class="tingkat_id">${dataPost.tingkat_id}</td>
-                      <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td> 
+                      <td hidden class="tingkat_id">${dataPost.tingkat_id}</td>
+                      <td class="namaTingkat">${dataPost.namaTingkat}</td>
+                      <td hidden class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                      <td class="namaAjaran">${dataPost.namaAjaran}</td> 
                       <td class="walikelas">${dataPost.walikelas}</td> 
                       <td class="is_active">${dataPost.is_active}</td> 
                       <td class="created_at">${dataPost.created_at}</td>

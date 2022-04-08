@@ -27,6 +27,7 @@
                                 <th>Nama</th>
                                 <th>Tanggal_lahir</th>
                                 <th style="width: 10px;"> Gender</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

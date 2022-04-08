@@ -23,12 +23,15 @@
                             <tr>
                                 <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Tingkat_id</th>
-                                <th>Tahun_ajaran_id</th>
+                                <th hidden>Tingkat_id</th>
+                                <th>Tingkat</th>
+                                <th hidden>Tahun_ajaran_id</th>
+                                <th>Tahun ajaran</th>
                                 <th>Walikelas</th>
                                 <th>Is_active</th>
                                 <th>Created_at</th>
                                 <th>Updated_at</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,17 +44,29 @@
                                     <td class="nama">
                                         <?= $kelas['nama'] ?>
                                     </td>
-                                    <td class="tingkat_id">
+                                    <td hidden class="tingkat_id">
                                         <?= $kelas['tingkat_id'] ?>
                                     </td>
-                                    <td class="tahun_ajaran_id">
+                                    <td class="namaTingkat">
+                                        <?= $kelas['namaTingkat'] ?>
+                                    </td>
+                                    <td hidden class="tahun_ajaran_id">
                                         <?= $kelas['tahun_ajaran_id'] ?>
+                                    </td>
+                                    <td class="namaAjaran">
+                                        <?= $kelas['namaAjaran'] ?>
                                     </td>
                                     <td class="walikelas">
                                         <?= $kelas['walikelas'] ?>
                                     </td>
                                     <td class="is_active">
-                                        <?= $kelas['is_active'] ?>
+                                        <?php
+                                        if ($kelas['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td class="created_at">
                                         <?= $kelas['created_at'] ?>
@@ -71,7 +86,9 @@
                                 <th>Kode</th>
                                 <th>Nama</th>
                                 <th>Tingkat_id</th>
+                                <th>Tingkat2</th>
                                 <th>Tahun_ajaran_id</th>
+                                <th>ajaran</th>
                                 <th>Walikelas</th>
                                 <th>Is_active</th>
                                 <th>Created_at</th>

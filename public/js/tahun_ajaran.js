@@ -9,7 +9,12 @@ $(document).on("click", "#btnAddTahun_ajaran", function () {
         <tr class="tr_${className}">
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='text' class="form-control status" id=''></td>
-            <td><input type='text' class="form-control is_active" id=''></td>
+            <td>
+                <select class='form-control is_active'>
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+            </td>
             </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>

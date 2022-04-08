@@ -12,10 +12,7 @@ class Kelas extends BaseController
     {
         $kelas = new KelasModel();
         $dtKelas = $kelas->findAll();
-        $data['dtKelas'] = $dtKelas;
-
-        //dd($kelas->findAll());
-        // kirim data ke view
+        $data['dtKelas'] = $kelas->DataKelasDetail();
         return view('kelas', $data);
     }
 

@@ -2,21 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\Tbl01Model;
+use App\Models\TingkatModel;
 use CodeIgniter\API\ResponseTrait;
 
-class Tbl01 extends BaseController
+class Tingkat extends BaseController
 {
     use ResponseTrait;
     public function index()
     {
-        $tbl01 = new Tbl01Model();
-        $dtTbl01 = $tbl01->findAll();
-        $data['dtTbl01'] = $dtTbl01;
+        $tingkat = new TingkatModel();
+        $dtTingkat = $tingkat->findAll();
+        $data['dtTingkat'] = $dtTingkat;
 
         //dd($tbl01->findAll());
         // kirim data ke view
-        return view('tbl01', $data);
+        return view('tingkat', $data);
     }
 
     public function add()
@@ -34,7 +34,7 @@ class Tbl01 extends BaseController
 
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new Tbl01Model();
+            $data = new TingkatModel();
 
             $id = $data->insert([
                 "seqno" => $this->request->getPost('seqno'),
@@ -72,7 +72,7 @@ class Tbl01 extends BaseController
         $isDataValid = $validation->withRequest($this->request)->run();
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new Tbl01Model();
+            $data = new TingkatModel();
 
             $id = $data->update($this->request->getPost('id'), [
                 "seqno" => $this->request->getPost('seqno'),

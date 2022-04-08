@@ -23,9 +23,12 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
-                                <th>Mapel_kategori_id</th>
-                                <th>Mapel_type</th>
+                                <th hidden>Mapel_kategori_id</th>
+                                <th>Kategori</th>
+                                <th hidden>Mapel_type</th>
+                                <th>Type</th>
                                 <th>Is_active</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,14 +41,26 @@
                                     <td class="deskripsi">
                                         <?= $mapel['deskripsi'] ?>
                                     </td>
-                                    <td class="mapel_kategori_id">
+                                    <td hidden class="mapel_kategori_id">
                                         <?= $mapel['mapel_kategori_id'] ?>
                                     </td>
-                                    <td class="mapel_type">
+                                    <td class="namaKategory">
+                                        <?= $mapel['namaKategory'] ?>
+                                    </td>
+                                    <td hidden class="mapel_type">
                                         <?= $mapel['mapel_type'] ?>
                                     </td>
+                                    <td class="namaType">
+                                        <?= $mapel['namaType'] ?>
+                                    </td>
                                     <td class="is_active">
-                                        <?= $mapel['is_active'] ?>
+                                        <?php
+                                        if ($mapel['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel['id'] ?>">Edit</button>

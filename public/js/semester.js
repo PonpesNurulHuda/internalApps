@@ -15,7 +15,7 @@ $(document).ready(function () {
             for (i = 0; i < dtTahun_ajaran.length; ++i) {
                 dropdownTahun_ajaran += `<option value="${dtTahun_ajaran[i]["id"]}">${dtTahun_ajaran[i]["nama"]}</option>`;
             }
-            dropdownTahun_ajaran = `<select class="form-control id_tahun_ajaran">${dropdownTahun_ajaran} </select>`;
+            dropdownTahun_ajaran = `<select class="form-control tahun_ajaran_id">${dropdownTahun_ajaran} </select>`;
         },
         error:function(){
             alert("Gagal ambil data tahun_ajaran");
@@ -53,6 +53,7 @@ function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
     dataPost.tahun_ajaran_id = $(`.tr_${tr} .tahun_ajaran_id`).val();
+    dataPost.namaAjaran = $(`.tr_${tr} .tahun_ajaran_id option:selected`).text();
     dataPost.seqno =  $(`.tr_${tr} .seqno`).val();
     dataPost.nama = $(`.tr_${tr} .nama`).val();
     dataPost.dimulai = $(`.tr_${tr} .dimulai`).val();
@@ -80,7 +81,8 @@ $(document).on("click", ".btnSave", function () {
         if (data.id != "0") {
           $("tbody").prepend(`
                   <tr class="tr_${data.id}">
-                      <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                      <td hidden class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                      <td class="namaAjaran">${dataPost.namaAjaran}</td>
                       <td class="seqno">${dataPost.seqno}</td>
                       <td class="nama">${dataPost.nama}</td> 
                       <td class="dimulai">${dataPost.dimulai}</td>

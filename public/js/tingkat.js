@@ -1,15 +1,20 @@
 $(document).ready(function () {
-    $(".dtTbl01 .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddTbl01'>Tambah Data </button>  ");
+    $(".dtTingkat .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddTingkat'>Tambah Data </button>  ");
 
 });
 
-$(document).on("click", "#btnAddTbl01", function () {
+$(document).on("click", "#btnAddTingkat", function () {
     var className =  makeid(10);
     $("tbody").prepend(`
         <tr class="tr_${className}">
             <td><input type='text' class="form-control seqno" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control is_active" id=''></td>
+            <td>
+                <select class='form-control is_active'>
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+            </td>
             </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
@@ -40,7 +45,7 @@ $(document).on("click", ".btnSave", function () {
     console.log("dataPost", dataPost);
   
     $.ajax({
-      url: "tbl01/add ",
+      url: "tingkat/add ",
       type: "POST",
   
       data: dataPost,
@@ -110,7 +115,7 @@ $(document).on("click", ".btnSaveEdit", function () {
         console.log(dataPost);
   
         $.ajax({
-            url: "tbl01/update",
+            url: "tingkat/update",
             type:"POST",
   
             data:dataPost,

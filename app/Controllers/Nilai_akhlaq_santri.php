@@ -12,10 +12,7 @@ class Nilai_akhlaq_santri extends BaseController
     {
         $nilai_akhlaq_santri = new Nilai_akhlaq_santriModel();
         $dtNilai_akhlaq_santri = $nilai_akhlaq_santri->findAll();
-        $data['dtNilai_akhlaq_santri'] = $dtNilai_akhlaq_santri;
-
-        //dd($nilai_akhlaq_santri->findAll());
-        // kirim data ke view
+        $data['dtNilai_akhlaq_santri'] = $nilai_akhlaq_santri->DataNilai_akhlaq_santriDetail();
         return view('nilai_akhlaq_santri', $data);
     }
 

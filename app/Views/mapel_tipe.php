@@ -24,6 +24,7 @@
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
                                 <th>Is_active</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,7 +38,13 @@
                                         <?= $mapel_tipe['deskripsi'] ?>
                                     </td>
                                     <td class="is_active">
-                                        <?= $mapel_tipe['is_active'] ?>
+                                        <?php
+                                        if ($mapel_tipe['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel_tipe['id'] ?>">Edit</button>

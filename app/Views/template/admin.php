@@ -17,7 +17,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Vendor CSS Files -->
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/simple-datatables/style.css'); ?>">
 
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="<?php echo base_url('css/style.css?y=').date("Yhis"); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('css/style.css?y=') . date("Yhis"); ?>">
 
 
   <!-- =======================================================
@@ -282,7 +282,92 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="nilai_santri">
+          <i class="bi bi-grid"></i>
+          <span>nilai_santri</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="kelas">
+          <i class="bi bi-grid"></i>
+          <span>kelas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="mapel">
+          <i class="bi bi-grid"></i>
+          <span>mapel</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="mapel_kategori">
+          <i class="bi bi-grid"></i>
+          <span>mapel_kategori</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="mapel_kelas">
+          <i class="bi bi-grid"></i>
+          <span>mapel_kelas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="mapel_tipe">
+          <i class="bi bi-grid"></i>
+          <span>mapel_tipe</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="nilai_akhlaq_santri">
+          <i class="bi bi-grid"></i>
+          <span>nilai_akhlaq_santri</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="santri">
+          <i class="bi bi-grid"></i>
+          <span>santri</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="semester">
+          <i class="bi bi-grid"></i>
+          <span>semester</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="siswa_kelas">
+          <i class="bi bi-grid"></i>
+          <span>siswa_kelas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="tahun_ajaran">
+          <i class="bi bi-grid"></i>
+          <span>tahun_ajaran</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="tingkat">
+          <i class="bi bi-grid"></i>
+          <span>tingkat</span>
+        </a>
+      </li>
+      <!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -510,9 +595,9 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    
+
     <?= $this->renderSection('content') ?>
-    
+
 
   </main><!-- End #main -->
 
@@ -533,18 +618,18 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  
+
   <script src="<?php echo base_url('vendorNiceAdmin/apexcharts/apexcharts.min.js') ?>"></script>
   <script src="<?php echo base_url('vendorNiceAdmin/chart.js/chart.min.js') ?>"></script>
   <script src="<?php echo base_url('vendorNiceAdmin/echarts/echarts.min.js'); ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/quill/quill.min.js')?>"></script>
+  <script src="<?php echo base_url('vendorNiceAdmin/quill/quill.min.js') ?>"></script>
   <script src="<?php echo base_url('vendorNiceAdmin/simple-datatables/simple-datatables.js'); ?>"></script>
   <script src="<?php echo base_url('vendorNiceAdmin/tinymce/tinymce.min.js'); ?>"></script>
   <script src="<?php echo base_url('vendorNiceAdmin/php-email-form/validate.js'); ?>"></script>
 
   <!-- Template Main JS File -->
-  <script src="<?php echo base_url('js/main.js?y=').date("Yhis"); ?>"></script>
-  
+  <script src="<?php echo base_url('js/main.js?y=') . date("Yhis"); ?>"></script>
+
 
   <?= $this->renderSection('footer') ?>
 </body>

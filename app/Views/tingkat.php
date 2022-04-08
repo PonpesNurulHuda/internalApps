@@ -16,41 +16,48 @@
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body dtTbl01">
-                    <h5 class="card-title">Data tbl01</h5>
+                <div class="card-body dtTingkat">
+                    <h5 class="card-title">Data tingkat</h5>
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>seqno</th>
-                                <th>nama</th>
-                                <th>is_active</th>
+                                <th>Seqno</th>
+                                <th>Nama</th>
+                                <th>Is_active</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($dtTbl01 as $tbl01) : ?>
-                                <<tr class="tr_<?= $tbl01['id'] ?>">
-                                    <td hidden><?= $tbl01['id'] ?></td>
+                            <?php foreach ($dtTingkat as $tingkat) : ?>
+                                <<tr class="tr_<?= $tingkat['id'] ?>">
+                                    <td hidden><?= $tingkat['id'] ?></td>
                                     <td class="seqno">
-                                        <?= $tbl01['seqno'] ?>
+                                        <?= $tingkat['seqno'] ?>
                                     </td>
                                     <td class="nama">
-                                        <?= $tbl01['nama'] ?>
+                                        <?= $tingkat['nama'] ?>
                                     </td>
                                     <td class="is_active">
-                                        <?= $tbl01['is_active'] ?>
+                                        <?php
+                                        if ($tingkat['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td>
-                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $tbl01['id'] ?>">Edit</button>
-                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $tbl01['id'] ?>">Hapus</button>
+                                        <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $tingkat['id'] ?>">Edit</button>
+                                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $tingkat['id'] ?>">Hapus</button>
                                     </td>
                                     </tr>
                                 <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>seqno</th>
-                                <th>nama</th>
-                                <th>is_active</th>
+                                <th>Seqno</th>
+                                <th>Nama</th>
+                                <th>Is_active</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -64,5 +71,5 @@
 
 
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/tbl01.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/tingkat.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>

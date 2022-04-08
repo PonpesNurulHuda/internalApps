@@ -22,11 +22,15 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Kelas_id</th>
-                                <th>Semester_id</th>
-                                <th>Mapel_id</th>
+                                <th hidden>Kelas_id</th>
+                                <th>Kelas</th>
+                                <th hidden>Semester_id</th>
+                                <th>Semester</th>
+                                <th hidden>Mapel_id</th>
+                                <th>Mapel</th>
                                 <th>Mustahiq</th>
                                 <th>Keterangan</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,14 +40,23 @@
                                     <td class="nama">
                                         <?= $mapel_kelas['nama'] ?>
                                     </td>
-                                    <td class="kelas_id">
+                                    <td hidden class="kelas_id">
                                         <?= $mapel_kelas['kelas_id'] ?>
                                     </td>
-                                    <td class="semester_id">
+                                    <td class="namaKelas">
+                                        <?= $mapel_kelas['namaKelas'] ?>
+                                    </td>
+                                    <td hidden class="semester_id">
                                         <?= $mapel_kelas['semester_id'] ?>
                                     </td>
-                                    <td class="mapel_id">
+                                    <td class="namaSemester">
+                                        <?= $mapel_kelas['namaSemester'] ?>
+                                    </td>
+                                    <td hidden class="mapel_id">
                                         <?= $mapel_kelas['mapel_id'] ?>
+                                    </td>
+                                    <td class="namaMapel">
+                                        <?= $mapel_kelas['namaMapel'] ?>
                                     </td>
                                     <td class="mustahiq">
                                         <?= $mapel_kelas['mustahiq'] ?>

@@ -1,32 +1,11 @@
-var dropdownKelas = "";
 var dropdownSantri = "";
+var dropdownKelas = "";
+
 
 $(document).ready(function () {
     $(".dtSiswa_kelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddSiswa_kelas'>Tambah Data </button>  ");
 
-        // mengambil data kelas
-        $.ajax({
-            url: "UniversalGetData/kelas",
-            type:"Get",
-            success:function(response) {
-                dtKelas = response;
-                console.log('dtKelas', dtKelas);
-    
-                var i;
-                for (i = 0; i < dtKelas.length; ++i) {
-                    dropdownKelas += `<option value="${dtKelas[i]["id"]}">${dtKelas[i]["nama"]}</option>`;
-                }
-
-                dropdownKelas = `<select class="form-control kelas_id">${dropdownKelas} </select>`;
-                console.log('dropdownKelas', dropdownKelas);
-            },
-            error:function(){
-                alert("Gagal ambil data kelas");
-            }
-    
-        });
-
-        // siswa id
+        // siswa
         $.ajax({
             url: "UniversalGetData/santri",
             type:"Get",
@@ -46,6 +25,27 @@ $(document).ready(function () {
             }
     
         });
+
+        // kelas
+        $.ajax({
+            url: "UniversalGetData/kelas",
+            type:"Get",
+            success:function(response) {
+                dtKelas = response;
+                console.log('dtKelas', dtKelas);
+    
+                var i;
+                for (i = 0; i < dtKelas.length; ++i) {
+                    dropdownKelas += `<option value="${dtKelas[i]["id"]}">${dtKelas[i]["nama"]}</option>`;
+                }
+
+                dropdownKelas = `<select class="form-control id_kelas">${dropdownKelas} </select>`;
+            },
+            error:function(){
+                alert("Gagal ambil data kelas");
+            }
+    
+        });
 });
 
 $(document).on("click", "#btnAddSiswa_kelas", function () {
@@ -59,7 +59,12 @@ $(document).on("click", "#btnAddSiswa_kelas", function () {
             <td>
                 ${dropdownKelas}
             </td>
-            <td><input type='text' class="form-control is_active" id=''></td>
+            <td>
+                <select class='form-control is_active'>
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+            </td>
             <td><input type='date' class="form-control created_at" id=''></td>
             <td><input type='date' class="form-control updated_at" id=''></td>
             </td>
@@ -80,7 +85,9 @@ function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
     dataPost.id_siswa = $(`.tr_${tr} .id_siswa`).val();
+    dataPost.namaSiswa = $(`.tr_${tr} .id_siswa option:selected`).text();
     dataPost.id_kelas =  $(`.tr_${tr} .id_kelas`).val();
+    dataPost.namaKelas = $(`.tr_${tr} .id_kelas option:selected`).text();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
     dataPost.created_at = $(`.tr_${tr} .created_at`).val();
     dataPost.updated_at = $(`.tr_${tr} .updated_at`).val();
@@ -105,8 +112,10 @@ $(document).on("click", ".btnSave", function () {
         if (data.id != "0") {
           $("tbody").prepend(`
                   <tr class="tr_${data.id}">
-                      <td class="id_siswa">${dataPost.id_siswa}</td>
-                      <td class="id_kelas">${dataPost.id_kelas}</td>
+                      <td hidden class="id_siswa">${dataPost.id_siswa}</td>
+                      <td class="namaSiswa">${dataPost.namaSiswa}</td>
+                      <td hidden class="id_kelas">${dataPost.id_kelas}</td>
+                      <td class="namaKelas">${dataPost.namaKelas}</td>
                       <td class="is_active">${dataPost.is_active}</td>
                       <td class="created_at">${dataPost.created_at}</td>
                       <td class="updated_at">${dataPost.updated_at}</td>  

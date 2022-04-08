@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class tbl01Model extends Model
+class tingkatModel extends Model
 {
-    protected $table      = 'tbl01';
+    protected $table      = 'tingkat';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;

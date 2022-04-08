@@ -21,22 +21,31 @@
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Id_santri</th>
-                                <th>Id_semester</th>
+                                <th hidden>Id_santri</th>
+                                <th>santri</th>
+                                <th hidden>Id_semester</th>
+                                <th>semester</th>
                                 <th>Akhlaq</th>
                                 <th>Kerapihan</th>
                                 <th>Kerajinan</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtNilai_akhlaq_santri as $nilai_akhlaq_santri) : ?>
                                 <<tr class="tr_<?= $nilai_akhlaq_santri['id'] ?>">
                                     <td hidden><?= $nilai_akhlaq_santri['id'] ?></td>
-                                    <td class="id_santri">
+                                    <td hidden class="id_santri">
                                         <?= $nilai_akhlaq_santri['id_santri'] ?>
                                     </td>
-                                    <td class="id_semester">
+                                    <td class="namaSantri">
+                                        <?= $nilai_akhlaq_santri['namaSantri'] ?>
+                                    </td>
+                                    <td hidden class="id_semester">
                                         <?= $nilai_akhlaq_santri['id_semester'] ?>
+                                    </td>
+                                    <td class="namaSemester">
+                                        <?= $nilai_akhlaq_santri['namaSemester'] ?>
                                     </td>
                                     <td class="akhlaq">
                                         <?= $nilai_akhlaq_santri['akhlaq'] ?>

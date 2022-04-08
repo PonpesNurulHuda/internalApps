@@ -11,4 +11,16 @@ class mapelModel extends Model
 
     protected $useAutoIncrement = true;
     protected $allowedFields = ['nama', 'deskripsi', 'mapel_kategori_id', 'mapel_type', 'is_active'];
+
+    public function DataMapelDetail()
+    {
+        $db      = \Config\Database::connect();
+
+        return $this->db->table('mapel')
+            ->join('mapel_kategori', 'mapel_kategori.id = mapel.mapel_kategori_id')
+            ->join('mapel_tipe', 'mapel_tipe.id = mapel.mapel_type')
+
+            ->select('mapel.*, mapel_kategori.nama as namaKategory, mapel_tipe.nama namaType')
+            ->get()->getResultArray();
+    }
 }

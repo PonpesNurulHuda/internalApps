@@ -24,6 +24,7 @@
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
                                 <th>Is_active</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,9 +36,14 @@
                                     </td>
                                     <td class="deskripsi">
                                         <?= $mapel_kategori['deskripsi'] ?>
-                                    </td>
                                     <td class="is_active">
-                                        <?= $mapel_kategori['is_active'] ?>
+                                        <?php
+                                        if ($mapel_kategori['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $mapel_kategori['id'] ?>">Edit</button>

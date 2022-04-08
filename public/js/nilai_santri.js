@@ -1,34 +1,57 @@
+var dropdownSiswa_kelas = "";
 var dropdownMapel_kelas = "";
 
 $(document).ready(function () {
   $(".dtNilai_santri .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddNilai_santri'>Tambah Data </button>  ");
 
-  // mengambil data mapel_kelas
+  // mengambil data siswa_kelas
   $.ajax({
-    url: "UniversalGetData/mapel_kelas",
+    url: "UniversalGetData/siswa_kelas",
     type:"Get",
     success:function(response) {
-        dtMapel_kelas = response;
-        console.log('dtMapel_kelas', dtMapel_kelas);
+        dtSiswa_kelas = response;
+        console.log('dtSiswa_kelas', dtSiswa_kelas);
 
         var i;
-        for (i = 0; i < dtMapel_kelas.length; ++i) {
-          dropdownMapel_kelas += `<option value="${dtMapel_kelas[i]["id"]}">${dtMapel_kelas[i]["nama"]}</option>`;
+        for (i = 0; i < dtSiswa_kelas.length; ++i) {
+            dropdownSiswa_kelas += `<option value="${dtSiswa_kelas[i]["id"]}">${dtSiswa_kelas[i]["id_siswa"]}</option>`;
         }
-        dropdownMapel_kelas = `<select class="form-control id_mapel_kelas">${dropdownMapel_kelas} </select>`;
+        dropdownSiswa_kelas = `<select class="form-control id_siswa_kelas">${dropdownSiswa_kelas} </select>`;
     },
     error:function(){
-        alert("Gagal ambil data mapel_kelas");
+        alert("Gagal ambil data siswa_kelas");
     }
 
-});
+  });
+
+    // mengambil data mapel_kelas
+    $.ajax({
+        url: "UniversalGetData/mapel_kelas",
+        type:"Get",
+        success:function(response) {
+            dtMapel_kelas = response;
+            console.log('dtMapel_kelas', dtMapel_kelas);
+
+            var i;
+            for (i = 0; i < dtMapel_kelas.length; ++i) {
+                dropdownMapel_kelas += `<option value="${dtMapel_kelas[i]["id"]}">${dtMapel_kelas[i]["id_siswa"]}</option>`;
+            }
+            dropdownMapel_kelas = `<select class="form-control id_mapel_kelas">${dropdownMapel_kelas} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data mapel_kelas");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddNilai_santri", function () {
   var className =  makeid(10);
   $("tbody").prepend(`
       <tr class="tr_${className}">
-          <td><input type='text' class="form-control id_siswa_kelas" id=''></td>
+          <td>
+              ${dropdownSiswa_kelas}
+          </td>
           <td>
               ${dropdownMapel_kelas}
           </td>
@@ -51,7 +74,9 @@ function getData(tr){
   var dataPost = new Object();
   dataPost.id =  tr;
   dataPost.id_siswa_kelas = $(`.tr_${tr} .id_siswa_kelas`).val();
+  ataPost.namaSiswa = $(`.tr_${tr} .id_siswa_kelas option:selected`).text();
   dataPost.id_mapel_kelas =  $(`.tr_${tr} .id_mapel_kelas`).val();
+  ataPost.namaMapel = $(`.tr_${tr} .id_mapel_kelas option:selected`).text();
   dataPost.nilai = $(`.tr_${tr} .nilai`).val();
 
   return dataPost;
@@ -74,8 +99,10 @@ $(document).on("click", ".btnSave", function () {
       if (data.id != "0") {
         $("tbody").prepend(`
                 <tr class="tr_${data.id}">
-                    <td class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
-                    <td class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
+                    <td hidden class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
+                    <td class="namaSiswa">${dataPost.namaSiswa}</td>
+                    <td hidden class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
+                    <td class="namaMapel">${dataPost.namaMapel}</td>
                     <td class="nilai">${dataPost.nilai}</td>  
                     <td>
                         <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 

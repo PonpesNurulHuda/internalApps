@@ -12,10 +12,7 @@ class Nilai_santri extends BaseController
     {
         $nilai_santri = new Nilai_santriModel();
         $dtNilai_santri = $nilai_santri->findAll();
-        $data['dtNilai_santri'] = $dtNilai_santri;
-
-        //dd($nilai_santri->findAll());
-        // kirim data ke view
+        $data['dtNilai_santri'] = $nilai_santri->DataNilai_santriDetail();
         return view('nilai_santri', $data);
     }
 

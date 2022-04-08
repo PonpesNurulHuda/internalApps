@@ -12,10 +12,7 @@ class Mapel_kelas extends BaseController
     {
         $mapel_kelas = new Mapel_kelasModel();
         $dtMapel_kelas = $mapel_kelas->findAll();
-        $data['dtMapel_kelas'] = $dtMapel_kelas;
-
-        //dd($mapel_kelas->findAll());
-        // kirim data ke view
+        $data['dtMapel_kelas'] = $mapel_kelas->DataMapel_kelasDetail();
         return view('mapel_kelas', $data);
     }
 

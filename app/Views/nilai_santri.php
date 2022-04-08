@@ -21,20 +21,29 @@
                     <table id="example" class="display datatable " style="width:100%">
                         <thead>
                             <tr>
-                                <th>id_siswa_kelas</th>
-                                <th>id_mapel_kelas</th>
-                                <th>nilai</th>
+                                <th hidden>id_siswa_kelas</th>
+                                <th>Siswa kelas</th>
+                                <th hidden>id_mapel_kelas</th>
+                                <th>Mapel kelas</th>
+                                <th>Nilai</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtNilai_santri as $nilai_santri) : ?>
                                 <tr class="tr_<?= $nilai_santri['id'] ?>">
                                     <td hidden><?= $nilai_santri['id'] ?></td>
-                                    <td class="id_siswa_kelas">
+                                    <td hidden class="id_siswa_kelas">
                                         <?= $nilai_santri['id_siswa_kelas'] ?>
                                     </td>
-                                    <td class="id_mapel_kelas">
+                                    <td class="namaSiswa">
+                                        <?= $nilai_santri['namaSiswa'] ?>
+                                    </td>
+                                    <td hidden class="id_mapel_kelas">
                                         <?= $nilai_santri['id_mapel_kelas'] ?>
+                                    </td>
+                                    <td class="namaMapel">
+                                        <?= $nilai_santri['namaMapel'] ?>
                                     </td>
                                     <td class="nilai">
                                         <?= $nilai_santri['nilai'] ?>
@@ -48,9 +57,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>id_siswa_kelas</th>
-                                <th>id_mapel_kelas</th>
-                                <th>nilai</th>
+                                <th>Id_siswa_kelas</th>
+                                <th>Id_mapel_kelas</th>
+                                <th>Nilai</th>
                             </tr>
                         </tfoot>
                     </table>

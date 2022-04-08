@@ -12,10 +12,7 @@ class Mapel extends BaseController
     {
         $mapel = new MapelModel();
         $dtMapel = $mapel->findAll();
-        $data['dtMapel'] = $dtMapel;
-
-        //dd($mapel->findAll());
-        // kirim data ke view
+        $data['dtMapel'] = $mapel->DataMapelDetail();
         return view('mapel', $data);
     }
 

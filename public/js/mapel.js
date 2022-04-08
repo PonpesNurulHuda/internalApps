@@ -58,7 +58,11 @@ $(document).on("click", "#btnAddMapel", function () {
             <td>
                 ${dropdownMapelTipe}
             </td>
-            <td><input type='text' class="form-control is_active" id=''></td>
+            <td>
+                <select class="form-control is_active">
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
             </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
@@ -79,7 +83,9 @@ function getData(tr){
     dataPost.nama = $(`.tr_${tr} .nama`).val();
     dataPost.deskripsi =  $(`.tr_${tr} .deskripsi`).val();
     dataPost.mapel_kategori_id = $(`.tr_${tr} .mapel_kategori_id`).val();
+    dataPost.namaKategory = $(`.tr_${tr} .mapel_kategori_id option:selected`).text();
     dataPost.mapel_type = $(`.tr_${tr} .mapel_type`).val();
+    dataPost.namaType = $(`.tr_${tr} .mapel_type option:selected`).text();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
 
     return dataPost;
@@ -104,8 +110,10 @@ $(document).on("click", ".btnSave", function () {
                   <tr class="tr_${data.id}">
                       <td class="nama">${dataPost.nama}</td>
                       <td class="deskripsi">${dataPost.deskripsi}</td>
-                      <td class="mapel_kategori_id">${dataPost.mapel_kategori_id}</td> 
-                      <td class="mapel_type">${dataPost.mapel_type}</td> 
+                      <td hidden class="mapel_kategori_id">${dataPost.mapel_kategori_id}</td>
+                      <td class="namaKategory">${dataPost.namaKategory}</td> 
+                      <td hidden class="mapel_type">${dataPost.mapel_type}</td>
+                      <td class="namaType">${dataPost.namaType}</td> 
                       <td class="is_active">${dataPost.is_active}</td> 
                       <td>
                           <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 

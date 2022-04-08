@@ -21,20 +21,25 @@
                     <table id="example" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Tahun_ajaran_id</th>
+                                <th hidden>Tahun_ajaran_id</th>
+                                <th>Tahun ajaran</th>
                                 <th>Seqno</th>
                                 <th>Nama</th>
                                 <th>Dimulai</th>
                                 <th>Selesai</th>
                                 <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($dtSemester as $semester) : ?>
                                 <tr class="tr_<?= $semester['id'] ?>">
                                     <td hidden><?= $semester['id'] ?></td>
-                                    <td class="tahun_ajaran_id">
+                                    <td hidden class="tahun_ajaran_id">
                                         <?= $semester['tahun_ajaran_id'] ?>
+                                    </td>
+                                    <td class="namaAjaran">
+                                        <?= $semester['namaAjaran'] ?>
                                     </td>
                                     <td class="seqno">
                                         <?= $semester['seqno'] ?>

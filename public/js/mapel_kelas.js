@@ -100,8 +100,11 @@ function getData(tr){
     dataPost.id =  tr;
     dataPost.nama = $(`.tr_${tr} .nama`).val();
     dataPost.kelas_id =  $(`.tr_${tr} .kelas_id`).val();
+    dataPost.namaKelas = $(`.tr_${tr} .kelas_id option:selected`).text();
     dataPost.semester_id = $(`.tr_${tr} .semester_id`).val();
+    dataPost.namaSemester = $(`.tr_${tr} .semester_id option:selected`).text();
     dataPost.mapel_id = $(`.tr_${tr} .mapel_id`).val();
+    dataPost.namaMapel = $(`.tr_${tr} .mapel_id option:selected`).text();
     dataPost.mustahiq = $(`.tr_${tr} .mustahiq`).val();
     dataPost.keterangan = $(`.tr_${tr} .keterangan`).val();
 
@@ -127,9 +130,12 @@ $(document).on("click", ".btnSave", function () {
           $("tbody").prepend(`
                   <tr class="tr_${data.id}">
                       <td class="nama">${dataPost.nama}</td>
-                      <td class="kelas_id">${dataPost.kelas_id}</td>
-                      <td class="semester_id">${dataPost.semester_id}</td> 
-                      <td class="mapel_id">${dataPost.mapel_id}</td> 
+                      <td hidden class="kelas_id">${dataPost.kelas_id}</td>
+                      <td class="namaKelas">${dataPost.namaKelas}</td>
+                      <td hidden class="semester_id">${dataPost.semester_id}</td>
+                      <td class="namaSemester">${dataPost.namaSemester}</td> 
+                      <td hidden class="mapel_id">${dataPost.mapel_id}</td>
+                      <td class="namaMapel">${dataPost.namaMapel}</td> 
                       <td class="mustahiq">${dataPost.mustahiq}</td> 
                       <td class="keterangan">${dataPost.keterangan}</td> 
                       <td>

@@ -76,7 +76,9 @@ function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
     dataPost.id_santri = $(`.tr_${tr} .id_santri`).val();
+    dataPost.namaSantri = $(`.tr_${tr} .id_santri option:selected`).text();
     dataPost.id_semester =  $(`.tr_${tr} .id_semester`).val();
+    dataPost.namaSemester = $(`.tr_${tr} .id_semester option:selected`).text();
     dataPost.akhlaq= $(`.tr_${tr} .akhlaq`).val();
     dataPost.kerapihan =  $(`.tr_${tr} .kerapihan`).val();
     dataPost.kerajinan= $(`.tr_${tr} .kerajinan`).val();
@@ -101,8 +103,10 @@ $(document).on("click", ".btnSave", function () {
         if (data.id != "0") {
           $("tbody").prepend(`
                   <tr class="tr_${data.id}">
-                      <td class="id_santri">${dataPost.id_santri}</td>
-                      <td class="id_semester">${dataPost.id_semester}</td>
+                      <td hidden class="id_santri">${dataPost.id_santri}</td>
+                      <td class="namaSantri">${dataPost.namaSantri}</td>
+                      <td hidden class="id_semester">${dataPost.id_semester}</td>
+                      <td class="namaSemester">${dataPost.namaSemester}</td>
                       <td class="akhlaq">${dataPost.akhlaq}</td>
                       <td class="kerapihan">${dataPost.kerapihan}</td>
                       <td class="kerajinan">${dataPost.kerajinan}</td>  

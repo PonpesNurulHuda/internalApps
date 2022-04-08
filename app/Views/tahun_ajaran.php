@@ -22,8 +22,9 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>status</th>
+                                <th>Status</th>
                                 <th>Is_active</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,7 +38,13 @@
                                         <?= $tahun_ajaran['status'] ?>
                                     </td>
                                     <td class="is_active">
-                                        <?= $tahun_ajaran['is_active'] ?>
+                                        <?php
+                                        if ($tahun_ajaran['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $tahun_ajaran['id'] ?>">Edit</button>

@@ -11,11 +11,8 @@ class Siswa_kelas extends BaseController
     public function index()
     {
         $siswa_kelas = new Siswa_kelasModel();
-        $dtSiswa_kelas = $siswa_kelas->findAll();
-        $data['dtSiswa_kelas'] = $dtSiswa_kelas;
-        //print_r($dtSiswa_kelas);
-        //dd($siswa_kelas->findAll());
-        // kirim data ke view
+        $Siswa_kelas = $siswa_kelas->findAll();
+        $data['dtSiswa_kelas'] = $siswa_kelas->DataSiswa_kelasDetail();
         return view('siswa_kelas', $data);
     }
 

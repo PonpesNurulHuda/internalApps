@@ -12,10 +12,7 @@ class Semester extends BaseController
     {
         $semester = new SemesterModel();
         $dtSemester = $semester->findAll();
-        $data['dtSemester'] = $dtSemester;
-
-        //dd($semester->findAll());
-        // kirim data ke view
+        $data['dtSemester'] = $semester->DataSemesterDetail();
         return view('semester', $data);
     }
 

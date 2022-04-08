@@ -12,7 +12,7 @@ use App\Models\Nilai_akhlaq_santriModel;
 use App\Models\Nilai_santriModel;
 use App\Models\SantriModel;
 use App\Models\Tahun_ajaranModel;
-use App\Models\Tbl01Model;
+use App\Models\TingkatModel;
 use App\Models\SemesterModel;
 
 use CodeIgniter\API\ResponseTrait;
@@ -90,11 +90,11 @@ class UniversalGetData extends BaseController
         return $this->respond($dttahun_ajaran, 200);
     }
 
-    public function tbl01()
+    public function tingkat()
     {
-        $tbl01 = new Tbl01Model();
-        $dttbl01 = $tbl01->findAll();
-        return $this->respond($dttbl01, 200);
+        $tingkat = new TingkatModel();
+        $dttingkat = $tingkat->findAll();
+        return $this->respond($dttingkat, 200);
     }
 
     public function semester()
