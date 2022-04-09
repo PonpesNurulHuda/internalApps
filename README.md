@@ -47,7 +47,7 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
       <a href="https://github.com/prayogo7"><img src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
         <br>
         <sub>
-          <b>prayogo</b>
+          <b>Rifki Ahmad Sururi</b>
          </sub>
       </a>
       <br>
