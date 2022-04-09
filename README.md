@@ -41,8 +41,11 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
       <br>
         <g-emoji class="g-emoji" alias="computer" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png">💻</g-emoji>    
     </td>
-    
-     <td align="center">
+  </tr>
+  
+  
+  <tr>
+    <td align="center">
       <a href="https://github.com/rifkisururi"><img src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
         <br>
         <sub>
@@ -52,6 +55,5 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
       <br>
         <g-emoji class="g-emoji" alias="computer" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png">💻</g-emoji>    
     </td>
-    
   </tr>
 </table
