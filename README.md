@@ -27,7 +27,7 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
 - xml (diaktifkan umumnya - jangan dimatikan)
 
 ## Pengembang sistem
-prayogo7
+
 
 <table>
   <tr>
@@ -42,22 +42,12 @@ prayogo7
         <g-emoji class="g-emoji" alias="computer" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png">💻</g-emoji>    
     </td>
     
-    <td align="center">
-      <a href="https://github.com/prayogo7"><img src="https://avatars.githubusercontent.com/u/102532226?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
-        <br>
-        <sub>
-          <b>Prayogo</b>
-         </sub>
-      </a>
-      <br>
-        <g-emoji class="g-emoji" alias="computer" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png">💻</g-emoji>    
-    </td>
     
     <td align="center">
-      <a href="https://github.com/"><img src="https://avatars.githubusercontent.com/u/?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
+      <a href="https://github.com/prayogo7"><img src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
         <br>
         <sub>
-          <b></b>
+          <b>prayogo</b>
          </sub>
       </a>
       <br>
