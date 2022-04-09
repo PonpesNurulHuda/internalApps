@@ -42,10 +42,10 @@ Tambahan, pastikan bahawa extensi ini diaktifkan di PHP anda
         <g-emoji class="g-emoji" alias="computer" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4bb.png">💻</g-emoji>    
     </td>
     <td align="center">
-      <a href="https://github.com/rifkisururi"><img src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
+      <a href="https://github.com/prayogo7"><img src="https://avatars.githubusercontent.com/u/57984062?s=96&v=4" width="100px;" alt="" style="max-width: 100%;">
         <br>
         <sub>
-          <b>Rifki Ahmad Sururi</b>
+          <b>Prayogo</b>
          </sub>
       </a>
       <br>
