@@ -27,6 +27,8 @@
                                 <th>Kategori</th>
                                 <th hidden>Mapel_type</th>
                                 <th>Type</th>
+                                <th>Nilai_minimal</th>
+                                <th>Wajib_lulus</th>
                                 <th>Is_active</th>
                                 <th>Aksi</th>
                             </tr>
@@ -53,6 +55,23 @@
                                     <td class="namaType">
                                         <?= $mapel['namaType'] ?>
                                     </td>
+                                    <td class="nilai_minimal">
+                                        <?php
+                                        if ($mapel['nilai_minimal']) {
+                                            echo "1";
+                                        } else {
+                                            echo "2";
+                                        }
+                                        ?>
+                                    <td class="wajib_lulus">
+                                        <?php
+                                        if ($mapel['wajib_lulus'] == "1") {
+                                            echo "Ya";
+                                        } else {
+                                            echo "Tidak";
+                                        }
+                                        ?>
+                                    </td>
                                     <td class="is_active">
                                         <?php
                                         if ($mapel['is_active'] == "1") {
@@ -74,7 +93,9 @@
                                 <th>Nama</th>
                                 <th>Deskripsi</th>
                                 <th>Mapel_kategori_id</th>
-                                <th>mapel_type</th>
+                                <th>Mapel_type</th>
+                                <th>Nilai_minimal</th>
+                                <th>Wajib_lulus</th>
                                 <th>Is_active</th>
                             </tr>
                         </tfoot>

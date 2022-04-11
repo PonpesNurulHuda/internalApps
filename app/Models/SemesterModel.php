@@ -10,7 +10,7 @@ class semesterModel extends Model
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['tahun_ajaran_id', 'seqno', 'nama', 'dimulai', 'selesai', 'status'];
+    protected $allowedFields = ['tahun_ajaran_id', 'seqno', 'nama', 'dimulai', 'selesai', 'is_active'];
 
     public function DataSemesterDetail()
     {

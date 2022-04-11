@@ -35,7 +35,12 @@ $(document).on("click", "#btnAddSemester", function () {
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='date' class="form-control dimulai" id=''></td>
             <td><input type='date' class="form-control selesai" id=''></td>
-            <td><input type='text' class="form-control status" id=''></td>
+            <td>
+                <select class='form-control is_active'>
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+            </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
                 <button class='btn btn-danger btnCancel' id="btnCancel_${className}">Batal</button>
@@ -58,7 +63,7 @@ function getData(tr){
     dataPost.nama = $(`.tr_${tr} .nama`).val();
     dataPost.dimulai = $(`.tr_${tr} .dimulai`).val();
     dataPost.selesai = $(`.tr_${tr} .selesai`).val();
-    dataPost.status = $(`.tr_${tr} .status`).val();
+    dataPost.is_active = $(`.tr_${tr} .is_active`).val();
 
 
     return dataPost;
@@ -87,7 +92,7 @@ $(document).on("click", ".btnSave", function () {
                       <td class="nama">${dataPost.nama}</td> 
                       <td class="dimulai">${dataPost.dimulai}</td>
                       <td class="selesai">${dataPost.selesai}</td> 
-                      <td class="status">${dataPost.status}</td> 
+                      <td class="is_active">${dataPost.is_active}</td> 
                       <td>
                           <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                           <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -119,7 +124,7 @@ $(document).on("click", ".btnEdit", function () {
     var nama = $(`.tr_${idRow} .nama`).html().trim();;
     var dimulai = $(`.tr_${idRow} .dimulai`).html().trim();;
     var selesai = $(`.tr_${idRow} .selesai`).html().trim();;
-    var status = $(`.tr_${idRow} .status`).html().trim();;
+    var is_active = $(`.tr_${idRow} .is_active`).html().trim();;
   
     $(`.tr_${idRow}`).hide();
     $(`.tr_${idRow}`).addClass(`lama_${idRow}`);
@@ -133,7 +138,7 @@ $(document).on("click", ".btnEdit", function () {
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
             <td><input type='date' class="form-control dimulai" id='' value='${dimulai}'></td>
             <td><input type='date' class="form-control selesai" id='' value='${selesai}'></td>
-            <td><input type='text' class="form-control status" id='' value='${status}'></td>
+            <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td>
                 <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
                 <button class='btn btn-danger btnCancelEdit' id="btnCancel_${idRow}">Batal</button>
@@ -171,7 +176,7 @@ $(document).on("click", ".btnSaveEdit", function () {
                         <td class="nama">${dataPost.nama}</td>
                         <td class="dimulai">${dataPost.dimulai}</td>
                         <td class="selesai">${dataPost.selesai}</td>
-                        <td class="status">${dataPost.status}</td>
+                        <td class="is_active">${dataPost.is_active}</td>
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
                             <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 

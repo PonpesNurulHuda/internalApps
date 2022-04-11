@@ -27,7 +27,6 @@ class Tahun_ajaran extends BaseController
         // kecuali created_at, updated_at dan id 
 
         $validation->setRules(['nama' => 'required']);
-        $validation->setRules(['status' => 'required']);
         $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -38,7 +37,6 @@ class Tahun_ajaran extends BaseController
 
             $id = $data->insert([
                 "nama" => $this->request->getPost('nama'),
-                "status" => $this->request->getPost('status'),
                 "is_active" => $this->request->getPost('is_active'),
             ]);
 
@@ -66,7 +64,6 @@ class Tahun_ajaran extends BaseController
         // kecuali created_at, updated_at dan id 
 
         $validation->setRules(['nama' => 'required']);
-        $validation->setRules(['status' => 'required']);
         $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -76,7 +73,6 @@ class Tahun_ajaran extends BaseController
 
             $id = $data->update($this->request->getPost('id'), [
                 "nama" => $this->request->getPost('nama'),
-                "status" => $this->request->getPost('status'),
                 "is_active" => $this->request->getPost('is_active')
             ]);
 

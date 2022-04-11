@@ -10,7 +10,7 @@ class mapelModel extends Model
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['nama', 'deskripsi', 'mapel_kategori_id', 'mapel_type', 'is_active'];
+    protected $allowedFields = ['nama', 'deskripsi', 'mapel_kategori_id', 'mapel_type', 'nilai_minimal', 'wajib_lulus', 'is_active'];
 
     public function DataMapelDetail()
     {

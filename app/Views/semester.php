@@ -27,7 +27,7 @@
                                 <th>Nama</th>
                                 <th>Dimulai</th>
                                 <th>Selesai</th>
-                                <th>Status</th>
+                                <th>Is_active</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -53,8 +53,14 @@
                                     <td class="selesai">
                                         <?= $semester['selesai'] ?>
                                     </td>
-                                    <td class="status">
-                                        <?= $semester['status'] ?>
+                                    <td class="is_active">
+                                        <?php
+                                        if ($semester['is_active'] == "1") {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $semester['id'] ?>">Edit</button>
@@ -70,7 +76,7 @@
                                 <th>Nama</th>
                                 <th>Dimulai</th>
                                 <th>Selesai</th>
-                                <th>Status</th>
+                                <th>Is_active</th>
                             </tr>
                         </tfoot>
                     </table>

@@ -10,5 +10,5 @@ class tahun_ajaranModel extends Model
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['nama', 'status', 'is_active'];
+    protected $allowedFields = ['nama', 'is_active'];
 }

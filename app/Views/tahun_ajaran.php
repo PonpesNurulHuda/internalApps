@@ -22,7 +22,6 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Status</th>
                                 <th>Is_active</th>
                                 <th>Aksi</th>
                             </tr>
@@ -33,9 +32,6 @@
                                     <td hidden><?= $tahun_ajaran['id'] ?></td>
                                     <td class="nama">
                                         <?= $tahun_ajaran['nama'] ?>
-                                    </td>
-                                    <td class="status">
-                                        <?= $tahun_ajaran['status'] ?>
                                     </td>
                                     <td class="is_active">
                                         <?php
@@ -56,7 +52,6 @@
                         <tfoot>
                             <tr>
                                 <th>Nama</th>
-                                <th>Status</th>
                                 <th>Is_active</th>
                             </tr>
                         </tfoot>

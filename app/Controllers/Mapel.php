@@ -27,6 +27,8 @@ class Mapel extends BaseController
         $validation->setRules(['deskripsi' => 'required']);
         $validation->setRules(['mapel_kategori_id' => 'required']);
         $validation->setRules(['mapel_type' => 'required']);
+        $validation->setRules(['nilai_minimal' => 'required']);
+        $validation->setRules(['wajib_lulus' => 'required']);
         $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -40,6 +42,8 @@ class Mapel extends BaseController
                 "deskripsi" => $this->request->getPost('deskripsi'),
                 "mapel_kategori_id" => $this->request->getPost('mapel_kategori_id'),
                 "mapel_type" => $this->request->getPost('mapel_type'),
+                "nilai_minimal" => $this->request->getPost('nilai_minimal'),
+                "wajib_lulus" => $this->request->getPost('wajib_lulus'),
                 "is_active" => $this->request->getPost('is_active')
             ]);
 
@@ -70,6 +74,8 @@ class Mapel extends BaseController
         $validation->setRules(['deskripsi' => 'required']);
         $validation->setRules(['mapel_kategori_id' => 'required']);
         $validation->setRules(['mapel_type' => 'required']);
+        $validation->setRules(['nilai_minimal' => 'required']);
+        $validation->setRules(['wajib_lulus' => 'required']);
         $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
@@ -82,6 +88,8 @@ class Mapel extends BaseController
                 "deskripsi" => $this->request->getPost('deskripsi'),
                 "mapel_kategori_id" => $this->request->getPost('mapel_kategori_id'),
                 "mapel_type" => $this->request->getPost('mapel_type'),
+                "nilai_minimal" => $this->request->getPost('nilai_minimal'),
+                "wajib_lulus" => $this->request->getPost('wajib_lulus'),
                 "is_active" => $this->request->getPost('is_active')
             ]);
 

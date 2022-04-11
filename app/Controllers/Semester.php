@@ -28,7 +28,7 @@ class Semester extends BaseController
         $validation->setRules(['nama' => 'required']);
         $validation->setRules(['dimulai' => 'required']);
         $validation->setRules(['selesai' => 'required']);
-        $validation->setRules(['status' => 'required']);
+        $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
 
@@ -42,7 +42,7 @@ class Semester extends BaseController
                 "nama" => $this->request->getPost('nama'),
                 "dimulai" => $this->request->getPost('dimulai'),
                 "selesai" => $this->request->getPost('selesai'),
-                "status" => $this->request->getPost('status')
+                "is_active" => $this->request->getPost('is_active')
             ]);
 
             if ($id > 0) {
@@ -73,7 +73,7 @@ class Semester extends BaseController
         $validation->setRules(['nama' => 'required']);
         $validation->setRules(['dimulai' => 'required']);
         $validation->setRules(['selesai' => 'required']);
-        $validation->setRules(['status' => 'required']);
+        $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
         // jika data valid, simpan ke database
@@ -86,7 +86,7 @@ class Semester extends BaseController
                 "nama" => $this->request->getPost('nama'),
                 "dimulai" => $this->request->getPost('dimulai'),
                 "selesai" => $this->request->getPost('selesai'),
-                "status" => $this->request->getPost('status')
+                "is_active" => $this->request->getPost('is_active')
             ]);
 
             if ($id > 0) {

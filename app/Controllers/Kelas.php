@@ -26,7 +26,7 @@ class Kelas extends BaseController
         $validation->setRules(['kode' => 'required']);
         $validation->setRules(['nama' => 'required']);
         $validation->setRules(['tingkat_id' => 'required']);
-        $validation->setRules(['tahun_ajaran' => 'required']);
+        $validation->setRules(['tahun_ajaran_id' => 'required']);
         $validation->setRules(['walikelas' => 'required']);
         $validation->setRules(['is_active' => 'required']);
 
@@ -40,7 +40,7 @@ class Kelas extends BaseController
                 "kode" => $this->request->getPost('kode'),
                 "nama" => $this->request->getPost('nama'),
                 "tingkat_id" => $this->request->getPost('tingkat_id'),
-                "tahun_ajaran" => $this->request->getPost('tahun_ajaran'),
+                "tahun_ajaran_id" => $this->request->getPost('tahun_ajaran_id'),
                 "walikelas" => $this->request->getPost('walikelas'),
                 "is_active" => $this->request->getPost('is_active'),
                 "created_at" => date('Y-m-d H:i:s'),

@@ -8,7 +8,6 @@ $(document).on("click", "#btnAddTahun_ajaran", function () {
     $("tbody").prepend(`
         <tr class="tr_${className}">
             <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control status" id=''></td>
             <td>
                 <select class='form-control is_active'>
                     <option value="1">Aktif</option>
@@ -33,7 +32,6 @@ function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
     dataPost.nama = $(`.tr_${tr} .nama`).val();
-    dataPost.status =  $(`.tr_${tr} .status`).val();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
 
     return dataPost;
@@ -57,7 +55,6 @@ $(document).on("click", ".btnSave", function () {
           $("tbody").prepend(`
                   <tr class="tr_${data.id}">
                       <td class="nama">${dataPost.nama}</td>
-                      <td class="status">${dataPost.status}</td>
                       <td class="is_active">${dataPost.is_active}</td>  
                       <td>
                           <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
@@ -86,7 +83,6 @@ $(document).on("click", ".btnEdit", function () {
     var dataPost = getData(idRow);
     console.log(dataPost);
     var nama = $(`.tr_${idRow} .nama`).html().trim();;
-    var status = $(`.tr_${idRow} .status`).html().trim();;
     var is_active = $(`.tr_${idRow} .is_active`).html().trim();;
   
     $(`.tr_${idRow}`).hide();
@@ -95,7 +91,6 @@ $(document).on("click", ".btnEdit", function () {
     $(`.tr_${idRow}`).before(`
         <tr class="tr_${idRow} formEdit_${idRow}">
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
-            <td><input type='text' class="form-control status" id='' value='${status}'></td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td>
                 <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
@@ -127,7 +122,6 @@ $(document).on("click", ".btnSaveEdit", function () {
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
                         <td class="nama">${dataPost.nama}</td>
-                        <td class="status">${dataPost.status}</td>
                         <td class="is_active">${dataPost.is_active}</td>
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
