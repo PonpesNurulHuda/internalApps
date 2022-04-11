@@ -44,7 +44,7 @@ class UniversalGetData extends BaseController
     public function siswa_kelas()
     {
         $siswa_kelas = new Siswa_kelasModel();
-        $dtsiswa_kelas = $siswa_kelas->findAll();
+        $dtsiswa_kelas = $siswa_kelas->DataSiswa_kelasDetail();
         return $this->respond($dtsiswa_kelas, 200);
     }
 

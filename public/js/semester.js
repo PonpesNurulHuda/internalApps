@@ -126,7 +126,9 @@ $(document).on("click", ".btnEdit", function () {
   
     $(`.tr_${idRow}`).before(`
         <tr class="tr_${idRow} formEdit_${idRow}">
-            <td><input type='text' class="form-control tahun_ajaran_id" id='' value='${tahun_ajaran_id}'></td>
+            <td>
+                ${dropdownTahun_ajaran}
+            </td>
             <td><input type='text' class="form-control seqno" id='' value='${seqno}'></td>
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
             <td><input type='date' class="form-control dimulai" id='' value='${dimulai}'></td>
@@ -138,6 +140,8 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
+
+    $(`.tr_${idRow} .tahun_ajaran_id`).val(tahun_ajaran_id);
 });
 
 // action update data
@@ -161,7 +165,8 @@ $(document).on("click", ".btnSaveEdit", function () {
                 console.log('data id', response);
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
-                        <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                        <td hidden class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                        <td class="namaAjaran">${dataPost.namaAjaran}</td>
                         <td class="seqno">${dataPost.seqno}</td>
                         <td class="nama">${dataPost.nama}</td>
                         <td class="dimulai">${dataPost.dimulai}</td>

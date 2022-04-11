@@ -154,8 +154,12 @@ $(document).on("click", ".btnEdit", function () {
         <tr class="tr_${idRow} formEdit_${idRow}">
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
             <td><input type='text' class="form-control deskripsi" id='' value='${deskripsi}'></td>
-            <td><input type='text' class="form-control mapel_kategori_id" id='' value='${mapel_kategori_id}'></td>
-            <td><input type='text' class="form-control mapel_type" id='' value='${mapel_type}'></td>
+            <td>
+                ${dropdownMapel_kategori}
+            </td>
+            <td>
+                ${dropdownMapelTipe}
+            </td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td>
                 <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
@@ -163,6 +167,9 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
+
+    $(`.tr_${idRow} .mapel_kategori_id`).val(mapel_kategori_id);
+    $(`.tr_${idRow} .mapel_type`).val(mapel_type);
   });
   
 // action update data
@@ -188,8 +195,10 @@ $(document).on("click", ".btnSaveEdit", function () {
                     <tr class="tr_${data.id}">
                         <td class="nama">${dataPost.nama}</td>
                         <td class="deskripsi">${dataPost.deskripsi}</td>
-                        <td class="mapel_kategori_id">${dataPost.mapel_kategori_id}</td>
-                        <td class="mapel_type">${dataPost.mapel_type}</td>
+                        <td hidden class="mapel_kategori_id">${dataPost.mapel_kategori_id}</td>
+                        <td class="namaKategory">${dataPost.namaKategory}</td> 
+                        <td hidden class="mapel_type">${dataPost.mapel_type}</td>
+                        <td class="namaType">${dataPost.namaType}</td>
                         <td class="is_active">${dataPost.is_active}</td>
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 

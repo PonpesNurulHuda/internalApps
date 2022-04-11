@@ -156,8 +156,12 @@ $(document).on("click", ".btnEdit", function () {
   
     $(`.tr_${idRow}`).before(`
         <tr class="tr_${idRow} formEdit_${idRow}">
-            <td><input type='text' class="form-control id_siswa" id='' value='${id_siswa}'></td>
-            <td><input type='text' class="form-control id_kelas" id='' value='${id_kelas}'></td>
+            <td>
+                ${dropdownSantri}
+            </td>
+            <td>
+                ${dropdownKelas}
+            </td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
             <td><input type='date' class="form-control updated_at" id='' value='${updated_at}'></td>
@@ -167,6 +171,9 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
+
+    $(`.tr_${idRow} .id_siswa`).val(id_siswa);
+    $(`.tr_${idRow} .id_kelas`).val(id_kelas);
   });
 
   // action update data
@@ -190,8 +197,10 @@ $(document).on("click", ".btnSaveEdit", function () {
                 console.log('data id', response);
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
-                        <td class="id_siswa">${dataPost.id_siswa}</td>
-                        <td class="id_kelas">${dataPost.id_kelas}</td>
+                        <td hidden class="id_siswa">${dataPost.id_siswa}</td>
+                        <td class="namaSiswa">${dataPost.namaSiswa}</td>
+                        <td hidden class="id_kelas">${dataPost.id_kelas}</td>
+                        <td class="namaKelas">${dataPost.namaKelas}</td>
                         <td class="is_active">${dataPost.is_active}</td>
                         <td class="created_at">${dataPost.created_at}</td>
                         <td class="updated_at">${dataPost.updated_at}</td>

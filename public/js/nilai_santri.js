@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         var i;
         for (i = 0; i < dtSiswa_kelas.length; ++i) {
-            dropdownSiswa_kelas += `<option value="${dtSiswa_kelas[i]["id"]}">${dtSiswa_kelas[i]["id_siswa"]}</option>`;
+            dropdownSiswa_kelas += `<option value="${dtSiswa_kelas[i]["id"]}">${dtSiswa_kelas[i]["namaSiswa"]}</option>`;
         }
         dropdownSiswa_kelas = `<select class="form-control id_siswa_kelas">${dropdownSiswa_kelas} </select>`;
     },
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
             var i;
             for (i = 0; i < dtMapel_kelas.length; ++i) {
-                dropdownMapel_kelas += `<option value="${dtMapel_kelas[i]["id"]}">${dtMapel_kelas[i]["id_siswa"]}</option>`;
+                dropdownMapel_kelas += `<option value="${dtMapel_kelas[i]["id"]}">${dtMapel_kelas[i]["nama"]}</option>`;
             }
             dropdownMapel_kelas = `<select class="form-control id_mapel_kelas">${dropdownMapel_kelas} </select>`;
         },
@@ -74,9 +74,9 @@ function getData(tr){
   var dataPost = new Object();
   dataPost.id =  tr;
   dataPost.id_siswa_kelas = $(`.tr_${tr} .id_siswa_kelas`).val();
-  ataPost.namaSiswa = $(`.tr_${tr} .id_siswa_kelas option:selected`).text();
+  dataPost.namaSiswa = $(`.tr_${tr} .id_siswa_kelas option:selected`).text();
   dataPost.id_mapel_kelas =  $(`.tr_${tr} .id_mapel_kelas`).val();
-  ataPost.namaMapel = $(`.tr_${tr} .id_mapel_kelas option:selected`).text();
+  dataPost.namaMapel = $(`.tr_${tr} .id_mapel_kelas option:selected`).text();
   dataPost.nilai = $(`.tr_${tr} .nilai`).val();
 
   return dataPost;
@@ -139,8 +139,12 @@ $(document).on("click", ".btnEdit", function () {
 
   $(`.tr_${idRow}`).before(`
       <tr class="tr_${idRow} formEdit_${idRow}">
-          <td><input type='text' class="form-control id_siswa_kelas" id='' value='${id_siswa_kelas}'></td>
-          <td><input type='text' class="form-control id_mapel_kelas" id='' value='${id_mapel_kelas}'></td>
+          <td>
+                ${dropdownSiswa_kelas}
+          </td>
+          <td>          
+                ${dropdownMapel_kelas}
+          </td>
           <td><input type='text' class="form-control nilai" id='' value='${nilai}'></td>
           <td>
               <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
@@ -148,6 +152,9 @@ $(document).on("click", ".btnEdit", function () {
           </td>
       </tr>
   `);
+
+  $(`.tr_${idRow} .id_mapel_kelas`).val(id_mapel_kelas);
+  $(`.tr_${idRow} .id_siswa_kelas`).val(id_siswa_kelas);
 });
 
 // action update data
@@ -171,8 +178,10 @@ $(document).on("click", ".btnSaveEdit", function () {
                 console.log('data id', response);
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
-                        <td class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
-                        <td class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
+                        <td hidden class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
+                        <td class="namaSiswa">${dataPost.namaSiswa}</td>
+                        <td hidden class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
+                        <td class="namaMapel">${dataPost.namaMapel}</td>
                         <td class="nilai">${dataPost.nilai}</td>
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 

@@ -4,26 +4,6 @@ var dropdownTingkat = "";
 $(document).ready(function () {
     $(".dtKelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddKelas'>Tambah Data </button>  ");
 
-    // mengambil data tahun_ajaran
-    $.ajax({
-        url: "UniversalGetData/tahun_ajaran",
-        type:"Get",
-        success:function(response) {
-            dtTahun_ajaran = response;
-            console.log('dtTahun_ajaran', dtTahun_ajaran);
-
-            var i;
-            for (i = 0; i < dtTahun_ajaran.length; ++i) {
-                dropdownTahun_ajaran += `<option value="${dtTahun_ajaran[i]["id"]}">${dtTahun_ajaran[i]["nama"]}</option>`;
-            }
-            dropdownTahun_ajaran = `<select class="form-control tahun_ajaran_id">${dropdownTahun_ajaran} </select>`;
-        },
-        error:function(){
-            alert("Gagal ambil data tahun_ajaran");
-        }
-
-    });
-
     // mengambil data tingkat
     $.ajax({
         url: "UniversalGetData/tingkat",
@@ -40,6 +20,26 @@ $(document).ready(function () {
         },
         error:function(){
             alert("Gagal ambil data tingkat");
+        }
+
+    });
+
+    // mengambil data tahun_ajaran
+    $.ajax({
+        url: "UniversalGetData/tahun_ajaran",
+        type:"Get",
+        success:function(response) {
+            dtTahun_ajaran = response;
+            console.log('dtTahun_ajaran', dtTahun_ajaran);
+
+            var i;
+            for (i = 0; i < dtTahun_ajaran.length; ++i) {
+                dropdownTahun_ajaran += `<option value="${dtTahun_ajaran[i]["id"]}">${dtTahun_ajaran[i]["nama"]}</option>`;
+            }
+            dropdownTahun_ajaran = `<select class="form-control tahun_ajaran_id">${dropdownTahun_ajaran} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data tahun_ajaran");
         }
 
     });
@@ -167,8 +167,12 @@ $(document).on("click", ".btnEdit", function () {
         <tr class="tr_${idRow} formEdit_${idRow}">
             <td><input type='text' class="form-control kode" id='' value='${kode}'></td>
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
-            <td><input type='text' class="form-control tingkat_id" id='' value='${tingkat_id}'></td>
-            <td><input type='text' class="form-control tahun_ajaran_id" id='' value='${tahun_ajaran_id}'></td>
+            <td>
+                ${dropdownTingkat}  
+            </td>
+            <td>
+                ${dropdownTahun_ajaran}    
+            </td>
             <td><input type='text' class="form-control walikelas" id='' value='${walikelas}'></td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
@@ -179,6 +183,9 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
+
+    $(`.tr_${idRow} .tahun_ajaran_id`).val(tahun_ajaran_id);
+    $(`.tr_${idRow} .tingkat_id`).val(tingkat_id);
 });
 
   // action update data
@@ -204,8 +211,10 @@ $(document).on("click", ".btnSaveEdit", function () {
                     <tr class="tr_${data.id}">
                         <td class="kode">${dataPost.kode}</td>
                         <td class="nama">${dataPost.nama}</td>
-                        <td class="tingkat_id">${dataPost.tingkat_id}</td>
-                        <td class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                        <td hidden class="tingkat_id">${dataPost.tingkat_id}</td>
+                        <td class="namaTingkat">${dataPost.namaTingkat}</td>
+                        <td hidden class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
+                        <td class="namaAjaran">${dataPost.namaAjaran}</td>
                         <td class="walikelas">${dataPost.walikelas}</td>
                         <td class="is_active">${dataPost.is_active}</td>
                         <td class="created_at">${dataPost.created_at}</td>

@@ -177,9 +177,15 @@ $(document).on("click", ".btnEdit", function () {
     $(`.tr_${idRow}`).before(`
         <tr class="tr_${idRow} formEdit_${idRow}">
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
-            <td><input type='text' class="form-control kelas_id" id='' value='${kelas_id}'></td>
-            <td><input type='text' class="form-control semester_id" id='' value='${semester_id}'></td>
-            <td><input type='text' class="form-control mapel_id" id='' value='${mapel_id}'></td>
+            <td>
+                ${dropdownKelas}
+            </td>
+            <td>
+                ${dropdownSemester}
+            </td>
+            <td>
+                ${dropdownMapel}
+            </td>
             <td><input type='text' class="form-control mustahiq" id='' value='${mustahiq}'></td>
             <td><input type='text' class="form-control keterangan" id='' value='${keterangan}'></td>
             <td>
@@ -188,6 +194,10 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
+
+    $(`.tr_${idRow} .kelas_id`).val(kelas_id);
+    $(`.tr_${idRow} .semester_id`).val(semester_id);
+    $(`.tr_${idRow} .mapel_id`).val(mapel_id);
   });
   
 // action update data
@@ -212,9 +222,12 @@ $(document).on("click", ".btnSaveEdit", function () {
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
                         <td class="nama">${dataPost.nama}</td>
-                        <td class="kelas-id">${dataPost.kelas_id}</td>
-                        <td class="semester_id">${dataPost.semester_id}</td>
-                        <td class="mapel_id">${dataPost.mapel_id}</td>
+                        <td hidden class="kelas_id">${dataPost.kelas_id}</td>
+                        <td class="namaKelas">${dataPost.namaKelas}</td>
+                        <td hidden class="semester_id">${dataPost.semester_id}</td>
+                        <td class="namaSemester">${dataPost.namaSemester}</td>
+                        <td hidden class="mapel_id">${dataPost.mapel_id}</td>
+                        <td class="namaMapel">${dataPost.namaMapel}</td>
                         <td class="mustahiq">${dataPost.mustahiq}</td>
                         <td class="keterangan">${dataPost.keterangan}</td>
                         <td>
