@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class tingkatModel extends Model
+class TingkatModel extends Model
 {
     protected $table      = 'tingkat';
     protected $primaryKey = 'id';
