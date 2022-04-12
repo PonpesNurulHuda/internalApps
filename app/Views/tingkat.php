@@ -50,8 +50,8 @@
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $tingkat['id'] ?>">Edit</button>
                                         <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $tingkat['id'] ?>">Hapus</button>
                                     </td>
-                                    </tr>
-                                <?php endforeach ?>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>

@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtSiswa_kelas">
                     <h5 class="card-title">Data Siswa_kelas</h5>
-                    <table id="example" class="display datatable" style="width:100%">
+                    <table id="tableSiswa_kelas" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
                                 <th hidden>Id_siswa</th>

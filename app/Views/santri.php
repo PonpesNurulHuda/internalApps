@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtSantri">
                     <h5 class="card-title">Data Santri</h5>
-                    <table id="example" class="display datatable" style="width:100%">
+                    <table id="tableSantri" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
                                 <th>KK</th>

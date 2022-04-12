@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtMapel">
                     <h5 class="card-title">Data Mapel</h5>
-                    <table id="example" class="display datatable" style="width:100%">
+                    <table id="tableMapel" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>
@@ -56,13 +56,8 @@
                                         <?= $mapel['namaType'] ?>
                                     </td>
                                     <td class="nilai_minimal">
-                                        <?php
-                                        if ($mapel['nilai_minimal']) {
-                                            echo "1";
-                                        } else {
-                                            echo "2";
-                                        }
-                                        ?>
+                                        <?= $mapel['nilai_minimal'] ?>
+                                    </td>
                                     <td class="wajib_lulus">
                                         <?php
                                         if ($mapel['wajib_lulus'] == "1") {

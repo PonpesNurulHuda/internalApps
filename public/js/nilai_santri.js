@@ -113,6 +113,7 @@ $(document).on("click", ".btnSave", function () {
 
         $(".DataTable td").css({ "font-size": 20 });
         $(`.tr_${idRow}`).remove();
+        addAlertSuccess('Data nilai_santri berhasil di tambah', 'success');
       }else{
           alert(data.pesan);
       }
@@ -193,6 +194,7 @@ $(document).on("click", ".btnSaveEdit", function () {
                 $(".DataTable td").css({ 'font-size': 20 });
                 $(`.formEdit_${idRow}`).remove();
                 $(`.lama_${idRow}`).remove();
+                addAlertSuccess('Data nilai_santri berhasil di ubah', 'info');
             },
             error:function(){
                 alert("Terjadi kesalahan");
