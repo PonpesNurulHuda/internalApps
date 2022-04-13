@@ -31,7 +31,7 @@ $(document).on("click", ".btnCancel", function () {
 function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
-    dataPost.nama = $(`.tr_${tr} .nama`).val();
+    dataPost.nama = $(`.tr_${tr} .nama`).val().trim();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
 
     return dataPost;
@@ -41,39 +41,53 @@ $(document).on("click", ".btnSave", function () {
     var idRow = $(this).attr("id").replace("btnSave_", "");
     var dataPost = getData(idRow);
     console.log("dataPost", dataPost);
+    
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.nama == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .nama`).after(`
+        <span class='pesanError' style="color:red">Nama wajib diisi</span>
+        `);
+    }
+    
+    if(error == 0){
+        $.ajax({
+            url: "tahun_ajaran/add ",
+            type: "POST",
+        
+            data: dataPost,
+            success: function (response) {
+              console.log(response);
+        
+              var data = response;
+              if (data.id != "0") {
+                $("tbody").prepend(`
+                        <tr class="tr_${data.id}">
+                            <td class="nama">${dataPost.nama}</td>
+                            <td class="is_active">${dataPost.is_active}</td>  
+                            <td>
+                                <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
+                                <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
+                            </td>
+                        </tr>
+                    `);
+        
+                $(".DataTable td").css({ "font-size": 20 });
+                $(`.tr_${idRow}`).remove();
+                addAlertSuccess('Data tahun_ajaran berhasil di tambah', 'success');
+              }else{
+                  alert(data.pesan);
+              }
+            },
+            error: function () {
+              alert("Terjadi kesalahan");
+            },
+          });
+
+    }
   
-    $.ajax({
-      url: "tahun_ajaran/add ",
-      type: "POST",
-  
-      data: dataPost,
-      success: function (response) {
-        console.log(response);
-  
-        var data = response;
-        if (data.id != "0") {
-          $("tbody").prepend(`
-                  <tr class="tr_${data.id}">
-                      <td class="nama">${dataPost.nama}</td>
-                      <td class="is_active">${dataPost.is_active}</td>  
-                      <td>
-                          <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
-                          <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
-                      </td>
-                  </tr>
-              `);
-  
-          $(".DataTable td").css({ "font-size": 20 });
-          $(`.tr_${idRow}`).remove();
-          addAlertSuccess('Data tahun_ajaran berhasil di tambah', 'success');
-        }else{
-            alert(data.pesan);
-        }
-      },
-      error: function () {
-        alert("Terjadi kesalahan");
-      },
-    });
+    
   });
   
 // edit data
@@ -103,48 +117,61 @@ $(document).on("click", ".btnEdit", function () {
 
     // action update data
 $(document).on("click", ".btnSaveEdit", function () {
-    var yakin = confirm("Apakah anda yakin akan merubah data ini?");
     var idRow = $(this).attr("id").replace("btnSave_", "");
-  
-    if (yakin) {
-        var dataPost = getData(idRow);
-        console.log(dataPost);
-  
-        $.ajax({
-            url: "tahun_ajaran/update",
-            type:"POST",
-  
-            data:dataPost,
-            success:function(response) {
-                var data = response;
-                var dataTd = data.data;
-                console.log('response', response);
-                console.log('data id', response);
-                $(`.formEdit_${idRow}`).before(`
-                    <tr class="tr_${data.id}">
-                        <td class="nama">${dataPost.nama}</td>
-                        <td class="is_active">${dataPost.is_active}</td>
-                        <td>
-                            <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
-                            <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
-                        </td>
-                    </tr>
-                `);
-  
-                $(".DataTable td").css({ 'font-size': 20 });
-                $(`.formEdit_${idRow}`).remove();
-                $(`.lama_${idRow}`).remove();
-                addAlertSuccess('Data tahun_ajaran berhasil di ubah', 'info');
-            },
-            error:function(){
-                alert("Terjadi kesalahan");
-            }
-  
-        });
-    } else {
-        console.log('batal', idRow);
-        $(`.tr_${idRow}`).show();
-        $(`.formEdit_${idRow}`).remove();
-        $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+    var dataPost = getData(idRow);
+
+    console.log(dataPost);
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.nama == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .nama`).after(`
+            <span class='pesanError' style="color:red">Nama wajib diisi</span>
+        `);
     }
+    console.log('error', error);
+
+    if(error == 0){
+        var yakin = confirm("Apakah anda yakin akan merubah data ini?");
+        if (yakin) {
+            $.ajax({
+                url: "tahun_ajaran/update",
+                type:"POST",
+      
+                data:dataPost,
+                success:function(response) {
+                    var data = response;
+                    var dataTd = data.data;
+                    console.log('response', response);
+                    console.log('data id', response);
+                    $(`.formEdit_${idRow}`).before(`
+                        <tr class="tr_${data.id}">
+                            <td class="nama">${dataPost.nama}</td>
+                            <td class="is_active">${dataPost.is_active}</td>
+                            <td>
+                                <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
+                                <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
+                            </td>
+                        </tr>
+                    `);
+      
+                    $(".DataTable td").css({ 'font-size': 20 });
+                    $(`.formEdit_${idRow}`).remove();
+                    $(`.lama_${idRow}`).remove();
+                    addAlertSuccess('Data tahun_ajaran berhasil di ubah', 'info');
+                },
+                error:function(){
+                    alert("Terjadi kesalahan");
+                }
+      
+            });
+        } else {
+            console.log('batal', idRow);
+            $(`.tr_${idRow}`).show();
+            $(`.formEdit_${idRow}`).remove();
+            $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+        }
+    }
+    
 });
