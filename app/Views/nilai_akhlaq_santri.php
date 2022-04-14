@@ -33,7 +33,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($dtNilai_akhlaq_santri as $nilai_akhlaq_santri) : ?>
-                                <<tr class="tr_<?= $nilai_akhlaq_santri['id'] ?>">
+                                <tr class="tr_<?= $nilai_akhlaq_santri['id'] ?>">
                                     <td hidden><?= $nilai_akhlaq_santri['id'] ?></td>
                                     <td hidden class="id_santri">
                                         <?= $nilai_akhlaq_santri['id_santri'] ?>
@@ -60,8 +60,8 @@
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $nilai_akhlaq_santri['id'] ?>">Edit</button>
                                         <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $nilai_akhlaq_santri['id'] ?>">Hapus</button>
                                     </td>
-                                    </tr>
-                                <?php endforeach ?>
+                                </tr>
+                            <?php endforeach ?>
                         </tbody>
                         <tfoot>
                             <tr>

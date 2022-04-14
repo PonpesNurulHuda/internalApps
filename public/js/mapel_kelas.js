@@ -98,15 +98,15 @@ $(document).on("click", ".btnCancel", function () {
 function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
-    dataPost.nama = $(`.tr_${tr} .nama`).val();
+    dataPost.nama = $(`.tr_${tr} .nama`).val().trim();
     dataPost.kelas_id =  $(`.tr_${tr} .kelas_id`).val();
     dataPost.namaKelas = $(`.tr_${tr} .kelas_id option:selected`).text();
     dataPost.semester_id = $(`.tr_${tr} .semester_id`).val();
     dataPost.namaSemester = $(`.tr_${tr} .semester_id option:selected`).text();
     dataPost.mapel_id = $(`.tr_${tr} .mapel_id`).val();
     dataPost.namaMapel = $(`.tr_${tr} .mapel_id option:selected`).text();
-    dataPost.mustahiq = $(`.tr_${tr} .mustahiq`).val();
-    dataPost.keterangan = $(`.tr_${tr} .keterangan`).val();
+    dataPost.mustahiq = $(`.tr_${tr} .mustahiq`).val().trim();
+    dataPost.keterangan = $(`.tr_${tr} .keterangan`).val().trim();
 
 
     return dataPost;
@@ -116,46 +116,77 @@ $(document).on("click", ".btnSave", function () {
     var idRow = $(this).attr("id").replace("btnSave_", "");
     var dataPost = getData(idRow);
     console.log("dataPost", dataPost);
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.nama == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .nama`).after(`
+        <span class='pesanError' style="color:red">Nama wajib diisi</span>
+        `);
+    }
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.mustahid == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .mustahid`).after(`
+        <span class='pesanError' style="color:red">Mustahid wajib diisi</span>
+        `);
+    }
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.keterangan == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .keterangan`).after(`
+        <span class='pesanError' style="color:red">Keterangan wajib diisi</span>
+        `);
+    }
+    
+    if(error == 0){
+        $.ajax({
+            url: "mapel_kelas/add ",
+            type: "POST",
+        
+            data: dataPost,
+            success: function (response) {
+              console.log(response);
+        
+              var data = response;
+              if (data.id != "0") {
+                $("tbody").prepend(`
+                        <tr class="tr_${data.id}">
+                            <td class="nama">${dataPost.nama}</td>
+                            <td hidden class="kelas_id">${dataPost.kelas_id}</td>
+                            <td class="namaKelas">${dataPost.namaKelas}</td>
+                            <td hidden class="semester_id">${dataPost.semester_id}</td>
+                            <td class="namaSemester">${dataPost.namaSemester}</td> 
+                            <td hidden class="mapel_id">${dataPost.mapel_id}</td>
+                            <td class="namaMapel">${dataPost.namaMapel}</td> 
+                            <td class="mustahiq">${dataPost.mustahiq}</td> 
+                            <td class="keterangan">${dataPost.keterangan}</td> 
+                            <td>
+                                <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
+                                <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
+                            </td>
+                        </tr>
+                    `);
+        
+                $(".DataTable td").css({ "font-size": 20 });
+                $(`.tr_${idRow}`).remove();
+                addAlertSuccess('Data mapel_kelas berhasil di tambah', 'success');
+              }else{
+                  alert(data.pesan);
+              }
+            },
+            error: function () {
+              alert("Terjadi kesalahan");
+            },
+          });
+    }
   
-    $.ajax({
-      url: "mapel_kelas/add ",
-      type: "POST",
-  
-      data: dataPost,
-      success: function (response) {
-        console.log(response);
-  
-        var data = response;
-        if (data.id != "0") {
-          $("tbody").prepend(`
-                  <tr class="tr_${data.id}">
-                      <td class="nama">${dataPost.nama}</td>
-                      <td hidden class="kelas_id">${dataPost.kelas_id}</td>
-                      <td class="namaKelas">${dataPost.namaKelas}</td>
-                      <td hidden class="semester_id">${dataPost.semester_id}</td>
-                      <td class="namaSemester">${dataPost.namaSemester}</td> 
-                      <td hidden class="mapel_id">${dataPost.mapel_id}</td>
-                      <td class="namaMapel">${dataPost.namaMapel}</td> 
-                      <td class="mustahiq">${dataPost.mustahiq}</td> 
-                      <td class="keterangan">${dataPost.keterangan}</td> 
-                      <td>
-                          <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
-                          <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
-                      </td>
-                  </tr>
-              `);
-  
-          $(".DataTable td").css({ "font-size": 20 });
-          $(`.tr_${idRow}`).remove();
-          addAlertSuccess('Data mapel_kelas berhasil di tambah', 'success');
-        }else{
-            alert(data.pesan);
-        }
-      },
-      error: function () {
-        alert("Terjadi kesalahan");
-      },
-    });
+    
   });
   
 // edit data
@@ -203,55 +234,88 @@ $(document).on("click", ".btnEdit", function () {
   
 // action update data
 $(document).on("click", ".btnSaveEdit", function () {
-    var yakin = confirm("Apakah anda yakin akan merubah data ini?");
     var idRow = $(this).attr("id").replace("btnSave_", "");
-  
-    if (yakin) {
-        var dataPost = getData(idRow);
-        console.log(dataPost);
-  
-        $.ajax({
-            url: "mapel_kelas/update",
-            type:"POST",
-  
-            data:dataPost,
-            success:function(response) {
-                var data = response;
-                var dataTd = data.data;
-                console.log('response', response);
-                console.log('data id', response);
-                $(`.formEdit_${idRow}`).before(`
-                    <tr class="tr_${data.id}">
-                        <td class="nama">${dataPost.nama}</td>
-                        <td hidden class="kelas_id">${dataPost.kelas_id}</td>
-                        <td class="namaKelas">${dataPost.namaKelas}</td>
-                        <td hidden class="semester_id">${dataPost.semester_id}</td>
-                        <td class="namaSemester">${dataPost.namaSemester}</td>
-                        <td hidden class="mapel_id">${dataPost.mapel_id}</td>
-                        <td class="namaMapel">${dataPost.namaMapel}</td>
-                        <td class="mustahiq">${dataPost.mustahiq}</td>
-                        <td class="keterangan">${dataPost.keterangan}</td>
-                        <td>
-                            <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
-                            <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
-                        </td>
-                    </tr>
-                `);
-  
-                $(".DataTable td").css({ 'font-size': 20 });
-                $(`.formEdit_${idRow}`).remove();
-                $(`.lama_${idRow}`).remove();
-                addAlertSuccess('Data mapel_kelas berhasil di ubah', 'info');
-            },
-            error:function(){
-                alert("Terjadi kesalahan");
-            }
-  
-        });
-    } else {
-        console.log('batal', idRow);
-        $(`.tr_${idRow}`).show();
-        $(`.formEdit_${idRow}`).remove();
-        $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+    var dataPost = getData(idRow);
+
+    console.log(dataPost);
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.nama == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .nama`).after(`
+        <span class='pesanError' style="color:red">Nama wajib diisi</span>
+        `);
     }
+    console.log('error', error);
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.mustahid == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .mustahid`).after(`
+        <span class='pesanError' style="color:red">Mustahid wajib diisi</span>
+        `);
+    }
+    console.log('error', error);
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.keterangan == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .keterangan`).after(`
+        <span class='pesanError' style="color:red">Keterangan wajib diisi</span>
+        `);
+    }
+    console.log('error', error);
+
+    if(error == 0){
+        var yakin = confirm("Apakah anda yakin akan merubah data ini?");
+        if (yakin) {
+            $.ajax({
+                url: "mapel_kelas/update",
+                type:"POST",
+      
+                data:dataPost,
+                success:function(response) {
+                    var data = response;
+                    var dataTd = data.data;
+                    console.log('response', response);
+                    console.log('data id', response);
+                    $(`.formEdit_${idRow}`).before(`
+                        <tr class="tr_${data.id}">
+                            <td class="nama">${dataPost.nama}</td>
+                            <td hidden class="kelas_id">${dataPost.kelas_id}</td>
+                            <td class="namaKelas">${dataPost.namaKelas}</td>
+                            <td hidden class="semester_id">${dataPost.semester_id}</td>
+                            <td class="namaSemester">${dataPost.namaSemester}</td>
+                            <td hidden class="mapel_id">${dataPost.mapel_id}</td>
+                            <td class="namaMapel">${dataPost.namaMapel}</td>
+                            <td class="mustahiq">${dataPost.mustahiq}</td>
+                            <td class="keterangan">${dataPost.keterangan}</td>
+                            <td>
+                                <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
+                                <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
+                            </td>
+                        </tr>
+                    `);
+      
+                    $(".DataTable td").css({ 'font-size': 20 });
+                    $(`.formEdit_${idRow}`).remove();
+                    $(`.lama_${idRow}`).remove();
+                    addAlertSuccess('Data mapel_kelas berhasil di ubah', 'info');
+                },
+                error:function(){
+                    alert("Terjadi kesalahan");
+                }
+      
+            });
+        } else {
+            console.log('batal', idRow);
+            $(`.tr_${idRow}`).show();
+            $(`.formEdit_${idRow}`).remove();
+            $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+        }
+    }
+    
 });

@@ -77,7 +77,7 @@ function getData(tr){
   dataPost.namaSiswa = $(`.tr_${tr} .id_siswa_kelas option:selected`).text();
   dataPost.id_mapel_kelas =  $(`.tr_${tr} .id_mapel_kelas`).val();
   dataPost.namaMapel = $(`.tr_${tr} .id_mapel_kelas option:selected`).text();
-  dataPost.nilai = $(`.tr_${tr} .nilai`).val();
+  dataPost.nilai = $(`.tr_${tr} .nilai`).val().trim();
 
   return dataPost;
 }
@@ -87,41 +87,52 @@ $(document).on("click", ".btnSave", function () {
   var dataPost = getData(idRow);
   console.log("dataPost", dataPost);
 
-  $.ajax({
-    url: "nilai_santri/add ",
-    type: "POST",
+  var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.nilai == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .nilai`).after(`
+        <span class='pesanError' style="color:red">Nilai wajib diisi</span>
+        `);
+    }
 
-    data: dataPost,
-    success: function (response) {
-      console.log(response);
-
-      var data = response;
-      if (data.id != "0") {
-        $("tbody").prepend(`
-                <tr class="tr_${data.id}">
-                    <td hidden class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
-                    <td class="namaSiswa">${dataPost.namaSiswa}</td>
-                    <td hidden class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
-                    <td class="namaMapel">${dataPost.namaMapel}</td>
-                    <td class="nilai">${dataPost.nilai}</td>  
-                    <td>
-                        <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
-                        <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
-                    </td>
-                </tr>
-            `);
-
-        $(".DataTable td").css({ "font-size": 20 });
-        $(`.tr_${idRow}`).remove();
-        addAlertSuccess('Data nilai_santri berhasil di tambah', 'success');
-      }else{
-          alert(data.pesan);
-      }
-    },
-    error: function () {
-      alert("Terjadi kesalahan");
-    },
-  });
+    if(error == 0){
+        $.ajax({
+            url: "nilai_santri/add ",
+            type: "POST",
+        
+            data: dataPost,
+            success: function (response) {
+              console.log(response);
+        
+              var data = response;
+              if (data.id != "0") {
+                $("tbody").prepend(`
+                        <tr class="tr_${data.id}">
+                            <td hidden class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
+                            <td class="namaSiswa">${dataPost.namaSiswa}</td>
+                            <td hidden class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
+                            <td class="namaMapel">${dataPost.namaMapel}</td>
+                            <td class="nilai">${dataPost.nilai}</td>  
+                            <td>
+                                <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
+                                <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
+                            </td>
+                        </tr>
+                    `);
+        
+                $(".DataTable td").css({ "font-size": 20 });
+                $(`.tr_${idRow}`).remove();
+                addAlertSuccess('Data nilai_santri berhasil di tambah', 'success');
+              }else{
+                  alert(data.pesan);
+              }
+            },
+            error: function () {
+              alert("Terjadi kesalahan");
+            },
+        }); 
+    }
 });
 
 // edit data
@@ -160,51 +171,64 @@ $(document).on("click", ".btnEdit", function () {
 
 // action update data
 $(document).on("click", ".btnSaveEdit", function () {
-    var yakin = confirm("Apakah anda yakin akan merubah data ini?");
     var idRow = $(this).attr("id").replace("btnSave_", "");
-  
-    if (yakin) {
-        var dataPost = getData(idRow);
-        console.log(dataPost);
-  
-        $.ajax({
-            url: "nilai_santri/update",
-            type:"POST",
-  
-            data:dataPost,
-            success:function(response) {
-                var data = response;
-                var dataTd = data.data;
-                console.log('response', response);
-                console.log('data id', response);
-                $(`.formEdit_${idRow}`).before(`
-                    <tr class="tr_${data.id}">
-                        <td hidden class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
-                        <td class="namaSiswa">${dataPost.namaSiswa}</td>
-                        <td hidden class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
-                        <td class="namaMapel">${dataPost.namaMapel}</td>
-                        <td class="nilai">${dataPost.nilai}</td>
-                        <td>
-                            <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
-                            <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
-                        </td>
-                    </tr>
-                `);
-  
-                $(".DataTable td").css({ 'font-size': 20 });
-                $(`.formEdit_${idRow}`).remove();
-                $(`.lama_${idRow}`).remove();
-                addAlertSuccess('Data nilai_santri berhasil di ubah', 'info');
-            },
-            error:function(){
-                alert("Terjadi kesalahan");
-            }
-  
-        });
-    } else {
-        console.log('batal', idRow);
-        $(`.tr_${idRow}`).show();
-        $(`.formEdit_${idRow}`).remove();
-        $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+    var dataPost = getData(idRow);
+
+    console.log(dataPost);
+
+    var error = 0;
+    $(".pesanError").remove();
+    if(dataPost.nilai == ""){
+        error = error + 1;
+        $(`.tr_${idRow} td .nilai`).after(`
+        <span class='pesanError' style="color:red">Nilai wajib diisi</span>
+        `);
     }
+    console.log('error', error);
+
+    if(error == 0){
+        var yakin = confirm("Apakah anda yakin akan merubah data ini?");
+        if (yakin) {
+            $.ajax({
+                url: "nilai_santri/update",
+                type:"POST",
+      
+                data:dataPost,
+                success:function(response) {
+                    var data = response;
+                    var dataTd = data.data;
+                    console.log('response', response);
+                    console.log('data id', response);
+                    $(`.formEdit_${idRow}`).before(`
+                        <tr class="tr_${data.id}">
+                            <td hidden class="id_siswa_kelas">${dataPost.id_siswa_kelas}</td>
+                            <td class="namaSiswa">${dataPost.namaSiswa}</td>
+                            <td hidden class="id_mapel_kelas">${dataPost.id_mapel_kelas}</td>
+                            <td class="namaMapel">${dataPost.namaMapel}</td>
+                            <td class="nilai">${dataPost.nilai}</td>
+                            <td>
+                                <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
+                                <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 
+                            </td>
+                        </tr>
+                    `);
+      
+                    $(".DataTable td").css({ 'font-size': 20 });
+                    $(`.formEdit_${idRow}`).remove();
+                    $(`.lama_${idRow}`).remove();
+                    addAlertSuccess('Data nilai_santri berhasil di ubah', 'info');
+                },
+                error:function(){
+                    alert("Terjadi kesalahan");
+                }
+      
+            });
+        } else {
+            console.log('batal', idRow);
+            $(`.tr_${idRow}`).show();
+            $(`.formEdit_${idRow}`).remove();
+            $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
+        }
+    }
+    
 });
