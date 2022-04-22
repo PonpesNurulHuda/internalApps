@@ -83,6 +83,14 @@ $routes->add('semester/update', 'semester::update');
 $routes->add('tbl01/add', 'tbl01::add');
 $routes->add('tbl01/update', 'tbl01::update');
 
+//menu
+$routes->add('menu/add', 'menu::add');
+$routes->add('menu/update', 'menu::update');
+
+//menu_kategori
+$routes->add('menu_kategori/add', 'menu_kategori::add');
+$routes->add('menu_kategori/update', 'menu_kategori::update');
+
 
 /*
  * --------------------------------------------------------------------

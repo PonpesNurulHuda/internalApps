@@ -28,6 +28,7 @@
                                 <th>Semester</th>
                                 <th hidden>Mapel_id</th>
                                 <th>Mapel</th>
+                                <th hidden>Mustahiq</th>
                                 <th>Mustahiq</th>
                                 <th>Keterangan</th>
                                 <th>Aksi</th>
@@ -58,8 +59,11 @@
                                     <td class="namaMapel">
                                         <?= $mapel_kelas['namaMapel'] ?>
                                     </td>
-                                    <td class="mustahiq">
+                                    <td hidden class="mustahiq">
                                         <?= $mapel_kelas['mustahiq'] ?>
+                                    </td>
+                                    <td class="namaMustahiq">
+                                        <?= $mapel_kelas['namaMustahiq'] ?>
                                     </td>
                                     <td class="keterangan">
                                         <?= $mapel_kelas['keterangan'] ?>

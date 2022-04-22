@@ -2,21 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\SantriModel;
+use App\Models\Menu_kategoriModel;
 use CodeIgniter\API\ResponseTrait;
 
-class Santri extends BaseController
+class Menu_kategori extends BaseController
 {
     use ResponseTrait;
     public function index()
     {
-        $santri = new SantriModel();
-        $dtSantri = $santri->findAll();
-        $data['dtSantri'] = $dtSantri;
+        $menu_kategori = new Menu_kategoriModel();
+        $dtMenu_kategori = $menu_kategori->findAll();
+        $data['dtMenu_kategori'] = $dtMenu_kategori;
 
-        //dd($santri->findAll());
+        //dd($menu_kategori->findAll());
         // kirim data ke view
-        return view('santri', $data);
+        return view('menu_kategori', $data);
     }
 
     public function add()
@@ -26,34 +26,24 @@ class Santri extends BaseController
         // setiap kolom kasih validasi is required
         // kecuali created_at, updated_at dan id 
 
-        $validation->setRules(['kk' => 'required']);
-        $validation->setRules(['nik' => 'required']);
         $validation->setRules(['nama' => 'required']);
-        $validation->setRules(['nis' => 'required']);
-        $validation->setRules(['tanggal_lahir' => 'required']);
-        $validation->setRules(['gender' => 'required']);
-        $validation->setRules(['is_mustahiq' => 'required']);
+        $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
 
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new SantriModel();
+            $data = new Menu_kategoriModel();
 
             $id = $data->insert([
-                "kk" => $this->request->getPost('nik'),
-                "nik" => $this->request->getPost('kk'),
-                "nis" => $this->request->getPost('nis'),
                 "nama" => $this->request->getPost('nama'),
-                "tanggal_lahir" => $this->request->getPost('tanggal_lahir'),
-                "gender" => $this->request->getPost('gender'),
-                "is_mustahiq" => $this->request->getPost('is_mustahiq')
+                "is_active" => $this->request->getPost('is_active')
             ]);
 
             if ($id > 0) {
                 $data = [
                     'id' => $id,
-                    'pesan' => 'data santri tersimpan',
+                    'pesan' => 'data menu_kategori tersimpan',
                 ];
                 return $this->respond($data, 200);
             }
@@ -73,33 +63,23 @@ class Santri extends BaseController
         // setiap kolom kasih validasi is required
         // kecuali created_at, updated_at dan id 
 
-        $validation->setRules(['kk' => 'required']);
-        $validation->setRules(['nik' => 'required']);
-        $validation->setRules(['nis' => 'required']);
         $validation->setRules(['nama' => 'required']);
-        $validation->setRules(['tanggal_lahir' => 'required']);
-        $validation->setRules(['gender' => 'required']);
-        $validation->setRules(['is_mustahiq' => 'required']);
+        $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new SantriModel();
+            $data = new Menu_kategoriModel();
 
             $id = $data->update($this->request->getPost('id'), [
-                "kk" => $this->request->getPost('kk'),
-                "nik" => $this->request->getPost('nik'),
-                "nis" => $this->request->getPost('nis'),
                 "nama" => $this->request->getPost('nama'),
-                "tanggal_lahir" => $this->request->getPost('tanggal_lahir'),
-                "gender" => $this->request->getPost('gender'),
-                "is_mustahiq" => $this->request->getPost('is_mustahiq')
+                "is_active" => $this->request->getPost('is_active')
             ]);
 
             if ($id > 0) {
                 $data = [
                     'id' => $id,
-                    'pesan' => 'data santri tersimpan',
+                    'pesan' => 'data menu_kategori tersimpan',
                 ];
                 return $this->respond($data, 200);
             }

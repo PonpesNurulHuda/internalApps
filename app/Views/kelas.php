@@ -27,6 +27,7 @@
                                 <th>Tingkat</th>
                                 <th hidden>Tahun_ajaran_id</th>
                                 <th>Tahun ajaran</th>
+                                <th hidden>Walikelas</th>
                                 <th>Walikelas</th>
                                 <th>Is_active</th>
                                 <th>Created_at</th>
@@ -56,8 +57,11 @@
                                     <td class="namaAjaran">
                                         <?= $kelas['namaAjaran'] ?>
                                     </td>
-                                    <td class="walikelas">
+                                    <td hidden class="walikelas">
                                         <?= $kelas['walikelas'] ?>
+                                    </td>
+                                    <td class="namaWalikelas">
+                                        <?= $kelas['namaWalikelas'] ?>
                                     </td>
                                     <td class="is_active">
                                         <?php

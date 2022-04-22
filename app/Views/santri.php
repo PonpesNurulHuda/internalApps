@@ -27,6 +27,7 @@
                                 <th>Nama</th>
                                 <th>Tanggal_lahir</th>
                                 <th style="width: 10px;"> Gender</th>
+                                <th>Is_mustahiq</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -52,6 +53,15 @@
                                     <td class="gender">
                                         <?= $santri['gender'] ?>
                                     </td>
+                                    <td class="is_mustahiq">
+                                        <?php
+                                        if ($santri['is_mustahiq'] == "1") {
+                                            echo "Ya";
+                                        } else {
+                                            echo "Tidak";
+                                        }
+                                        ?>
+                                    </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $santri['id'] ?>">Edit</button>
                                         <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $santri['id'] ?>">Hapus</button>
@@ -67,6 +77,7 @@
                                 <th>Nama</th>
                                 <th>Tanggal_lahir</th>
                                 <th>Gender</th>
+                                <th>Is_mustahiq</th>
                             </tr>
                         </tfoot>
                     </table>

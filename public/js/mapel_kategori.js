@@ -159,7 +159,7 @@ $(document).on("click", ".btnSaveEdit", function () {
         var yakin = confirm("Apakah anda yakin akan merubah data ini?");
         if (yakin) {
             $.ajax({
-                url: "tahun_ajaran/update",
+                url: "mapel_kategori/update",
                 type:"POST",
       
                 data:dataPost,
@@ -182,7 +182,7 @@ $(document).on("click", ".btnSaveEdit", function () {
                     $(".DataTable td").css({ 'font-size': 20 });
                     $(`.formEdit_${idRow}`).remove();
                     $(`.lama_${idRow}`).remove();
-                    addAlertSuccess('Data tahun_ajaran berhasil di ubah', 'info');
+                    addAlertSuccess('Data mapel_kategori berhasil di ubah', 'info');
                 },
                 error:function(){
                     alert("Terjadi kesalahan");

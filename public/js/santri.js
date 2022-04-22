@@ -20,6 +20,12 @@ $(document).on("click", "#btnAddSantri", function () {
                 </select>
             </td>
             <td>
+                <select class="form-control is_mustahiq">
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
+                </select>
+            </td>
+            <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
                 <button class='btn btn-danger btnCancel' id="btnCancel_${className}">Batal</button>
             </td>
@@ -41,6 +47,7 @@ function getData(tr) {
   dataPost.nama = $(`.tr_${tr} .nama`).val().trim();
   dataPost.tanggal_lahir = $(`.tr_${tr} .tanggal_lahir`).html();
   dataPost.gender = $(`.tr_${tr} .gender`).html();
+  dataPost.is_mustahiq = $(`.tr_${tr} .is_mustahiq`).html();
 
   return dataPost;
 }
@@ -105,6 +112,7 @@ $(document).on("click", ".btnSave", function () {
                         <td class="nama">${dataPost.nama}</td> 
                         <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td> 
                         <td class="gender">${dataPost.gender}</td> 
+                        <td class="is_mustahiq">${dataPost.is_mustahiq}</td> 
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                             <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -141,6 +149,7 @@ $(document).on("click", ".btnEdit", function () {
   var nama = $(`.tr_${idRow} .nama`).html().trim();;
   var tanggal_lahir = $(`.tr_${idRow} .tanggal_lahir`).html().trim();;
   var gender = $(`.tr_${idRow} .gender`).html().trim();;
+  var is_mustahiq = $(`.tr_${idRow} .is_mustahiq`).html().trim();;
 
   $(`.tr_${idRow}`).hide();
   $(`.tr_${idRow}`).addClass(`lama_${idRow}`);
@@ -153,6 +162,7 @@ $(document).on("click", ".btnEdit", function () {
           <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
           <td><input type='date' class="form-control tanggal_lahir" id='' value='${tanggal_lahir}'></td>
           <td><input type='text' class="form-control gender" id='' value='${gender}'></td>
+          <td><input type='text' class="form-control is_mustahiq" id='' value='${is_mustahiq}'></td>
           <td>
               <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
               <button class='btn btn-danger btnCancelEdit' id="btnCancel_${idRow}">Batal</button>
@@ -229,6 +239,7 @@ $(document).on("click", ".btnSaveEdit", function () {
                         <td class="nama">${dataPost.nama}</td>
                         <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td>
                         <td class="gender">${dataPost.gender}</td>
+                        <td class="is_mustahiq">${dataPost.is_mustahiq}</td>
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
                             <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 

@@ -1,16 +1,16 @@
 $(document).ready(function () {
-    $(".dtMapel_tipe .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMapel_tipe'>Tambah Data </button>  ");
+    $(".dtMenu_kategori .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMenu_kategori'>Tambah Data </button>  ");
 
 });
 
-$(document).on("click", "#btnAddMapel_tipe", function () {
+$(document).on("click", "#btnAddMenu_kategori", function () {
     var className =  makeid(10);
+    
     $("tbody").prepend(`
         <tr class="tr_${className}">
             <td><input type='text' class="form-control nama" id=''></td>
-            <td><input type='text' class="form-control deskripsi" id=''></td>
             <td>
-                <select class='form-control is_active'>
+                <select class="form-control is_active">
                     <option value="1">Aktif</option>
                     <option value="0">Tidak Aktif</option>
                 </select>
@@ -32,7 +32,6 @@ function getData(tr){
     var dataPost = new Object();
     dataPost.id =  tr;
     dataPost.nama = $(`.tr_${tr} .nama`).val().trim();
-    dataPost.deskripsi =  $(`.tr_${tr} .deskripsi`).val().trim();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
 
     return dataPost;
@@ -52,18 +51,9 @@ $(document).on("click", ".btnSave", function () {
         `);
     }
 
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.deskripsi == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .deskripsi`).after(`
-        <span class='pesanError' style="color:red">Deskripsi wajib diisi</span>
-        `);
-    }
-    
     if(error == 0){
         $.ajax({
-            url: "mapel_tipe/add ",
+            url: "menu_kategori/add ",
             type: "POST",
         
             data: dataPost,
@@ -74,9 +64,8 @@ $(document).on("click", ".btnSave", function () {
               if (data.id != "0") {
                 $("tbody").prepend(`
                         <tr class="tr_${data.id}">
-                            <td class="nama">${dataPost.nama}</td>
-                            <td class="deskripsi">${dataPost.deskripsi}</td>
-                            <td class="is_active">${dataPost.is_active}</td>  
+                            <td class="nama">${dataPost.nama}</td> 
+                            <td class="is_active">${dataPost.is_active}</td> 
                             <td>
                                 <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                                 <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -86,7 +75,7 @@ $(document).on("click", ".btnSave", function () {
         
                 $(".DataTable td").css({ "font-size": 20 });
                 $(`.tr_${idRow}`).remove();
-                addAlertSuccess('Data mapel_tipe berhasil di tambah', 'success');
+                addAlertSuccess('Data menu_kategori berhasil di tambah', 'success');
               }else{
                   alert(data.pesan);
               }
@@ -94,11 +83,11 @@ $(document).on("click", ".btnSave", function () {
             error: function () {
               alert("Terjadi kesalahan");
             },
-          });
+        });
     }
   
     
-  });
+});
   
 // edit data
 
@@ -108,7 +97,6 @@ $(document).on("click", ".btnEdit", function () {
     var dataPost = getData(idRow);
     console.log(dataPost);
     var nama = $(`.tr_${idRow} .nama`).html().trim();;
-    var deskripsi = $(`.tr_${idRow} .deskripsi`).html().trim();;
     var is_active = $(`.tr_${idRow} .is_active`).html().trim();;
   
     $(`.tr_${idRow}`).hide();
@@ -117,7 +105,6 @@ $(document).on("click", ".btnEdit", function () {
     $(`.tr_${idRow}`).before(`
         <tr class="tr_${idRow} formEdit_${idRow}">
             <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
-            <td><input type='text' class="form-control deskripsi" id='' value='${deskripsi}'></td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td>
                 <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
@@ -125,7 +112,8 @@ $(document).on("click", ".btnEdit", function () {
             </td>
         </tr>
     `);
-  });
+
+});
   
 // action update data
 $(document).on("click", ".btnSaveEdit", function () {
@@ -144,21 +132,11 @@ $(document).on("click", ".btnSaveEdit", function () {
     }
     console.log('error', error);
 
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.deskripsi == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .deskripsi`).after(`
-        <span class='pesanError' style="color:red">Deskripsi wajib diisi</span>
-        `);
-    }
-    console.log('error', error);
-
     if(error == 0){
         var yakin = confirm("Apakah anda yakin akan merubah data ini?");
         if (yakin) {
             $.ajax({
-                url: "mapel_tipe/update",
+                url: "menu_kategori/update",
                 type:"POST",
       
                 data:dataPost,
@@ -170,7 +148,6 @@ $(document).on("click", ".btnSaveEdit", function () {
                     $(`.formEdit_${idRow}`).before(`
                         <tr class="tr_${data.id}">
                             <td class="nama">${dataPost.nama}</td>
-                            <td class="deskripsi">${dataPost.deskripsi}</td>
                             <td class="is_active">${dataPost.is_active}</td>
                             <td>
                                 <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
@@ -182,7 +159,7 @@ $(document).on("click", ".btnSaveEdit", function () {
                     $(".DataTable td").css({ 'font-size': 20 });
                     $(`.formEdit_${idRow}`).remove();
                     $(`.lama_${idRow}`).remove();
-                    addAlertSuccess('Data mapel_tipe berhasil di ubah', 'info');
+                    addAlertSuccess('Data menu_kategori berhasil di ubah', 'info');
                 },
                 error:function(){
                     alert("Terjadi kesalahan");

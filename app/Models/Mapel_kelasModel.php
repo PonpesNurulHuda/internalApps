@@ -20,8 +20,9 @@ class mapel_kelasModel extends Model
             ->join('kelas', 'kelas.id = mapel_kelas.kelas_id')
             ->join('semester', 'semester.id = mapel_kelas.semester_id')
             ->join('mapel', 'mapel.id = mapel_kelas.mapel_id')
+            ->join('santri', 'santri.id = mapel_kelas.mustahiq')
 
-            ->select('mapel_kelas.*, kelas.nama as namaKelas, semester.nama namaSemester, mapel.nama as namaMapel')
+            ->select('mapel_kelas.*, kelas.nama as namaKelas, semester.nama namaSemester, mapel.nama as namaMapel, santri.nama as namaMustahiq')
             ->get()->getResultArray();
     }
 }

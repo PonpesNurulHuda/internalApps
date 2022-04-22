@@ -1,5 +1,6 @@
 var dropdownTahun_ajaran = "";
 var dropdownTingkat = "";
+var dropdownSantri = "";
 
 $(document).ready(function () {
     $(".dtKelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddKelas'>Tambah Data </button>  ");
@@ -43,6 +44,26 @@ $(document).ready(function () {
         }
 
     });
+
+    // mengambil data santri
+    $.ajax({
+        url: "UniversalGetData/santri",
+        type:"Get",
+        success:function(response) {
+            dtSantri = response;
+            console.log('dtSantri', dtSantri);
+
+            var i;
+            for (i = 0; i < dtSantri.length; ++i) {
+                dropdownSantri += `<option value="${dtSantri[i]["id"]}">${dtSantri[i]["nama"]}</option>`;
+            }
+            dropdownSantri = `<select class="form-control walikelas">${dropdownSantri} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data santri");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddKelas", function () {
@@ -58,7 +79,9 @@ $(document).on("click", "#btnAddKelas", function () {
             <td>
                 ${dropdownTahun_ajaran}    
             </td>
-            <td><input type='text' class="form-control walikelas" id=''></td>
+            <td>
+                ${dropdownSantri}    
+            </td>
             <td>
                 <select class='form-control is_active'>
                     <option value="1">Aktif</option>
@@ -90,7 +113,8 @@ function getData(tr){
     dataPost.namaTingkat = $(`.tr_${tr} .tingkat_id option:selected`).text();
     dataPost.tahun_ajaran_id = $(`.tr_${tr} .tahun_ajaran_id`).val();
     dataPost.namaAjaran = $(`.tr_${tr} .tahun_ajaran_id option:selected`).text();
-    dataPost.walikelas = $(`.tr_${tr} .walikelas`).val().trim();
+    dataPost.walikelas = $(`.tr_${tr} .walikelas`).val();
+    dataPost.namaWalikelas = $(`.tr_${tr} .walikelas option:selected`).text();
     dataPost.is_active = $(`.tr_${tr} .is_active`).val();
     dataPost.created_at = $(`.tr_${tr} .created_at`).val();
     dataPost.updated_at = $(`.tr_${tr} .updated_at`).val();
@@ -121,15 +145,6 @@ $(document).on("click", ".btnSave", function () {
         `);
     }
 
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.walikelas == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .walikelas`).after(`
-        <span class='pesanError' style="color:red">Walikelas wajib diisi</span>
-        `);
-    }
-
     if(error == 0){
         $.ajax({
             url: "kelas/add ",
@@ -149,7 +164,8 @@ $(document).on("click", ".btnSave", function () {
                             <td class="namaTingkat">${dataPost.namaTingkat}</td>
                             <td hidden class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
                             <td class="namaAjaran">${dataPost.namaAjaran}</td> 
-                            <td class="walikelas">${dataPost.walikelas}</td> 
+                            <td hidden class="walikelas">${dataPost.walikelas}</td>
+                            <td class="namaWalikelas">${dataPost.namaWalikelas}</td> 
                             <td class="is_active">${dataPost.is_active}</td> 
                             <td class="created_at">${dataPost.created_at}</td>
                             <td class="updated_at">${dataPost.updated_at}</td> 
@@ -205,7 +221,9 @@ $(document).on("click", ".btnEdit", function () {
             <td>
                 ${dropdownTahun_ajaran}    
             </td>
-            <td><input type='text' class="form-control walikelas" id='' value='${walikelas}'></td>
+            <td>
+                ${dropdownSantri}    
+            </td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
             <td><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
             <td><input type='date' class="form-control updated_at" id='' value='${updated_at}'></td>
@@ -218,6 +236,7 @@ $(document).on("click", ".btnEdit", function () {
 
     $(`.tr_${idRow} .tahun_ajaran_id`).val(tahun_ajaran_id);
     $(`.tr_${idRow} .tingkat_id`).val(tingkat_id);
+    $(`.tr_${idRow} .walikelas`).val(walikelas);
 });
 
   // action update data
@@ -248,17 +267,6 @@ $(document).on("click", ".btnSaveEdit", function () {
     }
     console.log('error', error);
 
-    
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.walikelas == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .walikelas`).after(`
-        <span class='pesanError' style="color:red">Walikelas wajib diisi</span>
-        `);
-    }
-    console.log('error', error);
-
     if(error == 0){
         var yakin = confirm("Apakah anda yakin akan merubah data ini?");
         if (yakin) {
@@ -280,7 +288,8 @@ $(document).on("click", ".btnSaveEdit", function () {
                             <td class="namaTingkat">${dataPost.namaTingkat}</td>
                             <td hidden class="tahun_ajaran_id">${dataPost.tahun_ajaran_id}</td>
                             <td class="namaAjaran">${dataPost.namaAjaran}</td>
-                            <td class="walikelas">${dataPost.walikelas}</td>
+                            <td hidden class="walikelas">${dataPost.walikelas}</td>
+                            <td class="namaWalikelas">${dataPost.namaWalikelas}</td>
                             <td class="is_active">${dataPost.is_active}</td>
                             <td class="created_at">${dataPost.created_at}</td>
                             <td class="updated_at">${dataPost.updated_at}</td>

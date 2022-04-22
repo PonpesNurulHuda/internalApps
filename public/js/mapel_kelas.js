@@ -1,6 +1,7 @@
 var dropdownKelas = "";
 var dropdownSemester = "";
 var dropdownMapel = "";
+var dropdownSantri = "";
 
 $(document).ready(function () {
     $(".dtMapel_kelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddMapel_kelas'>Tambah Data </button>  ");
@@ -64,6 +65,26 @@ $(document).ready(function () {
         }
 
     });
+
+    // mengambil data santri
+    $.ajax({
+        url: "UniversalGetData/santri",
+        type:"Get",
+        success:function(response) {
+            dtSantri = response;
+            console.log('dtSantri', dtSantri);
+
+            var i;
+            for (i = 0; i < dtSantri.length; ++i) {
+                dropdownSantri += `<option value="${dtSantri[i]["id"]}">${dtSantri[i]["nama"]}</option>`;
+            }
+            dropdownSantri = `<select class="form-control mustahiq">${dropdownSantri} </select>`;
+        },
+        error:function(){
+            alert("Gagal ambil data santri");
+        }
+
+    });
 });
 
 $(document).on("click", "#btnAddMapel_kelas", function () {
@@ -80,7 +101,9 @@ $(document).on("click", "#btnAddMapel_kelas", function () {
             <td>
                 ${dropdownMapel}    
             </td>
-            <td><input type='text' class="form-control mustahiq" id=''></td>
+            <td>
+                ${dropdownSantri}    
+            </td>
             <td><input type='text' class="form-control keterangan" id=''></td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
@@ -105,7 +128,8 @@ function getData(tr){
     dataPost.namaSemester = $(`.tr_${tr} .semester_id option:selected`).text();
     dataPost.mapel_id = $(`.tr_${tr} .mapel_id`).val();
     dataPost.namaMapel = $(`.tr_${tr} .mapel_id option:selected`).text();
-    dataPost.mustahiq = $(`.tr_${tr} .mustahiq`).val().trim();
+    dataPost.mustahiq = $(`.tr_${tr} .mustahiq`).val();
+    dataPost.namaMustahiq = $(`.tr_${tr} .mustahiq option:selected`).text();
     dataPost.keterangan = $(`.tr_${tr} .keterangan`).val().trim();
 
 
@@ -123,15 +147,6 @@ $(document).on("click", ".btnSave", function () {
         error = error + 1;
         $(`.tr_${idRow} td .nama`).after(`
         <span class='pesanError' style="color:red">Nama wajib diisi</span>
-        `);
-    }
-
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.mustahid == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .mustahid`).after(`
-        <span class='pesanError' style="color:red">Mustahid wajib diisi</span>
         `);
     }
 
@@ -164,7 +179,8 @@ $(document).on("click", ".btnSave", function () {
                             <td class="namaSemester">${dataPost.namaSemester}</td> 
                             <td hidden class="mapel_id">${dataPost.mapel_id}</td>
                             <td class="namaMapel">${dataPost.namaMapel}</td> 
-                            <td class="mustahiq">${dataPost.mustahiq}</td> 
+                            <td hidden class="mustahiq">${dataPost.mustahiq}</td>
+                            <td class="namaMustahiq">${dataPost.namaMustahiq}</td> 
                             <td class="keterangan">${dataPost.keterangan}</td> 
                             <td>
                                 <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
@@ -218,7 +234,9 @@ $(document).on("click", ".btnEdit", function () {
             <td>
                 ${dropdownMapel}
             </td>
-            <td><input type='text' class="form-control mustahiq" id='' value='${mustahiq}'></td>
+            <td>
+                ${dropdownSantri}
+            </td>
             <td><input type='text' class="form-control keterangan" id='' value='${keterangan}'></td>
             <td>
                 <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
@@ -230,6 +248,7 @@ $(document).on("click", ".btnEdit", function () {
     $(`.tr_${idRow} .kelas_id`).val(kelas_id);
     $(`.tr_${idRow} .semester_id`).val(semester_id);
     $(`.tr_${idRow} .mapel_id`).val(mapel_id);
+    $(`.tr_${idRow} .mustahiq`).val(mustahiq);
   });
   
 // action update data
@@ -245,16 +264,6 @@ $(document).on("click", ".btnSaveEdit", function () {
         error = error + 1;
         $(`.tr_${idRow} td .nama`).after(`
         <span class='pesanError' style="color:red">Nama wajib diisi</span>
-        `);
-    }
-    console.log('error', error);
-
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.mustahid == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .mustahid`).after(`
-        <span class='pesanError' style="color:red">Mustahid wajib diisi</span>
         `);
     }
     console.log('error', error);
@@ -291,7 +300,8 @@ $(document).on("click", ".btnSaveEdit", function () {
                             <td class="namaSemester">${dataPost.namaSemester}</td>
                             <td hidden class="mapel_id">${dataPost.mapel_id}</td>
                             <td class="namaMapel">${dataPost.namaMapel}</td>
-                            <td class="mustahiq">${dataPost.mustahiq}</td>
+                            <td hidden class="mustahiq">${dataPost.mustahiq}</td>
+                            <td class="namaMustahiq">${dataPost.namaMustahiq}</td>
                             <td class="keterangan">${dataPost.keterangan}</td>
                             <td>
                                 <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 

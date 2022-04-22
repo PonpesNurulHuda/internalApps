@@ -19,8 +19,9 @@ class kelasModel extends Model
         return $this->db->table('kelas')
             ->join('tingkat', 'tingkat.id = kelas.tingkat_id')
             ->join('tahun_ajaran', 'tahun_ajaran.id = kelas.tahun_ajaran_id')
+            ->join('santri', 'santri.id = kelas.walikelas')
 
-            ->select('kelas.*, tingkat.nama as namaTingkat, tahun_ajaran.nama namaAjaran')
+            ->select('kelas.*, tingkat.nama as namaTingkat, tahun_ajaran.nama namaAjaran, santri.nama as namaWalikelas')
             ->get()->getResultArray();
     }
 }
