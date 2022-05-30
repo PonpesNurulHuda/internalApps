@@ -22,7 +22,7 @@ $(document).on("click", "#btnAddSantri", function () {
             <td>
                 <select class="form-control is_mustahiq">
                     <option value="1">Ya</option>
-                    <option value="0">Tidak</option>
+                    <option value="0" selected>Tidak</option>
                 </select>
             </td>
             <td>
@@ -41,7 +41,7 @@ $(document).on("click", ".btnCancel", function () {
 function getData(tr) {
   var dataPost = new Object();
   dataPost.id = tr;
-  dataPost.kk = $(`.tr_${tr} .kk`).val(),trim();
+  dataPost.kk = $(`.tr_${tr} .kk`).val().trim();
   dataPost.nik = $(`.tr_${tr} .nik`).val().trim();
   dataPost.nis = $(`.tr_${tr} .nis`).val().trim();
   dataPost.nama = $(`.tr_${tr} .nama`).val().trim();

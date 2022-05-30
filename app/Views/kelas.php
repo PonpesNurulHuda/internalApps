@@ -30,8 +30,8 @@
                                 <th hidden>Walikelas</th>
                                 <th>Walikelas</th>
                                 <th>Is_active</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
+                                <th hidden>Created_at</th>
+                                <th hidden>Updated_at</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -72,10 +72,10 @@
                                         }
                                         ?>
                                     </td>
-                                    <td class="created_at">
+                                    <td hidden class="created_at">
                                         <?= $kelas['created_at'] ?>
                                     </td>
-                                    <td class="updated_at">
+                                    <td hidden class="updated_at">
                                         <?= $kelas['updated_at'] ?>
                                     </td>
                                     <td>

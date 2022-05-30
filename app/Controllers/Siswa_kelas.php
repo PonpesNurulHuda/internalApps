@@ -37,8 +37,8 @@ class Siswa_kelas extends BaseController
                 "id_siswa" => $this->request->getPost('id_siswa'),
                 "id_kelas" => $this->request->getPost('id_kelas'),
                 "is_active" => $this->request->getPost('is_active'),
-                "created_at" => $this->request->getPost('created_at'),
-                "updated_at" => $this->request->getPost('updated_at'),
+                "created_at" => date('Y-m-d H:i:s'),
+                "updated_at" => date('Y-m-d H:i:s'),
             ]);
 
             if ($id > 0) {
@@ -46,7 +46,11 @@ class Siswa_kelas extends BaseController
                     'id' => $id,
                     'pesan' => 'data siswa_kelas tersimpan',
                 ];
-                return $this->respond($data, 200);
+            }else{
+                $data = [
+                    'id' => 0,
+                    'pesan' => 'terjadi kesalahan'
+                ];
             }
         } else {
 
@@ -56,6 +60,8 @@ class Siswa_kelas extends BaseController
             ];
             return $this->respond($data, 200);
         }
+        
+        return $this->respond($data, 200);
     }
     public function update()
     {
@@ -76,8 +82,7 @@ class Siswa_kelas extends BaseController
                 "id_siswa" => $this->request->getPost('id_siswa'),
                 "id_kelas" => $this->request->getPost('id_kelas'),
                 "is_active" => $this->request->getPost('is_active'),
-                "created_at" => $this->request->getPost('created_at'),
-                "updated_at" => $this->request->getPost('updated_at')
+                "updated_at" => date('Y-m-d H:i:s')
             ]);
 
             if ($id > 0) {

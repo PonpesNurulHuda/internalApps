@@ -1,6 +1,6 @@
-var dropdownTahun_ajaran = "";
-var dropdownTingkat = "";
-var dropdownSantri = "";
+let dropdownTahun_ajaran = "";
+let dropdownTingkat = "";
+let dropdownSantri = "";
 
 $(document).ready(function () {
     $(".dtKelas .dataTable-dropdown label").before("<button class='btn btn-primary' id='btnAddKelas'>Tambah Data </button>  ");
@@ -88,8 +88,8 @@ $(document).on("click", "#btnAddKelas", function () {
                     <option value="0">Tidak Aktif</option>
                 </select>
             </td>
-            <td><input type='date' class="form-control created_at" id=''></td>
-            <td><input type='date' class="form-control updated_at" id=''></td>
+            <td hidden><input type='date' class="form-control created_at" id=''></td>
+            <td hidden><input type='date' class="form-control updated_at" id=''></td>
             </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
@@ -167,8 +167,8 @@ $(document).on("click", ".btnSave", function () {
                             <td hidden class="walikelas">${dataPost.walikelas}</td>
                             <td class="namaWalikelas">${dataPost.namaWalikelas}</td> 
                             <td class="is_active">${dataPost.is_active}</td> 
-                            <td class="created_at">${dataPost.created_at}</td>
-                            <td class="updated_at">${dataPost.updated_at}</td> 
+                            <td class="created_at" hidden>${dataPost.created_at}</td>
+                            <td class="updated_at" hidden>${dataPost.updated_at}</td> 
                             <td>
                                 <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                                 <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -225,8 +225,8 @@ $(document).on("click", ".btnEdit", function () {
                 ${dropdownSantri}    
             </td>
             <td><input type='text' class="form-control is_active" id='' value='${is_active}'></td>
-            <td><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
-            <td><input type='date' class="form-control updated_at" id='' value='${updated_at}'></td>
+            <td hidden><input type='date' class="form-control created_at" id='' value='${created_at}'></td>
+            <td hidden><input type='date' class="form-control updated_at" id='' value='${updated_at}'></td>
             <td>
                 <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
                 <button class='btn btn-danger btnCancelEdit' id="btnCancel_${idRow}">Batal</button>
@@ -291,8 +291,8 @@ $(document).on("click", ".btnSaveEdit", function () {
                             <td hidden class="walikelas">${dataPost.walikelas}</td>
                             <td class="namaWalikelas">${dataPost.namaWalikelas}</td>
                             <td class="is_active">${dataPost.is_active}</td>
-                            <td class="created_at">${dataPost.created_at}</td>
-                            <td class="updated_at">${dataPost.updated_at}</td>
+                            <td hidden class="created_at">${dataPost.created_at}</td>
+                            <td hidden class="updated_at">${dataPost.updated_at}</td>
                             <td>
                                 <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${idRow}">Edit</button> 
                                 <button class='btn btn-danger btn-xs' id="btnRemove_${idRow}">Hapus</button> 

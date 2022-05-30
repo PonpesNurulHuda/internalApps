@@ -39,6 +39,7 @@ $routes->add('santri/add', 'santri::add');
 $routes->add('santri/update', 'santri::update');
 
 //kelas
+$routes->get('/kelas', 'Kelas::index');
 $routes->add('kelas/add', 'kelas::add');
 $routes->add('kelas/update', 'kelas::update');
 

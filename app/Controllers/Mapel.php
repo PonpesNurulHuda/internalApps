@@ -32,6 +32,7 @@ class Mapel extends BaseController
         $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
+        
 
         // jika data valid, simpan ke database
         if ($isDataValid) {
@@ -44,7 +45,9 @@ class Mapel extends BaseController
                 "mapel_type" => $this->request->getPost('mapel_type'),
                 "nilai_minimal" => $this->request->getPost('nilai_minimal'),
                 "wajib_lulus" => $this->request->getPost('wajib_lulus'),
-                "is_active" => $this->request->getPost('is_active')
+                "is_active" => $this->request->getPost('is_active'),
+                "created_at" => date('Y-m-d H:i:s'),
+                "updated_at" => date('Y-m-d H:i:s')
             ]);
 
             if ($id > 0) {
@@ -90,7 +93,8 @@ class Mapel extends BaseController
                 "mapel_type" => $this->request->getPost('mapel_type'),
                 "nilai_minimal" => $this->request->getPost('nilai_minimal'),
                 "wajib_lulus" => $this->request->getPost('wajib_lulus'),
-                "is_active" => $this->request->getPost('is_active')
+                "is_active" => $this->request->getPost('is_active'),
+                "updated_at" => date('Y-m-d H:i:s')
             ]);
 
             if ($id > 0) {
