@@ -15,13 +15,19 @@ class KelasModel extends Model
     public function DataKelasDetail()
     {
         $db      = \Config\Database::connect();
-
         return $this->db->table('kelas')
             ->join('tingkat', 'tingkat.id = kelas.tingkat_id')
             ->join('tahun_ajaran', 'tahun_ajaran.id = kelas.tahun_ajaran_id')
             ->join('santri', 'santri.id = kelas.walikelas')
-
             ->select('kelas.*, tingkat.nama as namaTingkat, tahun_ajaran.nama namaAjaran, santri.nama as namaWalikelas')
+            ->get()->getResultArray();
+    }
+
+    public function KelasActive()
+    {
+        $db      = \Config\Database::connect();
+        return $this->db->table('kelas')
+            ->where('is_active','1')
             ->get()->getResultArray();
     }
 }
