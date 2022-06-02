@@ -10,6 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
+
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -17,21 +18,19 @@
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
+  <!-- Vendor CSS Files -->
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap-icons/bootstrap-icons.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/boxicons/css/boxicons.min.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.snow.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.bubble.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/remixicon/remixicon.css'); ?>" rel="stylesheet">
+  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/simple-datatables/style.css'); ?>" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Vendor CSS Files -->
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/bootstrap/css/bootstrap.min.css') ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/bootstrap-icons/bootstrap-icons.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/boxicons/css/boxicons.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/quill/quill.snow.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/quill/quill.bubble.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/remixicon/remixicon.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('vendorNiceAdmin/simple-datatables/style.css'); ?>">
-
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="<?php echo base_url('css/style.css?y=') . date("Yhis"); ?>">
-
+  <link rel="stylesheet" href="<?php echo base_url('niceAdmin/css/style.css'); ?>">
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.2
@@ -370,32 +369,21 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Tagihan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
+            <a href="tagihanDetail">
+              <i class="bi bi-circle"></i><span>Tagihan Detail</span>
             </a>
           </li>
           <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-editors.html">
-              <i class="bi bi-circle"></i><span>Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-validation.html">
-              <i class="bi bi-circle"></i><span>Form Validation</span>
+            <a href="tagihan">
+              <i class="bi bi-circle"></i><span>Tagihan Master</span>
             </a>
           </li>
         </ul>
       </li><!-- End Forms Nav -->
-
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -425,19 +413,20 @@
 
   <!-- Vendor JS Files -->
 
-  <script src="<?php echo base_url('vendorNiceAdmin/apexcharts/apexcharts.min.js') ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/chart.js/chart.min.js') ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/echarts/echarts.min.js'); ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/quill/quill.min.js') ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/simple-datatables/simple-datatables.js'); ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/tinymce/tinymce.min.js'); ?>"></script>
-  <script src="<?php echo base_url('vendorNiceAdmin/php-email-form/validate.js'); ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/apexcharts/apexcharts.min.js') ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/chart.js/chart.min.js') ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/echarts/echarts.min.js'); ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.min.js') ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/simple-datatables/simple-datatables.js'); ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/tinymce/tinymce.min.js'); ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/php-email-form/validate.js'); ?>"></script>
 
   <!-- Template Main JS File -->
-  <script src="<?php echo base_url('js/main.js?y=') . date("Yhis"); ?>"></script>
+  <script src="<?php echo base_url('niceAdmin/js/main.js?y=') . date("Yhis"); ?>"></script>
 
+  <?= $this->renderSection('js') ?>
 
-  <?= $this->renderSection('footer') ?>
 </body>
 
 </html>

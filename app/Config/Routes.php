@@ -92,6 +92,10 @@ $routes->add('menu/update', 'menu::update');
 $routes->add('menu_kategori/add', 'menu_kategori::add');
 $routes->add('menu_kategori/update', 'menu_kategori::update');
 
+// Tagihan
+$routes->add('terimaPembayaran', 'TagihanDetail::update');
+$routes->add('tagihanDetail/generate', 'TagihanDetail::generate');
+
 
 /*
  * --------------------------------------------------------------------

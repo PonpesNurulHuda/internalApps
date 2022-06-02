@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Illuminate\Support\Facades\DB;
 
 class santriModel extends Model
 {
@@ -11,4 +12,28 @@ class santriModel extends Model
 
     protected $useAutoIncrement = true;
     protected $allowedFields = ['kk', 'nik', 'nis', 'nama', 'tanggal_lahir', 'gender', 'is_mustahiq' ];
+
+    public function GetSantriKelas()
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('santri');
+        $builder->select('santri.id, santri.nama, kelas.id as kelasId');
+        $builder->join('siswa_kelas', 'santri.id = siswa_kelas.id_siswa', 'left');
+        $builder->join('kelas', 'kelas.id = siswa_kelas.id_kelas', 'left');
+        $query = $builder->get()->getResultArray();
+
+        return $query;
+    }
+
+    public function GetSantriKelasByKelas($idKelas)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('santri');
+        $builder->select('santri.id');
+        $builder->join('siswa_kelas', 'santri.id = siswa_kelas.id_siswa', 'left');
+        $builder->where('siswa_kelas.id_siswa', $idKelas);
+        $query = $builder->get()->getResultArray();
+
+        return $query;
+    }
 }
