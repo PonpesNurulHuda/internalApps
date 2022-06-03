@@ -36,4 +36,16 @@ class santriModel extends Model
 
         return $query;
     }
+
+    public function getJabatanSantri($idSantri)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('santri');
+        $builder->select('santri.id, jabatan.id as jabatan');
+        $builder->join('santri_jabatan sj', 'sj.id_santri = santri.id', 'left');
+        $builder->where('santri.id', $idSantri);
+        $query = $builder->get()->getResultArray();
+
+        return $query;
+    }
 }

@@ -389,10 +389,7 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-
     <?= $this->renderSection('content') ?>
-
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

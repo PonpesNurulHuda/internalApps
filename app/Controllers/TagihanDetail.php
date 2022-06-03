@@ -8,23 +8,28 @@ use App\Models\TagihanModel;
 use App\Models\SantriModel;
 use CodeIgniter\API\ResponseTrait;
 
-class TagihanDetail extends BaseController
+class TagihanDetail extends BaseController 
 {
     use ResponseTrait;
     private $db;  //This can be accessed by all class methods
+    private $idLogin;
 
     public function __construct()
     {
+        $session = session();
+        $idLogin = $session->get('id');
+
         $kelas = new KelasModel();
         $tagihanDetail = new TagihanDetailModel();
         $tagihan = new TagihanModel();
         $santri = new SantriModel();
+        $this->idLogin = $idLogin;
         $this->db = [
             'kelas' => $kelas,
             'tagihanDetail' => $tagihanDetail,
             'tagihan' => $tagihan,
             'santri' => $santri,
-        ]; //use the $this keyword to access class variables
+        ];
     }
     public function index()
     {
@@ -57,13 +62,24 @@ class TagihanDetail extends BaseController
         return $this->respond($data, 200);
     }
 
+    public function add1Tagihan(){
+        $id_santri = $this->request->getPost('id_santri');
+        $id_tagihan = $this->request->getPost('id_tagihan');
+        $jatuh_tempo = $this->request->getPost('jatuh_tempo');
+        $this->addTagihan($id_santri, $id_tagihan, $jatuh_tempo);
+        $data = [
+            'status' => 1,
+            'pesan' => 'sukses',
+        ];
+        return $this->respond($data, 200);
+    }
+
     private function generateTagihanByClass($kelas, $id_tagihan, $jatuh_tempo){
         $dtSantri = $this->db['santri']->GetSantriKelasByKelas($kelas);
         foreach($dtSantri as $a){
             $this->addTagihan($a['id'],$id_tagihan, $jatuh_tempo);
         }
     }
-
 
     private function addTagihan($id_santri, $id_tagihan, $jatuh_tempo){
         $jumlah = $this->db['tagihan']->getTagihan($id_tagihan)[0]['jumlah'];
@@ -78,54 +94,6 @@ class TagihanDetail extends BaseController
         ]);
     }
 
-    public function add()
-    {
-
-        $validation =  \Config\Services::validation();
-        // setiap kolom kasih validasi is required
-        // kecuali created_at, updated_at dan id 
-
-        $validation->setRules(['kode' => 'required']);
-        $validation->setRules(['nama' => 'required']);
-        $validation->setRules(['tingkat_id' => 'required']);
-        $validation->setRules(['tahun_ajaran_id' => 'required']);
-        $validation->setRules(['walikelas' => 'required']);
-        $validation->setRules(['is_active' => 'required']);
-
-        $isDataValid = $validation->withRequest($this->request)->run();
-
-        // jika data valid, simpan ke database
-        if ($isDataValid) {
-            $data = new KelasModel();
-
-            $id = $data->insert([
-                "kode" => $this->request->getPost('kode'),
-                "nama" => $this->request->getPost('nama'),
-                "tingkat_id" => $this->request->getPost('tingkat_id'),
-                "tahun_ajaran_id" => $this->request->getPost('tahun_ajaran_id'),
-                "walikelas" => $this->request->getPost('walikelas'),
-                "is_active" => $this->request->getPost('is_active'),
-                "created_at" => date('Y-m-d H:i:s'),
-                "updated_at" => date('Y-m-d H:i:s')
-            ]);
-
-            if ($id > 0) {
-                $data = [
-                    'id' => $id,
-                    'pesan' => 'data kelas tersimpan',
-                ];
-                return $this->respond($data, 200);
-            }
-        } else {
-
-            $data = [
-                'id' => 0,
-                'pesan' => 'data gagal tersimpan',
-            ];
-            return $this->respond($data, 200);
-        }
-    }
-
     public function update()
     {
         $data = new TagihanDetailModel();
@@ -134,7 +102,8 @@ class TagihanDetail extends BaseController
         $status = $this->request->getPost('status');
         
         $id = $data->update($this->request->getPost('id'), [
-            "status" => $this->request->getPost('status')
+            "status" => $this->request->getPost('status'),
+            "id_pengurus" => $this->idLogin
         ]);
 
         if ($id > 0) {

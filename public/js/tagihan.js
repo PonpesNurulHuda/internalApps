@@ -124,3 +124,28 @@ $(document).on("click", "#btnGenerateTagihan", function () {
   });
 });
 
+
+$(document).on("click", "#add1Tagihan", function () {
+  var data = new Object;
+  data.id_santri = $("#fmAddTagihan .id_santriDr").val();
+  data.id_tagihan = $("#fmAddTagihan .masterTagihan").val();
+  data.jatuh_tempo = $("#fmAddTagihan .jatuh_tempo").val();
+
+  console.log(data);
+  $.ajax({
+    url: "add1Tagihan",
+    type: "POST",
+    data: data,
+    success: function (response) {
+      console.log(response);
+      if(response.status == 1){
+        alert("Sukses");
+        location.reload();
+      }
+    },
+    error: function () {
+      alert("Terjadi kesalahan");
+    },
+  });
+});
+

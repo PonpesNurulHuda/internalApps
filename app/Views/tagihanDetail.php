@@ -1,15 +1,6 @@
 <?= $this->extend('template/admin') ?>
 
 <?= $this->section('content') ?>
-<div class="pagetitle">
-    <h1>Tagihan</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tagihan Detail</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
 
 <section class="section">
     <div class="row">
@@ -18,14 +9,14 @@
             <div class="card">
                 <div class="card-body dtKelas">
                     <h5 class="card-title">Data Tagihan</h5>
-                    <button class="btn btn-primary btnKelas" kelas="0">Semua Kelas</button>
+                    <button class="btn  btn-sm btn-primary btnKelas" kelas="0">Semua Kelas</button>
                     <?php foreach ($dtKelas as $kelas) : ?>
-                        <button class="btn btn-secondary btnKelas" id="kls_<?= $kelas['id'] ?>" kelas="<?= $kelas['id'] ?>"><?= $kelas['nama'] ?></button>
+                        <button class="btn btn-sm btn-secondary btnKelas" id="kls_<?= $kelas['id'] ?>" kelas="<?= $kelas['id'] ?>"><?= $kelas['nama'] ?></button>
                     <?php endforeach ?>
                     <br>
                     <br>
-                    <button type="button" class="btn btn-primary tambahTagihan" data-bs-toggle="modal" data-bs-target="#tambahTagihan">Tambah Tagihan</button>
-                    <button type="button" class="btn btn-primary generateTagihan" data-bs-toggle="modal" data-bs-target="#ModalGenerate">Generate Tagihan</button>
+                    <button type="button" class="btn btn-sm btn-primary tambahTagihan" data-bs-toggle="modal" data-bs-target="#tambahTagihan">Tambah Tagihan</button>
+                    <button type="button" class="btn btn-sm btn-primary generateTagihan" data-bs-toggle="modal" data-bs-target="#ModalGenerate">Generate Tagihan</button>
 
                     <table id="tableTagihan" class="display datatable" style="width:100%">
                         <thead>
@@ -55,7 +46,7 @@
                                     <td><?= $dt["tanggal_jatuh_tempo"] ?></td>
                                     <td><?= $dt["tanggal_pembayaran"] ?></td>
                                     <td align="right"><?= number_format($dt["jumlah"]) ?></td>
-                                    <td><?= $dt["id_santri"] ?></td>
+                                    <td><?= $dt["bendahara"] ?></td>
                                     <td hidden><?= $dt["status"] ?></td>
                                     <td class="status"><?php if ($dt["status"] == "0") {
                                                             echo "Belum Lunas";
@@ -64,7 +55,7 @@
                                                         } ?></td>
                                     <td class="aksi">
                                         <?php if ($dt["status"] == "0") {
-                                            echo "<button class='btn btn-info btn-xs terimaPembarayan' id='btnTerima_" . $dt['id'] . "'>Terima Uang</button>";
+                                            echo "<button class='btn btn-sm btn-info btn-xs terimaPembarayan' id='btnTerima_" . $dt['id'] . "'>Terima Uang</button>";
                                         } else {
                                             echo "";
                                         }
@@ -123,7 +114,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" id="tambahTagihan">Tambah Tagihan</button>
+                <button type="button" class="btn btn-primary" id="add1Tagihan">Tambah Tagihan</button>
             </div>
         </div>
     </div>
