@@ -20,8 +20,8 @@ class TagihanDetailModel extends Model
         return $this->db->table('tagihan_detail')
             ->join('tagihan', 'tagihan.id = tagihan_detail.id_tagihan')
             ->join('santri', 'santri.id = tagihan_detail.id_santri')
-            ->join('siswa_kelas', 'santri.id = siswa_kelas.id_siswa')
-            ->join('kelas', 'kelas.id = siswa_kelas.id_kelas')
+            ->join('siswa_kelas', 'santri.id = siswa_kelas.id_siswa', 'left')
+            ->join('kelas', 'kelas.id = siswa_kelas.id_kelas', 'left')
             ->join('santri as s2', 's2.id = tagihan_detail.id_pengurus', 'left')
             ->select('tagihan_detail.*, santri.nama as santri, tagihan.nama as tagihan, kelas.nama as kelas, s2.nama as bendahara')
             ->get()->getResultArray();
