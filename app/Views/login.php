@@ -44,7 +44,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <span class="d-none d-lg-block">EnHa</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -53,7 +53,7 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">Masuk ke akun anda</h5>
                     <p class="text-center small">Masukan email dan password anda</p>
                   </div>
 
@@ -82,7 +82,8 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a><br>
+                Created by <a href="">Rifki Ahmad Sururi</a>
               </div>
 
             </div>
@@ -110,6 +111,19 @@
   <script src="<?php echo base_url('niceAdmin/js/main.js?y=') . date("Yhis"); ?>"></script>
   
 <script src="<?php echo base_url('js/login.js?y=') . date("Yhis"); ?>"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.0/firebase.js"></script>
+
+
+<script>
+
+var config = {
+    apiKey: "AIzaSyAHeod0Le_Zh3zzNzU7y-Qe71Xyf7XEfhk",
+    authDomain: "ujicoba-353302.firebaseapp.com",
+  };
+  firebase.initializeApp(config);
+  var provider = new firebase.auth.GoogleAuthProvider();
+</script>
 
 </body>
 

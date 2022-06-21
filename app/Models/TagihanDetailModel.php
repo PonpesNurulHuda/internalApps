@@ -36,4 +36,28 @@ class TagihanDetailModel extends Model
             ->get()->getRowArray();
     }
 
+    public function rekapPerTagihan($id, $status)
+    {
+        $db      = \Config\Database::connect();
+        return $this->db->table('tagihan_detail')
+                ->join('santri', 'santri.id = tagihan_detail.id_santri')
+                ->join('siswa_kelas', 'santri.id = siswa_kelas.id_siswa', 'left')
+                ->join('kelas', 'kelas.id = siswa_kelas.id_kelas', 'left')
+                ->join('santri as s2', 's2.id = tagihan_detail.id_pengurus', 'left')
+                
+                ->where('tagihan_detail.id_tagihan', $id)
+                ->where('tagihan_detail.status', $status)
+                
+                ->select('
+                    tagihan_detail.id,
+                    tagihan_detail.jumlah,
+                    tagihan_detail.tanggal_jatuh_tempo, 
+                    tagihan_detail.tanggal_pembuatan, 
+                    tagihan_detail.tanggal_pembayaran, 
+                    tagihan_detail.status, 
+
+                    santri.nama as santri, kelas.nama as kelas, s2.nama as bendahara
+                ')->get()->getResultArray();
+    }
+
 }

@@ -1,3 +1,7 @@
+<?php 
+$session = session();
+$nama = $session->get('nama');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+  <title>App Nurul Huda</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,7 +30,8 @@
   <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.bubble.css'); ?>" rel="stylesheet">
   <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/remixicon/remixicon.css'); ?>" rel="stylesheet">
   <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/simple-datatables/style.css'); ?>" rel="stylesheet">
-
+  <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Template Main CSS File -->
@@ -48,12 +53,12 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">En Ha</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
+    <div class="search-bar" hidden>
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
@@ -69,7 +74,7 @@
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" hidden>
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
@@ -144,7 +149,7 @@
 
         </li><!-- End Notification Nav -->
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" hidden>
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
@@ -214,52 +219,52 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $nama;?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
+            <li class="dropdown-header" hidden>
               <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <span hidden>Web Designer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <li hidden>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
             </li>
-            <li>
+            <li hidden>
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <li hidden>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
             </li>
-            <li>
+            <li hidden>
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <li hidden>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
             </li>
-            <li>
+            <li hidden>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="<?php echo base_url('auth/logout'); ?>">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>Keluar</span>
               </a>
             </li>
 
@@ -277,94 +282,104 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="<?php echo base_url(''); ?>">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" hidden>
         <a class="nav-link collapsed" href="nilai_santri">
           <i class="bi bi-grid"></i>
           <span>nilai_santri</span>
         </a>
       </li>
 
+
       <li class="nav-item">
-        <a class="nav-link collapsed" href="kelas">
+        <a class="nav-link collapsed" href="<?php echo base_url('santri'); ?>">
           <i class="bi bi-grid"></i>
-          <span>kelas</span>
+          <span>Santri</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="mapel">
-          <i class="bi bi-grid"></i>
-          <span>mapel</span>
+        <a class="nav-link collapsed" data-bs-target="#nilai" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Nilai</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="nilai" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="<?php echo base_url('nilai_akhlaq_santri'); ?>">
+              <i class="bi bi-circle"></i><span>Nilai Akhlaq Santri</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('nilai_santri'); ?>">
+              <i class="bi bi-circle"></i><span>Nilai santri</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="mapel_kategori">
-          <i class="bi bi-grid"></i>
-          <span>mapel_kategori</span>
+        <a class="nav-link collapsed" data-bs-target="#mapel" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Mata Pelajaran</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="mapel" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="<?php echo base_url('mapel_tipe'); ?>">
+              <i class="bi bi-circle"></i><span>Tipe Mapel</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('mapel_kategori'); ?>">
+              <i class="bi bi-circle"></i><span>Kategori Mapel</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('mapel'); ?>">
+              <i class="bi bi-circle"></i><span>Data Mapel</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('mapel_kelas'); ?>">
+              <i class="bi bi-circle"></i><span>Mapel Per Kelas</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="mapel_kelas">
-          <i class="bi bi-grid"></i>
-          <span>mapel_kelas</span>
+        <a class="nav-link collapsed" data-bs-target="#administrasi" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Administrasi</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="mapel_tipe">
-          <i class="bi bi-grid"></i>
-          <span>mapel_tipe</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="nilai_akhlaq_santri">
-          <i class="bi bi-grid"></i>
-          <span>nilai_akhlaq_santri</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="santri">
-          <i class="bi bi-grid"></i>
-          <span>santri</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="semester">
-          <i class="bi bi-grid"></i>
-          <span>semester</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="siswa_kelas">
-          <i class="bi bi-grid"></i>
-          <span>siswa_kelas</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="tahun_ajaran">
-          <i class="bi bi-grid"></i>
-          <span>tahun_ajaran</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="tingkat">
-          <i class="bi bi-grid"></i>
-          <span>tingkat</span>
-        </a>
+        <ul id="administrasi" class="nav-content collapse " data-bs-parent="#administrasi">
+          <li>
+            <a href="<?php echo base_url('tingkat'); ?>">
+              <i class="bi bi-circle"></i><span>Tingkat</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('tahun_ajaran'); ?>">
+              <i class="bi bi-circle"></i><span>Tahun Ajaran</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('semester'); ?>">
+              <i class="bi bi-circle"></i><span>Semester</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('kelas'); ?>">
+              <i class="bi bi-circle"></i><span>Kelas</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('siswa_kelas'); ?>">
+              <i class="bi bi-circle"></i><span>Santri kelas</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <li class="nav-item">
@@ -373,17 +388,25 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tagihanDetail">
+            <a href="<?php echo base_url('tagihanDetail'); ?>">
               <i class="bi bi-circle"></i><span>Tagihan Detail</span>
+            </a>
+            <a href="<?php echo base_url('tagihanDetail/index2'); ?>">
+              <i class="bi bi-circle"></i><span>Tagihan Detail 2</span>
             </a>
           </li>
           <li>
-            <a href="tagihan">
+            <a href="<?php echo base_url('tagihan'); ?>">
               <i class="bi bi-circle"></i><span>Tagihan Master</span>
             </a>
           </li>
+          <li>
+            <a href="<?php echo base_url('tagihan/rekap'); ?>">
+              <i class="bi bi-circle"></i><span>Rekap Per Tagihan</span>
+            </a>
+          </li>
         </ul>
-      </li><!-- End Forms Nav -->
+      </li>
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -416,6 +439,8 @@
   <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/echarts/echarts.min.js'); ?>"></script>
   <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.min.js') ?>"></script>
   <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/simple-datatables/simple-datatables.js'); ?>"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
   <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/tinymce/tinymce.min.js'); ?>"></script>
   <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/php-email-form/validate.js'); ?>"></script>
 

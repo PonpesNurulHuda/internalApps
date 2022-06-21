@@ -97,7 +97,6 @@ $routes->add('terimaPembayaran', 'TagihanDetail::update');
 $routes->add('tagihanDetail/generate', 'TagihanDetail::generate');
 $routes->add('add1Tagihan', 'TagihanDetail::add1Tagihan');
 
-
 // Login
 $routes->get('/login', 'Auth::index');
 $routes->add('/login', 'Auth::auth');

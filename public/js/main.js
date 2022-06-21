@@ -315,7 +315,6 @@
       }).observe(mainContainer);
     }, 200);
   }
-
 })();
 
 // custom

@@ -41,6 +41,16 @@ class TagihanDetail extends BaseController
         return view('tagihanDetail', $data);
     }
 
+    public function index2()
+    {
+        $data['dtTagihanMaster'] = $this->db['tagihan']->getWhere(['is_active' => 1])->getResultArray();
+        $data['dtKelas'] = $this->db['kelas']->KelasActive();
+        $data['dtSantri'] = $this->db['santri']->GetSantriKelas();
+        $data['dtTagihan'] = $this->db['tagihanDetail']->GetAllTagihan();
+        
+        return view('tagihan/semuaTagihan', $data);
+    }
+
     public function generate()
     {
         $kelas = $this->request->getPost('kelas');
@@ -50,8 +60,9 @@ class TagihanDetail extends BaseController
         if($kelas != 0){
             $this->generateTagihanByClass($kelas, $id_tagihan, $jatuh_tempo);
         }else{
-            foreach($this->db['kelas']->KelasActive() as $a){
-                $this->addTagihan($a['id'],$id_tagihan, $jatuh_tempo);
+            $kelasActive = $this->db['kelas']->KelasActive();
+            foreach($kelasActive as $a){
+                $this->generateTagihanByClass($a['id'], $id_tagihan, $jatuh_tempo);
             }
         }
 
@@ -103,6 +114,7 @@ class TagihanDetail extends BaseController
         
         $id = $data->update($this->request->getPost('id'), [
             "status" => $this->request->getPost('status'),
+            "tanggal_pembayaran" => date('Y-m-d H:i:s'),
             "id_pengurus" => $this->idLogin
         ]);
 
@@ -120,4 +132,5 @@ class TagihanDetail extends BaseController
         
         return $this->respond($data, 200);
     }
+
 }

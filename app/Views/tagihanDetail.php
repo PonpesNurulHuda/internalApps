@@ -29,7 +29,7 @@
                                 <th>Tgl Jatuh Tempo</th>
                                 <th>Tgl Pembayaran</th>
                                 <th>Jumlah</th>
-                                <th>Bendahara</th>
+                                <th>Penerima</th>
                                 <th hidden>Status</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -44,7 +44,7 @@
                                     <td><?= $dt["tagihan"] ?></td>
                                     <td><?= $dt["tanggal_pembuatan"] ?></td>
                                     <td><?= $dt["tanggal_jatuh_tempo"] ?></td>
-                                    <td><?= $dt["tanggal_pembayaran"] ?></td>
+                                    <td><?php if( $dt["tanggal_pembayaran"] != '0000-00-00 00:00:00'){ echo $dt["tanggal_pembayaran"]; } ?></td>
                                     <td align="right"><?= number_format($dt["jumlah"]) ?></td>
                                     <td><?= $dt["bendahara"] ?></td>
                                     <td hidden><?= $dt["status"] ?></td>
@@ -64,22 +64,6 @@
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th hidden>id_santri</th>
-                                <th>Nama Santri</th>
-                                <th hidden>id_tagihan</th>
-                                <th>Nama Tagihan</th>
-                                <th>Tgl Pembuatan</th>
-                                <th>Tgl Jatuh Tempo</th>
-                                <th>Tgl Pembayaran</th>
-                                <th>Jumlah</th>
-                                <th>Bendahara</th>
-                                <th hidden>Status</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

@@ -302,6 +302,8 @@
     new simpleDatatables.DataTable(datatable);
   })
 
+  
+
   /**
    * Autoresize echart charts
    */
@@ -315,5 +317,29 @@
       }).observe(mainContainer);
     }, 200);
   }
-
 })();
+
+// custom
+
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+ }
+ return result;
+}
+
+function addAlertSuccess(note, type){
+  var id = makeid(10);
+  var html = `<div class="alert alert-primary bg-${type} text-light border-0 alert-dismissible fade show" role="alert" id="alert${id}"> 
+                  ${note}
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close" onclick="removeAlert('alert${id}')"></button>
+              </div>`;
+  $(`#tableTingkat`).before(html);
+}
+
+function removeAlert(id){
+  $(`#${id}`).remove();
+}

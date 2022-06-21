@@ -31,7 +31,7 @@ class santriModel extends Model
         $builder = $db->table('santri');
         $builder->select('santri.id');
         $builder->join('siswa_kelas', 'santri.id = siswa_kelas.id_siswa', 'left');
-        $builder->where('siswa_kelas.id_siswa', $idKelas);
+        $builder->where('siswa_kelas.id_kelas', $idKelas);
         $query = $builder->get()->getResultArray();
 
         return $query;
