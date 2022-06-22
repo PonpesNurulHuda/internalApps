@@ -11,7 +11,7 @@ class santriModel extends Model
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['kk', 'nik', 'nis', 'nama', 'tanggal_lahir', 'gender', 'is_mustahiq' ];
+    protected $allowedFields = ['kk', 'nik', 'nis', 'nama', 'tanggal_lahir', 'gender', 'is_mustahiq', 'no_hp1', 'no_hp2' ];
 
     public function GetSantriKelas()
     {

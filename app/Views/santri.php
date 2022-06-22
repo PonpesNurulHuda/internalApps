@@ -1,20 +1,9 @@
 <?= $this->extend('template/admin') ?>
 
 <?= $this->section('content') ?>
-<div class="pagetitle">
-    <h1>Sample Page</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Sample</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
-
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="card">
                 <div class="card-body dtSantri">
                     <h5 class="card-title">Data Santri</h5>
@@ -25,9 +14,10 @@
                                 <th>NIK</th>
                                 <th>NIS</th>
                                 <th>Nama</th>
-                                <th>Tanggal_lahir</th>
+                                <th>Tanggal Lahir</th>
                                 <th style="width: 10px;"> Gender</th>
                                 <th>Is_mustahiq</th>
+                                <th colspan="2">No HP</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -62,6 +52,12 @@
                                         }
                                         ?>
                                     </td>
+                                    <td class="no_hp1">
+                                        <?= $santri['no_hp1'] ?>
+                                    </td>
+                                    <td class="no_hp2">
+                                        <?= $santri['no_hp1'] ?>
+                                    </td>
                                     <td>
                                         <button class='btn btn-info btn-xs btnEdit' id="btnEdit_<?= $santri['id'] ?>">Edit</button>
                                         <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_<?= $santri['id'] ?>">Hapus</button>
@@ -69,17 +65,6 @@
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>KK</th>
-                                <th>NIK</th>
-                                <th>NIS</th>
-                                <th>Nama</th>
-                                <th>Tanggal_lahir</th>
-                                <th>Gender</th>
-                                <th>Is_mustahiq</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

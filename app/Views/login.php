@@ -123,6 +123,8 @@ var config = {
   };
   firebase.initializeApp(config);
   var provider = new firebase.auth.GoogleAuthProvider();
+
+  var ipServer = "<?php echo $ipServer; ?>";
 </script>
 
 </body>

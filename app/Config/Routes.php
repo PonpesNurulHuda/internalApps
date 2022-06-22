@@ -102,7 +102,7 @@ $routes->get('/login', 'Auth::index');
 $routes->add('/login', 'Auth::auth');
 
 //
-$routes->get('/dashboard', 'tagihanDetail::index',['filter' => 'auth']);
+$routes->get('/dashboard', 'Home::index',['filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

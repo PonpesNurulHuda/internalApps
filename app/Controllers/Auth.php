@@ -24,7 +24,27 @@ class Auth extends Controller
 
     public function index()
     {
-        return view('login');
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, 'https://api.ipify.org');
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+        $jsonData = curl_exec($curlSession);
+        curl_close($curlSession);
+        $data['ipServer'] = $jsonData;
+        return view('login', $data);
+    }
+
+    public function cekIpServer()
+    {
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, 'https://api.ipify.org');
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+        $jsonData = curl_exec($curlSession);
+        curl_close($curlSession);
+        return $jsonData;
     }
 
     public function auth()

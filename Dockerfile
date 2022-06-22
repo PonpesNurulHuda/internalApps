@@ -1,4 +1,4 @@
-FROM php:7.4-cli-alpine
+FROM php:8.0.2-fpm-alpine
 
 # envirotmen variable
 ENV \
@@ -10,11 +10,13 @@ COPY . $APP_DIR
 COPY .env $APP_DIR/.env
 
 #RUN apk update 
-RUN apk add icu-dev 
-RUN docker-php-ext-configure intl 
+RUN apk add icu-dev
+RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN docker-php-ext-enable intl
-RUN php -m | grep intl
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-enable mysqli
+# RUN php -m | grep intl
 
 # mengistall composer
 RUN curl -sS https://getcomposer.org/installer | php --\
@@ -37,3 +39,4 @@ EXPOSE $APP_PORT
 # . = tempat ini
 # ci4-docker = nama image
 # 002 = versi
+# docker run --name enha -d -p 8080:8080 enha:0.0.3
