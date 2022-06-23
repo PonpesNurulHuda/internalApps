@@ -15,6 +15,9 @@ $(document).ready(function () {
 $(document).on("click", ".btnKelas", function () {
   kelas = $(this).attr("kelas");
   console.log(kelas);
+  $('.btnKelas').removeClass('btn-primary');
+  $('.btnKelas').addClass('btn-secondary');
+  $(this).removeClass('btn-secondary').addClass('btn-primary');
 });
 
 $(document).on("click", ".terimaPembarayan", function () {
@@ -56,7 +59,7 @@ $(document).on("click", ".generateTagihan", function () {
   var headerGenerate = "Tagihan untuk semua santri ";
   if(kelas == 0){
   }else{
-    headerGenerate = headerGenerate + $(`#kls_${kelas}`).html().trim();
+    headerGenerate = headerGenerate + ` <span style="background-color:yellow">`+ $(`#kls_${kelas}`).html().trim() + '</span>';
   }
 
   $("#generateTagihan").html(headerGenerate);

@@ -10,12 +10,12 @@ COPY . $APP_DIR
 COPY .env $APP_DIR/.env
 
 #RUN apk update 
-RUN apk add icu-dev
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl
-RUN docker-php-ext-enable intl
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-enable mysqli
+# RUN apk add icu-dev
+# RUN docker-php-ext-configure intl
+# RUN docker-php-ext-install intl
+# RUN docker-php-ext-enable intl
+# RUN docker-php-ext-install mysqli
+# RUN docker-php-ext-enable mysqli
 # RUN php -m | grep intl
 
 # mengistall composer
@@ -29,6 +29,12 @@ RUN cd $APP_DIR composer install
 WORKDIR $APP_DIR
 
 #menjalankan perintah
+RUN apk add icu-dev
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+RUN docker-php-ext-enable intl
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-enable mysqli
 CMD php spark serve --host 0.0.0.0
 
 # akses dari luar docker

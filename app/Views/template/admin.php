@@ -51,7 +51,7 @@ $nama = $session->get('nama');
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="<?php echo base_url(''); ?>" class="logo d-flex align-items-center">
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <span class="d-none d-lg-block">En Ha</span>
       </a>
@@ -415,6 +415,13 @@ $nama = $session->get('nama');
     <?= $this->renderSection('content') ?>
   </main><!-- End #main -->
 
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Rifki Ahmad Sururi</span></strong>.
+    </div>
+    <div class="credits">
+    </div>
+  </footer>
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
