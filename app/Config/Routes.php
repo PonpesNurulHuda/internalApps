@@ -69,8 +69,8 @@ $routes->add('nilai_santri/add', 'nilai_santri::add');
 $routes->add('nilai_santri/update', 'nilai_santri::update');
 
 //siswa_kelas
-$routes->add('siswa_kelas/add', 'siswa_kelas::add');
-$routes->add('siswa_kelas/update', 'siswa_kelas::update');
+$routes->add('siswa_kelas/add', 'Siswa_kelas::add');
+$routes->add('siswa_kelas/update', 'Siswa_kelas::update');
 
 //tahun_ajaran
 $routes->add('tahun_ajaran/add', 'tahun_ajaran::add');
