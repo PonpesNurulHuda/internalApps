@@ -9,11 +9,11 @@ jobs:
     name: ftp-deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@2.1.0
+      - uses: actions/checkout@v2.1.0
         with:
           fetch-depth: 2
       - name: ftp-deploy-action
-        uses: Samkirkland/ftp-deploy-action@3.1.1
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: ${{ secrets.FTP_SERVER }}
           ftp-username: ${{ secrets.FTP_USER }}
