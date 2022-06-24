@@ -1,0 +1,20 @@
+name: Deploy to Cpnel
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  FTP-DEPLOY-ACTION:
+    name:ftp-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@2.1.0
+        with:
+          fetch-depth: 2
+      - name: ftp-deploy-action
+        uses: Samkirkland/ftp-deploy-action@3.1.1
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USER }}
+          ftp-password: ${{ secrets.FTP_PASS }}
