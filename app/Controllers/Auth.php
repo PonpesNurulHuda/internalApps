@@ -54,7 +54,7 @@ class Auth extends Controller
         $password = $this->request->getPost('password');
         $userLogin = $this->db['login']->where(['surel' => $email, 'sandi' => $password])->first();
         if ($userLogin) {
-            $santri = $this->db['santri']->where(['id' => $userLogin['id']])->first();
+            $santri = $this->db['santri']->where(['id' => $userLogin['id_santri']])->first();
 
             $ses_data = [
                 'nama' => $santri['nama'],
