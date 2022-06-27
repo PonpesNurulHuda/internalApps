@@ -55,6 +55,7 @@ class TagihanModel extends Model
                             tdL.tanggal_jatuh_tempo
                     ) b on a.id = b.id
                 where b.H > 0
+                order by b.tanggal_jatuh_tempo
         ";
         $query=$this->db->query($query);
         return $query->getResultArray();
