@@ -127,4 +127,15 @@ class Tagihan extends BaseController
         ];
         return $this->respond($output, 200);
     }
+
+    public function rekapTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri){
+        
+
+        $data = $this->db['tagihanDetail']->rekapPerTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri);
+        $output = [
+            'status' => 1,
+            'data' => $data,
+        ];
+        return $this->respond($output, 200);
+    }
 }

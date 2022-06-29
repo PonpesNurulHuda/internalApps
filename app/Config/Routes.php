@@ -81,7 +81,7 @@ $routes->add('semester/add', 'semester::add');
 $routes->add('semester/update', 'semester::update');
 
 //tbl01
-$routes->add('tbl01/add', 'tbl01::add');
+$routes->add('tbl01/add', 'tbl01::add'); 
 $routes->add('tbl01/update', 'tbl01::update');
 
 //menu
@@ -93,10 +93,10 @@ $routes->add('menu_kategori/add', 'menu_kategori::add');
 $routes->add('menu_kategori/update', 'menu_kategori::update');
 
 // Tagihan
-$routes->add('terimaPembayaran', 'TagihanDetail::update');
+$routes->add('terimaPembayaran', 'TagihanDetail::terimaLunas');
+$routes->add('terimaCicilan', 'TagihanDetail::terimaCicilan');
 $routes->add('tagihanDetail/generate', 'TagihanDetail::generate');
 $routes->add('add1Tagihan', 'TagihanDetail::add1Tagihan');
-
 // Login
 $routes->get('/login', 'Auth::index');
 $routes->add('/login', 'Auth::auth');

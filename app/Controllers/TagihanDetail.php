@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\KelasModel;
 use App\Models\TagihanDetailModel;
+use App\Models\TagihanCicilanModel;
 use App\Models\TagihanModel;
 use App\Models\SantriModel;
 use CodeIgniter\API\ResponseTrait;
@@ -21,6 +22,7 @@ class TagihanDetail extends BaseController
 
         $kelas = new KelasModel();
         $tagihanDetail = new TagihanDetailModel();
+        $tagihanCicilan = new TagihanCicilanModel();
         $tagihan = new TagihanModel();
         $santri = new SantriModel();
         $this->idLogin = $idLogin;
@@ -29,6 +31,7 @@ class TagihanDetail extends BaseController
             'tagihanDetail' => $tagihanDetail,
             'tagihan' => $tagihan,
             'santri' => $santri,
+            'tagihanCicilan' => $tagihanCicilan
         ];
     }
     public function index()
@@ -39,7 +42,7 @@ class TagihanDetail extends BaseController
         $data['dtTagihan'] = $this->db['tagihanDetail']->GetAllTagihan();
         
         return view('tagihanDetail', $data);
-    }
+        }
 
     public function index2()
     {
@@ -105,17 +108,21 @@ class TagihanDetail extends BaseController
         ]);
     }
 
-    public function update()
+    public function terimaLunas()
     {
         $data = new TagihanDetailModel();
-
         $id = $this->request->getPost('id');
         $status = $this->request->getPost('status');
         
         $id = $data->update($this->request->getPost('id'), [
             "status" => $this->request->getPost('status'),
-            "tanggal_pembayaran" => date('Y-m-d H:i:s'),
-            "id_pengurus" => $this->idLogin
+            "tanggal_pembayaran" => date('Y-m-d H:i:s')
+        ]);
+
+        $this->db['tagihanCicilan']->insert([
+            "id_tagihan_detail" => $this->request->getPost('id'),
+            "jumlah" => $this->db['tagihanDetail']->where('id', 2)->get()->getResultArray()[0]['jumlah'],
+            "bendahara" => $this->idLogin
         ]);
 
         if ($id > 0) {
@@ -129,8 +136,50 @@ class TagihanDetail extends BaseController
                 'pesan' => 'Terjadi kesalahan, hubungi TIM IT',
             ];
         }
-        
         return $this->respond($data, 200);
+    }
+
+    public function terimaCicilan(){
+        $id = $this->request->getPost('id');
+        $jumlah = $this->request->getPost('jumlah');        
+        $jumlahTagihan = $this->db['tagihanDetail']->where('id', 2)->get()->getResultArray()[0]['jumlah'];
+        $jumlagCicilan = $this->db['tagihanCicilan']->where('id_tagihan_detail',$id)->selectSum('jumlah')->get()->getResultArray()[0]['jumlah'];
+        $jumlahPembayaran = $jumlah + $jumlagCicilan; 
+        $idCicilan = 0;
+        if($jumlahPembayaran <= $jumlahTagihan){
+            $idCicilan = $this->db['tagihanCicilan']->insert([
+                "id_tagihan_detail" => $id,
+                "jumlah" => $jumlah,
+                "bendahara" => $this->idLogin
+            ]);
+
+            // update detail
+            $jumlagCicilan = $this->db['tagihanCicilan']->where('id_tagihan_detail',$id)->selectSum('jumlah')->get()->getResultArray()[0]['jumlah'];
+            if($jumlagCicilan == $jumlahTagihan){
+                $this->db['tagihanDetail']->update($id, [
+                    "status" => 1,
+                    "tanggal_pembayaran" => date('Y-m-d H:i:s')
+                ]);
+            }
+        }
+
+        if($idCicilan > 0){
+            $data = [
+                'id' => $id,
+                'pesan' => 'data kelas tersimpan',
+            ];
+        }else{
+            $data = [
+                'id' => 0,
+                'pesan' => 'Terjadi kesalahan'.'jumlah pembayaran '.$jumlahPembayaran,
+            ];
+        }
+    }
+
+    public function test(){
+        
+        $data = $this->db['tagihanCicilan']->where('id_tagihan_detail',4669)->selectSum('jumlah')->get()->getResultArray()[0]['jumlah'];
+        print_r($data);
     }
 
 }
