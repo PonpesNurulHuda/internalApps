@@ -43,13 +43,16 @@ function refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri) {
       {
         data: "id",
         render: function (data, type, row, meta) {
-          console.log(row);
+          console.log('row', row);
           if (row.status != 1) {
-            var html =
+            var html = "";
+            if(row.jumlah == 0 || row.jumlah == null){
+              html =
               '<button class="btn btn-primary btn-sm terimaPembarayan" id="btnTerima_' +
               data +
               '">Terima Lunas</button></a>';
-            html +=
+            }
+              html= html+
               '  <button class="btn btn-warning btn-sm terimaCicil" id="btnCicil_' +
               data +
               '">Terima Cicilan</button></a>';
@@ -167,8 +170,9 @@ $(document).on("click", ".terimaPembarayan", function () {
           alert(data.pesan);
         }
       },
-      error: function () {
+      error: function (response) {
         alert("Terjadi kesalahan");
+        console.log(response);
       },
     });
   }
@@ -191,7 +195,7 @@ $(document).on("click", ".terimaCicil", function () {
       type: "POST",
       data: dataPost,
       success: function (response) {
-        console.log(response);
+        console.log('respon terima cicilan',response);
         var data = response;
         if (data.id != "0") {
           alert("sukses");

@@ -142,11 +142,12 @@ class TagihanDetail extends BaseController
     public function terimaCicilan(){
         $id = $this->request->getPost('id');
         $jumlah = $this->request->getPost('jumlah');        
-        $jumlahTagihan = $this->db['tagihanDetail']->where('id', 2)->get()->getResultArray()[0]['jumlah'];
+        $jumlahTagihan = $this->db['tagihanDetail']->where('id', $id)->get()->getResultArray()[0]['jumlah'];
         $jumlagCicilan = $this->db['tagihanCicilan']->where('id_tagihan_detail',$id)->selectSum('jumlah')->get()->getResultArray()[0]['jumlah'];
         $jumlahPembayaran = $jumlah + $jumlagCicilan; 
         $idCicilan = 0;
-        if($jumlahPembayaran <= $jumlahTagihan){
+
+        if($jumlahPembayaran < $jumlahTagihan || $jumlahPembayaran == $jumlahTagihan ){
             $idCicilan = $this->db['tagihanCicilan']->insert([
                 "id_tagihan_detail" => $id,
                 "jumlah" => $jumlah,
@@ -155,8 +156,10 @@ class TagihanDetail extends BaseController
 
             // update detail
             $jumlagCicilan = $this->db['tagihanCicilan']->where('id_tagihan_detail',$id)->selectSum('jumlah')->get()->getResultArray()[0]['jumlah'];
+
             if($jumlagCicilan == $jumlahTagihan){
-                $this->db['tagihanDetail']->update($id, [
+
+                $updateTagihanDetail = $this->db['tagihanDetail']->update($id, [
                     "status" => 1,
                     "tanggal_pembayaran" => date('Y-m-d H:i:s')
                 ]);
@@ -171,9 +174,11 @@ class TagihanDetail extends BaseController
         }else{
             $data = [
                 'id' => 0,
-                'pesan' => 'Terjadi kesalahan'.'jumlah pembayaran '.$jumlahPembayaran,
+                'pesan' => 'Terjadi kesalahan'.'jumlah pembayaran '.$jumlahPembayaran." jumlah tagihan ".$jumlahTagihan,
             ];
         }
+
+        return $this->respond($data, 200);
     }
 
     public function test(){
