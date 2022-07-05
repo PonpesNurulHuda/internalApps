@@ -33,8 +33,8 @@ function refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri) {
     ajax: `../tagihan/rekapTagihanCustom/${idKelas}/${idTagihan}/${statusPenerimaaan}/${idSantri}`,
     columns: [
       { data: "santri" },
-      { data: "namaTagihan" },
       { data: "kelas" },
+      { data: "namaTagihan" },
       { data: "tanggal_pembuatan" },
       { data: "tanggal_jatuh_tempo" },
       { data: "jmlTagihan" },
