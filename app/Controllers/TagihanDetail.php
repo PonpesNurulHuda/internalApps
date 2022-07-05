@@ -121,7 +121,7 @@ class TagihanDetail extends BaseController
 
         $this->db['tagihanCicilan']->insert([
             "id_tagihan_detail" => $this->request->getPost('id'),
-            "jumlah" => $this->db['tagihanDetail']->where('id', 2)->get()->getResultArray()[0]['jumlah'],
+            "jumlah" => $this->db['tagihanDetail']->where('id', $id)->get()->getResultArray()[0]['jumlah'],
             "bendahara" => $this->idLogin
         ]);
 
