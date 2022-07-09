@@ -111,17 +111,17 @@ class TagihanDetail extends BaseController
     public function terimaLunas()
     {
         $data = new TagihanDetailModel();
-        $id = $this->request->getPost('id');
+        $idTagihan = $this->request->getPost('id');
         $status = $this->request->getPost('status');
         
-        $id = $data->update($this->request->getPost('id'), [
+        $id = $data->update($idTagihan, [
             "status" => $this->request->getPost('status'),
             "tanggal_pembayaran" => date('Y-m-d H:i:s')
         ]);
 
         $this->db['tagihanCicilan']->insert([
             "id_tagihan_detail" => $this->request->getPost('id'),
-            "jumlah" => $this->db['tagihanDetail']->where('id', $id)->get()->getResultArray()[0]['jumlah'],
+            "jumlah" => $this->db['tagihanDetail']->where('id', $idTagihan)->get()->getResultArray()[0]['jumlah'],
             "bendahara" => $this->idLogin
         ]);
 
