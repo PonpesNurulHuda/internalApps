@@ -7,7 +7,7 @@ ENV \
 
 # memindahkan file ke docker
 COPY . $APP_DIR
-COPY .env $APP_DIR/.env
+COPY env $APP_DIR/.env
 
 #RUN apk update 
 # RUN apk add icu-dev
