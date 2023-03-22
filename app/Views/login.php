@@ -109,20 +109,7 @@
 
   <!-- Template Main JS File -->
   <script src="<?php echo base_url('niceAdmin/js/main.js?y=') . date("Yhis"); ?>"></script>
-  
-<script src="<?php echo base_url('js/login.js?y=') . date("Yhis"); ?>"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.0/firebase.js"></script>
-
-
-<script>
-
-var config = {
-    apiKey: "AIzaSyAHeod0Le_Zh3zzNzU7y-Qe71Xyf7XEfhk",
-    authDomain: "ujicoba-353302.firebaseapp.com",
-  };
-  firebase.initializeApp(config);
-  var provider = new firebase.auth.GoogleAuthProvider();
+  <script src="<?php echo base_url('js/login.js?y=') . date("Yhis"); ?>"></script>
 
   var ipServer = "<?php echo $ipServer; ?>";
 </script>

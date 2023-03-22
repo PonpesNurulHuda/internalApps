@@ -95,8 +95,10 @@ $routes->add('menu_kategori/update', 'menu_kategori::update');
 // Tagihan
 $routes->add('terimaPembayaran', 'TagihanDetail::terimaLunas');
 $routes->add('terimaCicilan', 'TagihanDetail::terimaCicilan');
+$routes->add('editJumlahTagihan', 'TagihanDetail::editJumlahTagihan');
 $routes->add('tagihanDetail/generate', 'TagihanDetail::generate');
 $routes->add('add1Tagihan', 'TagihanDetail::add1Tagihan');
+
 // Login
 $routes->get('/login', 'Auth::index');
 $routes->add('/login', 'Auth::auth');

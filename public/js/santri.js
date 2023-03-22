@@ -26,6 +26,9 @@ $(document).on("click", "#btnAddSantri", function () {
                 </select>
             </td>
             <td>
+                
+            </td>
+            <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
                 <button class='btn btn-danger btnCancel' id="btnCancel_${className}">Batal</button>
             </td>
@@ -264,5 +267,4 @@ $(document).on("click", ".btnSaveEdit", function () {
             $(`.tr_${idRow}`).removeClass(`lama_${idRow}`);
         }
     }
-    
 });

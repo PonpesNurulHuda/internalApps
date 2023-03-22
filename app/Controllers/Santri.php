@@ -41,8 +41,8 @@ class Santri extends BaseController
             $data = new SantriModel();
 
             $id = $data->insert([
-                "kk" => $this->request->getPost('nik'),
-                "nik" => $this->request->getPost('kk'),
+                "kk" => $this->request->getPost('kk'),
+                "nik" => $this->request->getPost('nik'),
                 "nis" => $this->request->getPost('nis'),
                 "nama" => $this->request->getPost('nama'),
                 "tanggal_lahir" => $this->request->getPost('tanggal_lahir'),

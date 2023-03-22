@@ -32,9 +32,9 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
+        'hostname' => 'nat01.rifki.my.id',
         'username' => 'root',
-        'password' => '',
+        'password' => 'password',
         'database' => 'enha',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
@@ -47,7 +47,7 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 3306,
+        'port'     => 33306,
     ];
 
     /**

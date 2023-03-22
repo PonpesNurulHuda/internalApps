@@ -106,10 +106,50 @@ CREATE TABLE `tahun_ajaran` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `tbl01` (
+CREATE TABLE `tingkat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `seqno` int(11) NOT NULL,
   `nama` varchar(20) NOT NULL,
   `is_active` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+
+CREATE TABLE `tagihan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(20) NOT NULL,
+  `description` varchar(20) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `is_active` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `tagihan_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_santri` int(11) NOT NULL,
+  `id_tagihan` int(11) NOT NULL,
+  `tanggal_pembuatan` date NOT NULL,
+  `tanggal_jatuh_tempo` date NOT NULL,
+  `tanggal_pembayaran` date NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `id_pengurus` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+ALTER TABLE enha.santri ADD is_mustahiq varchar(2) NULL;
+ALTER TABLE enha.santri ADD no_hp1 varchar(20) NULL;
+ALTER TABLE enha.santri ADD no_hp2 varchar(20) NULL;
+
+
+CREATE TABLE `tagihan_cicilan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tagihan_detail` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `bendahara` int(11) NOT NULL,
+  `update_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+ALTER TABLE enha.semester CHANGE status is_active int NOT NULL;
+ALTER TABLE enha.siswa_kelas CHANGE id_active is_active int NOT NULL;

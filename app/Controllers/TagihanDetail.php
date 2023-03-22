@@ -158,7 +158,6 @@ class TagihanDetail extends BaseController
             $jumlagCicilan = $this->db['tagihanCicilan']->where('id_tagihan_detail',$id)->selectSum('jumlah')->get()->getResultArray()[0]['jumlah'];
 
             if($jumlagCicilan == $jumlahTagihan){
-
                 $updateTagihanDetail = $this->db['tagihanDetail']->update($id, [
                     "status" => 1,
                     "tanggal_pembayaran" => date('Y-m-d H:i:s')
@@ -178,6 +177,20 @@ class TagihanDetail extends BaseController
             ];
         }
 
+        return $this->respond($data, 200);
+    }
+
+    public function editJumlahTagihan(){
+        $id = $this->request->getPost('id');
+        $jmlTagihan = $this->request->getPost('jmlTagihan');        
+        $this->db['tagihanDetail']->update($id, [
+            "jumlah" => $jmlTagihan
+        ]);
+
+        $data = [
+            'id' => $id,
+            'pesan' => 'update tagihan berhasil',
+        ];
         return $this->respond($data, 200);
     }
 

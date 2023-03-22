@@ -3,10 +3,6 @@
 use CodeIgniter\Model;
  
 class UserLoginModel extends Model{
-    
-    
-
-    
     protected $table = 'users_login';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
