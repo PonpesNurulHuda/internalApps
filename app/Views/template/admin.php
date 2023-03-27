@@ -388,13 +388,18 @@ $nama = $session->get('nama');
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="<?php echo base_url('tagihan'); ?>">
+              <i class="bi bi-circle"></i><span>Tagihan Master</span>
+            </a>
+          </li>
+          <li>
             <a href="<?php echo base_url('tagihanDetail/index2'); ?>">
               <i class="bi bi-circle"></i><span>Tagihan Detail</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo base_url('tagihan'); ?>">
-              <i class="bi bi-circle"></i><span>Tagihan Master</span>
+            <a href="<?php echo base_url('tagihanPeriode'); ?>">
+              <i class="bi bi-circle"></i><span>Tagihan Periode</span>
             </a>
           </li>
           <li>

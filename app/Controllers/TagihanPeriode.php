@@ -6,7 +6,7 @@ use App\Models\TagihanModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\TagihanDetailModel;
 
-class Tagihan extends BaseController
+class TagihanPeriode extends BaseController
 {
     use ResponseTrait;
     private $db;

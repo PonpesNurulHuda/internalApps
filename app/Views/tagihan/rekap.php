@@ -23,6 +23,7 @@
                         </div>
                         <div class="col-auto">
                             <select class="form-control tagihan">
+                                <option value="0">Semua</option>
                                 <?php foreach ($data as $dt) : ?>
                                     <option value="<?= $dt['id'] ?>"><?= $dt['nama'] ?></option>
                                 <?php endforeach ?>
@@ -33,6 +34,7 @@
                         </div>
                         <div class="col-auto">
                             <select class="form-control status">
+                                <option value="all">Semua</option>
                                 <option value="0">Belum Lunas</option>
                                 <option value="1">Lunas</option>
                             </select>
@@ -50,8 +52,7 @@
                                 <th>Kelas</th>
                                 <th>Tgl pembuatan</th>
                                 <th>Tgl Jatuh Tempo</th>
-                                <th>Tgl Diterima</th>
-                                <th>Bendahara</th>
+                                <th>Tgl Lunas</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>

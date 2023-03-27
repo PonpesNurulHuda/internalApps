@@ -56,13 +56,15 @@ function refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri) {
             var html = "";
             if(row.jumlah == 0 || row.jumlah == null){
               html ='<button class="btn btn-primary btn-sm terimaPembarayan" id="btnTerima_' +data + '">Terima Lunas</button></a>';
+            }else{
+              html =`<button type="button" class="btn btn-sm btn-primary penerima" id="id_${row.id}" data-bs-toggle="modal" data-bs-target="#penerima">Lihat Penerima</button>`
             }
             html= html+'<button class="btn btn-warning btn-sm terimaCicil" id="btnCicil_' + data +'">Terima Cicilan</button></a>';
             html= html+'<button class="btn btn-danger btn-sm editTagihan" id="btnEdit_' + data +'">Edit</button></a>';
             return html;
           }else {
             return (
-              '<button class="btn btn-info btn-sm cekPenerima" id="btnCekBendahara_' + data + '">Lihat Penerima</button></a>'
+              `<button type="button" class="btn btn-sm btn-primary penerima" id="id_${row.id}" data-bs-toggle="modal" data-bs-target="#penerima">Lihat Penerima</button>`
             );
           }
         },

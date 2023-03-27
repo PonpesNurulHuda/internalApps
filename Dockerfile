@@ -3,7 +3,8 @@ FROM php:8.0.2-fpm-alpine
 # envirotmen variable
 ENV \
     APP_DIR="/app" \
-    APP_PORT="8080"
+    APP_PORT="8080"\
+    APP_PORT="80"
 
 # memindahkan file ke docker
 COPY . $APP_DIR

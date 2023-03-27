@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+  enha:
+
+services:
+  php:
+    build: 
+      context: .
+      dockerfile: docker/php/DockerfilePhp
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/code
+    networks:
+      - enha
+  
+  nginx:
+    image: nginx:1.19.0-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/code
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - enha

@@ -26,7 +26,8 @@ $(document).on("click", "#btnAddSantri", function () {
                 </select>
             </td>
             <td>
-                
+            <td>
+                <label>On Going</label>
             </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
@@ -49,7 +50,7 @@ function getData(tr) {
   dataPost.nis = $(`.tr_${tr} .nis`).val().trim();
   dataPost.nama = $(`.tr_${tr} .nama`).val().trim();
   dataPost.tanggal_lahir = $(`.tr_${tr} .tanggal_lahir`).html();
-  dataPost.gender = $(`.tr_${tr} .gender`).html();
+  dataPost.gender = $(`.tr_${tr} .gender`).val();
   dataPost.is_mustahiq = $(`.tr_${tr} .is_mustahiq`).html();
 
   return dataPost;
@@ -116,6 +117,7 @@ $(document).on("click", ".btnSave", function () {
                         <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td> 
                         <td class="gender">${dataPost.gender}</td> 
                         <td class="is_mustahiq">${dataPost.is_mustahiq}</td> 
+                        <td class=""></td> 
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                             <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
