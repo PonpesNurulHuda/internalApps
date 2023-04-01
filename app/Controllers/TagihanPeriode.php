@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\TagihanModel;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\TagihanDetailModel;
+use App\Models\TagihanPeriodeModel;
 
 class TagihanPeriode extends BaseController
 {
@@ -16,17 +16,18 @@ class TagihanPeriode extends BaseController
         $idLogin = $session->get('id');
 
         $this->db = [
-            'tagihanDetail' => new TagihanDetailModel(),
+            'tagihanPeriode' => new TagihanPeriodeModel(),
             'tagihan' => new TagihanModel()
         ];
     }
 
     public function index()
     {
-        $semester = new TagihanModel();
-        $data = $semester->findAll();
+        $tdm = new TagihanPeriodeModel();
+        $data = $tdm->GetAll();
         $data['data'] = $data;
-        return view('tagihan/index', $data);
+        $data['dtTagihanMaster'] = $this->db['tagihan']->getWhere(['is_active' => 1])->getResultArray();
+        return view('tagihan/tagihanPeriode', $data);
     }
 
     public function add()
@@ -35,29 +36,27 @@ class TagihanPeriode extends BaseController
         $validation =  \Config\Services::validation();
         // setiap kolom kasih validasi is required
         // kecuali created_at, updated_at dan id 
-
         $validation->setRules(['nama' => 'required']);
-        $validation->setRules(['description' => 'required']);
+        $validation->setRules(['tagihan_id' => 'required']);
         $validation->setRules(['jumlah' => 'required']);
         $validation->setRules(['is_active' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
-
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new TagihanModel();
+            $data = new TagihanPeriodeModel();
 
             $id = $data->insert([
                 "nama" => $this->request->getPost('nama'),
-                "description" => $this->request->getPost('description'),
-                "jumlah" => $this->request->getPost('jumlah'),
+                "id_tagihan" => $this->request->getPost('tagihan_id'),
+                "jatuh_tempo" => $this->request->getPost('jatuh_tempo'),
                 "is_active" => $this->request->getPost('is_active')
             ]);
 
             if ($id > 0) {
                 $data = [
                     'id' => $id,
-                    'pesan' => 'data semester tersimpan',
+                    'pesan' => 'data periode tagihan tersimpan',
                 ];
                 return $this->respond($data, 200);
             }

@@ -47,7 +47,6 @@ $routes->add('kelas/update', 'kelas::update');
 $routes->add('mapel_kategori/add', 'mapel_kategori::add');
 $routes->add('mapel_kategori/update', 'mapel_kategori::update');
 
-
 //mapel_kelas
 $routes->add('mapel_kelas/add', 'mapel_kelas::add');
 $routes->add('mapel_kelas/update', 'mapel_kelas::update');
@@ -98,6 +97,8 @@ $routes->add('terimaCicilan', 'TagihanDetail::terimaCicilan');
 $routes->add('editJumlahTagihan', 'TagihanDetail::editJumlahTagihan');
 $routes->add('tagihanDetail/generate', 'TagihanDetail::generate');
 $routes->add('add1Tagihan', 'TagihanDetail::add1Tagihan');
+
+$routes->add('tagihanPeriode/add', 'TagihanPeriode::add');
 
 // Login
 $routes->get('/login', 'Auth::index');
