@@ -7,6 +7,7 @@ use App\Models\TagihanDetailModel;
 use App\Models\TagihanCicilanModel;
 use App\Models\TagihanModel;
 use App\Models\SantriModel;
+use App\Models\TagihanPeriodeModel;
 use CodeIgniter\API\ResponseTrait;
 
 class TagihanDetail extends BaseController 
@@ -23,6 +24,7 @@ class TagihanDetail extends BaseController
         $kelas = new KelasModel();
         $tagihanDetail = new TagihanDetailModel();
         $tagihanCicilan = new TagihanCicilanModel();
+        $tagihanPeriode = new TagihanPeriodeModel();
         $tagihan = new TagihanModel();
         $santri = new SantriModel();
         $this->idLogin = $idLogin;
@@ -31,7 +33,8 @@ class TagihanDetail extends BaseController
             'tagihanDetail' => $tagihanDetail,
             'tagihan' => $tagihan,
             'santri' => $santri,
-            'tagihanCicilan' => $tagihanCicilan
+            'tagihanCicilan' => $tagihanCicilan,
+            'tagihanPeriode' => $tagihanPeriode
         ];
     }
     public function index()
@@ -40,6 +43,7 @@ class TagihanDetail extends BaseController
         $data['dtKelas'] = $this->db['kelas']->KelasActive();
         $data['dtSantri'] = $this->db['santri']->GetSantriKelas();
         $data['dtTagihan'] = $this->db['tagihanDetail']->GetAllTagihan();
+        $data['dtPeriode'] = $this->db['tagihanPeriode']->GetAll();
         
         return view('tagihanDetail', $data);
         }
@@ -50,6 +54,7 @@ class TagihanDetail extends BaseController
         $data['dtKelas'] = $this->db['kelas']->KelasActive();
         $data['dtSantri'] = $this->db['santri']->GetSantriKelas();
         $data['dtTagihan'] = $this->db['tagihanDetail']->GetAllTagihan();
+        $data['dtPeriode'] = $this->db['tagihanPeriode']->GetAll();
         
         return view('tagihan/semuaTagihan', $data);
     }
@@ -58,14 +63,15 @@ class TagihanDetail extends BaseController
     {
         $kelas = $this->request->getPost('kelas');
         $id_tagihan = $this->request->getPost('id_tagihan');
+        $id_periode = $this->request->getPost('id_periode');
         $jatuh_tempo = $this->request->getPost('jatuh_tempo');
 
         if($kelas != 0){
-            $this->generateTagihanByClass($kelas, $id_tagihan, $jatuh_tempo);
+            $this->generateTagihanByClass($kelas, $id_tagihan, $jatuh_tempo,$id_periode);
         }else{
             $kelasActive = $this->db['kelas']->KelasActive();
             foreach($kelasActive as $a){
-                $this->generateTagihanByClass($a['id'], $id_tagihan, $jatuh_tempo);
+                $this->generateTagihanByClass($a['id'], $id_tagihan, $jatuh_tempo,$id_periode);
             }
         }
 
@@ -80,7 +86,9 @@ class TagihanDetail extends BaseController
         $id_santri = $this->request->getPost('id_santri');
         $id_tagihan = $this->request->getPost('id_tagihan');
         $jatuh_tempo = $this->request->getPost('jatuh_tempo');
-        $this->addTagihan($id_santri, $id_tagihan, $jatuh_tempo);
+        $id_periode = $this->request->getPost('id_periode');
+        
+        $this->addTagihan($id_santri, $id_tagihan, $jatuh_tempo, $id_periode);
         $data = [
             'status' => 1,
             'pesan' => 'sukses',
@@ -88,14 +96,14 @@ class TagihanDetail extends BaseController
         return $this->respond($data, 200);
     }
 
-    private function generateTagihanByClass($kelas, $id_tagihan, $jatuh_tempo){
+    private function generateTagihanByClass($kelas, $id_tagihan, $jatuh_tempo, $id_periode){
         $dtSantri = $this->db['santri']->GetSantriKelasByKelas($kelas);
         foreach($dtSantri as $a){
-            $this->addTagihan($a['id'],$id_tagihan, $jatuh_tempo);
+            $this->addTagihan($a['id'],$id_tagihan, $jatuh_tempo, $id_periode);
         }
     }
 
-    private function addTagihan($id_santri, $id_tagihan, $jatuh_tempo){
+    private function addTagihan($id_santri, $id_tagihan, $jatuh_tempo, $periode){
         $jumlah = $this->db['tagihan']->getTagihan($id_tagihan)[0]['jumlah'];
 
         $this->db['tagihanDetail']->insert([
@@ -104,7 +112,8 @@ class TagihanDetail extends BaseController
             "tanggal_pembuatan" => date('Y-m-d'),
             "tanggal_jatuh_tempo" => $jatuh_tempo,
             "jumlah" => $jumlah,
-            "status" => 0
+            "status" => 0,
+            "id_periode" => $periode
         ]);
     }
 

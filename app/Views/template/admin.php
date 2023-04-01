@@ -393,18 +393,23 @@ $nama = $session->get('nama');
             </a>
           </li>
           <li>
-            <a href="<?php echo base_url('tagihanDetail/index2'); ?>">
-              <i class="bi bi-circle"></i><span>Tagihan Detail</span>
-            </a>
-          </li>
-          <li>
             <a href="<?php echo base_url('tagihanPeriode'); ?>">
               <i class="bi bi-circle"></i><span>Tagihan Periode</span>
             </a>
           </li>
           <li>
+            <a href="<?php echo base_url('tagihanDetail/index2'); ?>">
+              <i class="bi bi-circle"></i><span>Tagihan Detail</span>
+            </a>
+          </li>
+          <li>
             <a href="<?php echo base_url('tagihan/rekap'); ?>">
               <i class="bi bi-circle"></i><span>Rekap Per Tagihan</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo base_url('tagihan/rekapbulan'); ?>">
+              <i class="bi bi-circle"></i><span>Rekap Per Bulan</span>
             </a>
           </li>
         </ul>

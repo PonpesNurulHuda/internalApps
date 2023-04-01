@@ -140,7 +140,7 @@
 <script>
     var dtTagihanMaster =<?php echo json_encode($dtTagihanMaster); ?>;
     var dtSantri =<?php echo json_encode($dtSantri); ?>;
-    
+    var dtPeriode =<?php echo json_encode($dtPeriode); ?>;
 </script>
 
 <?= $this->endSection() ?>

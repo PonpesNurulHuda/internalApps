@@ -42,7 +42,6 @@
                                 </th>
                                 <th>
                                     <select class="form-control santri">
-                                        <option value="all">Semua Santri</option>
                                     </select>
                                 </th>
                                 <td>
@@ -68,8 +67,8 @@
                                 <th>Santri</th>
                                 <th>Kelas</th>
                                 <th>Tagihan</th>
-                                <th width="10%">Tgl Pembuatan</th>
-                                <th width="10%">Tgl Jatuh Tempo</th>
+                                <th>Periode</th>
+                                <th>Jatuh Tempo</th>
                                 <th>Jumlah</th>
                                 <th>Cicilan</th>
                                 <th>Status</th>
@@ -110,6 +109,12 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label labelTagihan">Periode</label>
+                    <select class="form-control drPeriode">
+                        <option value="0">Pilih Periode</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Jumlah</label>
                     <input type="int" class="form-control jumlah_tagihan" readonly>
                 </div>
@@ -130,7 +135,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="generateTagihan"></h5>
+                <h5 class="modal-title" id="titleGenerateTagihan"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="fmGnrtTagihan">
@@ -141,6 +146,12 @@
                         <?php foreach ($dtTagihanMaster as $dt) : ?>
                             <option value="<?= $dt['id'] ?>"><?= $dt['nama'] ?></option>
                         <?php endforeach ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label labelTagihan">Periode</label>
+                    <select class="form-control drPeriode">
+                        <option value="0">Pilih Periode</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -189,5 +200,6 @@
 <script>
     var dtTagihanMaster = <?php echo json_encode($dtTagihanMaster); ?>;
     var dtSantri = <?php echo json_encode($dtSantri); ?>;
+    var dtPeriode = <?php echo json_encode($dtPeriode); ?>;
 </script>
 <?= $this->endSection() ?>

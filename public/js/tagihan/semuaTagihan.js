@@ -24,6 +24,8 @@ $(document).on("click", ".drKelas", function () {
 $(document).on("click change", ".drTagihan", function () {
   idTagihan = $(this).val();
   var jlmTag = getJumlahTagihan(idTagihan);
+  var optionPeriode = getPeriodeTagihan(idTagihan);
+  $(".drPeriode").html(optionPeriode);
   $(".jumlah_tagihan").val(jlmTag);
 });
 
@@ -35,7 +37,7 @@ function refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri) {
       { data: "santri" },
       { data: "kelas" },
       { data: "namaTagihan" },
-      { data: "tanggal_pembuatan" },
+      { data: "namaPeriode" },
       { data: "tanggal_jatuh_tempo" },
       {
         "mData": null,
@@ -83,8 +85,12 @@ function getListSantri() {
       listSantri += `<option value=${element.id}>${element.nama}</option>`;
     }
   });
-  $(".santri").append(listSantri);
+  
   $(".id_santriDr").append(listSantri);
+
+  listSantri2 = `<option value="all">Semua Santri</option>`+listSantri;
+  $(".santri").append(listSantri2);
+
 }
 
 function getJumlahTagihan(id) {
@@ -97,55 +103,83 @@ function getJumlahTagihan(id) {
   return jumlah;
 }
 
+function getPeriodeTagihan(id) {
+  jumlah = 0;
+  var optionPeriode = "";
+  dtPeriode.forEach((element) => {
+    if (element.id_tagihan == id) {
+      optionPeriode += `<option value="${element.id}">${element.nama}</option>`;
+    }
+  });
+  return optionPeriode;
+}
+
 // Post Data ======================================================================
 $(document).on("click", "#btnGenerateTagihan", function () {
+  $("#btnGenerateTagihan").attr('disabled','disabled');
   var data = new Object();
   data.kelas = idKelas;
   data.id_tagihan = $("#fmGnrtTagihan .drTagihan").val();
+  data.id_periode = $("#fmGnrtTagihan .drPeriode").val();
   data.jatuh_tempo = $("#fmGnrtTagihan .jatuh_tempo").val();
-
   console.log(data);
-  $.ajax({
-    url: "../tagihanDetail/generate",
-    type: "POST",
-    data: data,
-    success: function (response) {
-      console.log(response);
-      if (response.status == 1) {
-        alert("Sukses");
-        $(".btn-close").click();
-        refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
-      }
-    },
-    error: function () {
-      alert("Terjadi kesalahan");
-    },
-  });
+  if(data.id_tagihan == "0" ||data.id_periode == "0" ||data.jatuh_tempo == ""){
+    alert('Mohon dilengkapi kolom nya');
+    $("#add1Tagihan").removeAttr('disabled');
+  }else{
+    $.ajax({
+      url: "../tagihanDetail/generate",
+      type: "POST",
+      data: data,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 1) {
+          alert("Sukses");
+          $(".btn-close").click();
+          // refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          $("#btnCari").click();
+        }
+      },
+      error: function () {
+        alert("Terjadi kesalahan");
+      },
+    });
+  }
 });
 
 $(document).on("click", "#add1Tagihan", function () {
+  $("#add1Tagihan").attr('disabled','disabled')
   var data = new Object();
   data.id_santri = $("#fmAddTagihan .id_santriDr").val();
   data.id_tagihan = $("#fmAddTagihan .drTagihan").val();
+  data.id_periode = $("#fmAddTagihan .drPeriode").val();
   data.jatuh_tempo = $("#fmAddTagihan .jatuh_tempo").val();
 
   console.log(data);
-  $.ajax({
-    url: "../add1Tagihan",
-    type: "POST",
-    data: data,
-    success: function (response) {
-      console.log(response);
-      if (response.status == 1) {
-        alert("Sukses");
-        $(".btn-close").click();
-        refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
-      }
-    },
-    error: function () {
-      alert("Terjadi kesalahan");
-    },
-  });
+  if(data.id_tagihan == "0" ||data.id_periode == "0" ||data.jatuh_tempo == ""){
+    alert('Mohon dilengkapi kolom nya');
+    $("#add1Tagihan").removeAttr('disabled');
+  }else{
+    $.ajax({
+      url: "../add1Tagihan",
+      type: "POST",
+      data: data,
+      success: function (response) {
+        console.log(response);
+        if (response.status == 1) {
+          alert("Sukses");
+          $(".btn-close").click();
+          // refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          $("#btnCari").click();
+          $("#add1Tagihan").removeAttr('disabled');
+        }
+      },
+      error: function () {
+        alert("Terjadi kesalahan");
+        $("#add1Tagihan").removeAttr('disabled');
+      },
+    });
+  }
 });
 
 // Bayar ------------------------------------------------------------------
@@ -168,7 +202,8 @@ $(document).on("click", ".terimaPembarayan", function () {
         var data = response;
         if (data.id != "0") {
           alert("sukses");
-          refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          // refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          $("#btnCari").click();
         } else {
           alert(data.pesan);
         }
@@ -211,7 +246,7 @@ $(document).on("click", ".saveNewTagihan", function () {
   var dataPost = new Object();
     dataPost.id = id;
     dataPost.jmlTagihan = $("#newjmlTagihan_"+id).val();
-console.log(dataPost);
+    console.log(dataPost);
     $.ajax({
       url: "../editJumlahTagihan",
       type: "POST",
@@ -221,7 +256,8 @@ console.log(dataPost);
         var data = response;
         if (data.id != "0") {
           alert("sukses");
-          refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          // refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          $("#btnCari").click();
         } else {
           alert(data.pesan);
         }
@@ -254,7 +290,8 @@ $(document).on("click", ".terimaCicil", function () {
         var data = response;
         if (data.id != "0") {
           alert("sukses");
-          refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          // refressTable(idKelas, idTagihan, statusPenerimaaan, idSantri);
+          $("#btnCari").click();
         } else {
           alert(data.pesan);
         }
@@ -265,3 +302,8 @@ $(document).on("click", ".terimaCicil", function () {
     });
   }
 });
+
+
+$(document).on("click", ".generateTagihan", function () {
+  $("#titleGenerateTagihan").html("Generate tagihan untuk "+ $(".drKelas option:selected" ).text()) ;
+})

@@ -128,6 +128,13 @@ class Tagihan extends BaseController
         return $this->respond($output, 200);
     }
 
+    public function rekapbulan($tahun){
+        $data = $this->db['tagihanDetail']->rekapPerBulan($tahun);
+        $data['data'] = $data;
+        return view('tagihan/rekapbulan', $data);
+    }
+    
+
     public function rekapTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri){
         
 

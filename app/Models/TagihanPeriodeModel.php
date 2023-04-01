@@ -19,6 +19,7 @@ class TagihanPeriodeModel extends Model
         return $this->db->table('tagihan_periode')
             ->join('tagihan', 'tagihan.id = tagihan_periode.id_tagihan')
             ->select('tagihan_periode.*, tagihan.nama as namaTagihan')
+            ->where('tagihan_periode.is_active', 1)
             ->get()->getResultArray();
     }
 }
