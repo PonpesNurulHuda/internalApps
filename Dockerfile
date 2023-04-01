@@ -11,7 +11,7 @@ RUN php -m | grep intl
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 ENV WEB_DOCUMENT_ROOT /app/public
-ENV APP_ENV production
+# ENV APP_ENV production
 WORKDIR /app
 COPY . .
 
@@ -64,7 +64,7 @@ EXPOSE 80
 # # akses dari luar docker
 # EXPOSE $APP_PORT
 
-# docker build . -t ci4-docker:002
+# docker build . -t enha:009
 # buil docker 
 # . = tempat ini
 # ci4-docker = nama image
