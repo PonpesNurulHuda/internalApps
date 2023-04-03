@@ -14,11 +14,10 @@
 # # ENV APP_ENV production
 # WORKDIR /app
 # COPY . /app
+# COPY env /app/env.env
 
 # RUN composer install --no-interaction --optimize-autoloader
 # RUN chown -R application:application .
-
-# EXPOSE 80
 
 # lama
 FROM php:8.0.2-fpm-alpine
@@ -26,7 +25,6 @@ FROM php:8.0.2-fpm-alpine
 # envirotmen variable
 ENV \
     APP_DIR="/app" \
-    APP_PORT="8080"\
     APP_PORT="80"
 
 # memindahkan file ke docker
