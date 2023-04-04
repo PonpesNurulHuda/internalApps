@@ -68,109 +68,197 @@ class TagihanDetailModel extends Model
     {
         $db      = \Config\Database::connect();
         $query = '
-        select 
-            s.id, s.nama, 
-            IFNULL(SUM(td1.jumlah),0) - IFNULL(SUM(tc1.jumlah),0) as Jan,
-            IFNULL(SUM(td2.jumlah),0) - IFNULL(SUM(tc2.jumlah),0) as Feb,
-            IFNULL(SUM(td3.jumlah),0) - IFNULL(SUM(tc3.jumlah),0) as Mar,
-            IFNULL(SUM(td4.jumlah),0) - IFNULL(SUM(tc4.jumlah),0) as Apr,
-            IFNULL(SUM(td5.jumlah),0) - IFNULL(SUM(tc5.jumlah),0) as Mei,
-            IFNULL(SUM(td6.jumlah),0) - IFNULL(SUM(tc6.jumlah),0) as Jun,
-            IFNULL(SUM(td7.jumlah),0) - IFNULL(SUM(tc7.jumlah),0) as Jul,
-            IFNULL(SUM(td8.jumlah),0) - IFNULL(SUM(tc8.jumlah),0) as Ags,
-            IFNULL(SUM(td9.jumlah),0) - IFNULL(SUM(tc9.jumlah),0) as Sep,
-            IFNULL(SUM(td10.jumlah),0) - IFNULL(SUM(tc10.jumlah),0) as Okt,
-            IFNULL(SUM(td11.jumlah),0) - IFNULL(SUM(tc11.jumlah),0) as Nov,
-            IFNULL(SUM(td12.jumlah),0) - IFNULL(SUM(tc12.jumlah),0) as Des
-        from 
-        santri s 
-        left join tagihan_detail td1 on 
-            s.id = td1.id_santri 
-            AND MONTH(td1.tanggal_jatuh_tempo) = 1
-            AND YEAR(td1.tanggal_jatuh_tempo) = 2023 
-            AND td1.status = 0
-        left join tagihan_cicilan tc1 on td1.id_tagihan = tc1.id_tagihan_detail 
-        
-        left join tagihan_detail td2 on 
-            s.id = td2.id_santri 
-            and MONTH(td2.tanggal_jatuh_tempo) = 2 
-            AND YEAR(td2.tanggal_jatuh_tempo) = 2023 
-            and td2.status = 0
-        left join tagihan_cicilan tc2 on td2.id_tagihan = tc2.id_tagihan_detail
-        
-        left join tagihan_detail td3 on s.id = td3.id_santri 
-            and MONTH(td3.tanggal_jatuh_tempo) = 3 
-            AND YEAR(td3.tanggal_jatuh_tempo) = 2023 
-            and td3.status = 0
-        left join tagihan_cicilan tc3 on td3.id_tagihan = tc3.id_tagihan_detail
-        
-        left join tagihan_detail td4 on 
-            s.id = td4.id_santri 
-            and MONTH(td4.tanggal_jatuh_tempo) = 4
-            AND YEAR(td4.tanggal_jatuh_tempo) = 2023 
-            and td4.status = 0
-        left join tagihan_cicilan tc4 on td4.id_tagihan = tc4.id_tagihan_detail
-        
-        left join tagihan_detail td5 on 
-            s.id = td5.id_santri 
-            and MONTH(td5.tanggal_jatuh_tempo) = 5
-            AND YEAR(td5.tanggal_jatuh_tempo) = 2023 
-            and td2.status = 0
-        left join tagihan_cicilan tc5 on td5.id_tagihan = tc5.id_tagihan_detail
-        
-        left join tagihan_detail td6 on 
-            s.id = td6.id_santri 
-            and MONTH(td6.tanggal_jatuh_tempo) = 6 
-            AND YEAR(td6.tanggal_jatuh_tempo) = 2023 
-            and td2.status = 0
-        left join tagihan_cicilan tc6 on td6.id_tagihan = tc6.id_tagihan_detail
-        
-        left join tagihan_detail td7 on 
-            s.id = td7.id_santri 
-            and MONTH(td7.tanggal_jatuh_tempo) = 7
-            AND YEAR(td7.tanggal_jatuh_tempo) = 2023 
-            and td7.status = 0
-        left join tagihan_cicilan tc7 on td7.id_tagihan = tc7.id_tagihan_detail
-        
-        left join tagihan_detail td8 on 
-            s.id = td8.id_santri 
-            and MONTH(td8.tanggal_jatuh_tempo) = 8 
-            AND YEAR(td8.tanggal_jatuh_tempo) = 2023 
-            and td8.status = 0
-        left join tagihan_cicilan tc8 on td8.id_tagihan = tc8.id_tagihan_detail
-        
-        left join tagihan_detail td9 on 
-            s.id = td9.id_santri 
-            and MONTH(td9.tanggal_jatuh_tempo) = 9
-            AND YEAR(td9.tanggal_jatuh_tempo) = 2023 
-            and td9.status = 0
-        left join tagihan_cicilan tc9 on td9.id_tagihan = tc9.id_tagihan_detail
-        
-        left join tagihan_detail td10 on 
-            s.id = td10.id_santri 
-            and MONTH(td10.tanggal_jatuh_tempo) = 10 
-            AND YEAR(td10.tanggal_jatuh_tempo) = 2023 
-            and td10.status = 0
-        left join tagihan_cicilan tc10 on td10.id_tagihan = tc10.id_tagihan_detail
-        
-        left join tagihan_detail td11 on 
-            s.id = td11.id_santri 
-            and MONTH(td11.tanggal_jatuh_tempo) = 11 
-            AND YEAR(td11.tanggal_jatuh_tempo) = 2023 
-            and td11.status = 0
-        left join tagihan_cicilan tc11 on td11.id_tagihan = tc11.id_tagihan_detail
-        
-        left join tagihan_detail td12 on 
-            s.id = td12.id_santri 
-            and MONTH(td12.tanggal_jatuh_tempo) = 12
-            AND YEAR(td12.tanggal_jatuh_tempo) = 2023 
-            and td12.status = 0
-        left join tagihan_cicilan tc12 on td12.id_tagihan = tc12.id_tagihan_detail
-        group by 
-            s.id, s.nama
+        SELECT *, Jan+Feb+Mar+Apr+Mei+Jun+Jul+Ags+Okt+Nov+Des as Total FROM (
+            SELECT  
+                s.id, s.nama
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 1 
+                ) as Jan
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 2 
+                ) as Feb
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 3 
+                ) as Mar
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 4
+                ) as Apr
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 5 
+                ) as Mei
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 6 
+                ) as Jun
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 7 
+                ) as Jul
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 8 
+                ) as Ags
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 9 
+                ) as Sep
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 10
+                ) as Okt
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 11 
+                ) as Nov
+                , (
+                    SELECT IFNULL(SUM(td.jumlah),0) - IFNULL(SUM(tc.jumlah),0) as jml  
+                    FROM 
+                        tagihan_detail td 
+                        LEFT JOIN tagihan_cicilan tc on td.id = tc.id_tagihan_detail 
+                    WHERE 
+                        td.id_santri = s.id 
+                        AND YEAR(td.tanggal_jatuh_tempo) = 2023
+                        AND MONTH(td.tanggal_jatuh_tempo) = 12 
+                ) as Des
+            
+            FROM 
+                santri s 
+        ) a        
         ';
         return $db->query($query)->getResultArray();
     }
+
+    public function rekapPerSantri()
+    {
+        $db      = \Config\Database::connect();
+        $query = 
+        'select 
+            s.id, 
+            s.nama,
+            t.nama as namaTagihan,
+            tp.nama as periode,
+            td.jumlah,
+            IFNULL(sum(tc.jumlah),0) as jumlahCicilan,
+            td.jumlah-IFNULL(sum(tc.jumlah),0) as total
+        from santri s 
+        left join tagihan_detail td on td.id_santri = s.id 
+        left join tagihan t on t.id = td.id_tagihan
+        left join tagihan_periode tp on tp.id = td.id_periode 
+        left join tagihan_cicilan tc on tc.id_tagihan_detail = td.id 
+        where 
+            td.jumlah is not null
+            and td.status = 0
+        group by 
+            s.id, 
+            s.nama,
+            t.nama,
+            tp.nama,
+            td.jumlah,
+            td.tanggal_jatuh_tempo
+
+        order by 
+            s.nama, 
+            td.tanggal_jatuh_tempo
+        ';
+        return $db->query($query)->getResultArray();
+    }
+
+    public function SumPerSantri()
+    {
+        $db      = \Config\Database::connect();
+        $query = 
+        '
+        select 
+            s.id, 
+            s.nama,
+            IFNULL(sum(td.jumlah),0) - IFNULL(sum(tc.jumlah),0)  as jumlahTagihan,
+            sk.id_kelas
+        from santri s 
+        left join siswa_kelas sk on sk.id_siswa = s.id and sk.is_active = 1
+        left join tagihan_detail td on td.id_santri = s.id 
+        left join tagihan t on t.id = td.id_tagihan
+        left join tagihan_cicilan tc on tc.id_tagihan_detail = td.id 
+        group by 
+            s.id, 
+            s.nama,
+            sk.id_kelas
+        order by s.nama
+        ';
+        return $db->query($query)->getResultArray();
+    }
+
+    
 
     public function rekapPerTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri)
     {
@@ -223,6 +311,8 @@ class TagihanDetailModel extends Model
                     'tagihan_periode.nama', 
                     'tagihan_detail.tanggal_jatuh_tempo'
                 ])
+                ->orderBy('santri.nama', 'asc')
+                ->orderBy('tagihan_detail.tanggal_jatuh_tempo', 'asc')
                 ->get()->getResultArray();
     }
 

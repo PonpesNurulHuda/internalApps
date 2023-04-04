@@ -303,7 +303,7 @@ $nama = $session->get('nama');
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" hidden>
         <a class="nav-link collapsed" data-bs-target="#nilai" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Nilai</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -321,7 +321,7 @@ $nama = $session->get('nama');
         </ul>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" hidden>
         <a class="nav-link collapsed" data-bs-target="#mapel" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Mata Pelajaran</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -403,13 +403,13 @@ $nama = $session->get('nama');
             </a>
           </li>
           <li>
-            <a href="<?php echo base_url('tagihan/rekap'); ?>">
-              <i class="bi bi-circle"></i><span>Rekap Per Tagihan</span>
+            <a href="<?php echo base_url('tagihan/rekapbulan')."/".date("Y"); ?>">
+              <i class="bi bi-circle"></i><span>Rekap Per Bulan</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo base_url('tagihan/rekapbulan'); ?>">
-              <i class="bi bi-circle"></i><span>Rekap Per Bulan</span>
+            <a href="<?php echo base_url('tagihan/rekapsantri'); ?>">
+              <i class="bi bi-circle"></i><span>Rekap Per Santri</span>
             </a>
           </li>
         </ul>

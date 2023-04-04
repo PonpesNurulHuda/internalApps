@@ -25,20 +25,12 @@ FROM php:8.0.2-fpm-alpine
 # envirotmen variable
 ENV \
     APP_DIR="/app" \
-    APP_PORT="80"
+    APP_PORT="8080"
 
 # memindahkan file ke docker
 COPY . $APP_DIR
 COPY env $APP_DIR/.env
 
-#RUN apk update 
-# RUN apk add icu-dev
-# RUN docker-php-ext-configure intl
-# RUN docker-php-ext-install intl
-# RUN docker-php-ext-enable intl
-# RUN docker-php-ext-install mysqli
-# RUN docker-php-ext-enable mysqli
-# RUN php -m | grep intl
 
 # mengistall composer
 RUN curl -sS https://getcomposer.org/installer | php --\

@@ -25,14 +25,10 @@ class Santri extends BaseController
         $validation =  \Config\Services::validation();
         // setiap kolom kasih validasi is required
         // kecuali created_at, updated_at dan id 
-
-        $validation->setRules(['kk' => 'required']);
-        $validation->setRules(['nik' => 'required']);
         $validation->setRules(['nama' => 'required']);
         $validation->setRules(['nis' => 'required']);
         $validation->setRules(['tanggal_lahir' => 'required']);
         $validation->setRules(['gender' => 'required']);
-        $validation->setRules(['is_mustahiq' => 'required']);
 
         $isDataValid = $validation->withRequest($this->request)->run();
 
@@ -41,13 +37,12 @@ class Santri extends BaseController
             $data = new SantriModel();
 
             $id = $data->insert([
-                "kk" => $this->request->getPost('kk'),
-                "nik" => $this->request->getPost('nik'),
                 "nis" => $this->request->getPost('nis'),
                 "nama" => $this->request->getPost('nama'),
                 "tanggal_lahir" => $this->request->getPost('tanggal_lahir'),
                 "gender" => $this->request->getPost('gender'),
-                "is_mustahiq" => $this->request->getPost('is_mustahiq')
+                "no_hp1" => $this->request->getPost('no_hp1'),
+                "no_hp2" => $this->request->getPost('no_hp2')
             ]);
 
             if ($id > 0) {

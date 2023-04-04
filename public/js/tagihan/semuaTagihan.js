@@ -307,3 +307,15 @@ $(document).on("click", ".terimaCicil", function () {
 $(document).on("click", ".generateTagihan", function () {
   $("#titleGenerateTagihan").html("Generate tagihan untuk "+ $(".drKelas option:selected" ).text()) ;
 })
+
+$(document).on("change", ".drPeriode", function () {
+  console.log();
+  var idPeriode = $(this).val(); 
+
+  dtPeriode.forEach((element) => {
+    if (element.id == idPeriode) {
+      $(".jatuh_tempo").val(element.jatuh_tempo);
+      return
+    }
+  });
+})

@@ -8,8 +8,6 @@ $(document).on("click", "#btnAddSantri", function () {
   var className = makeid(10);
   $("tbody").prepend(`
         <tr class="tr_${className}">
-            <td><input type='text' class="form-control kk" id=''></td>
-            <td><input type='text' class="form-control nik" id=''></td>
             <td><input type='text' class="form-control nis" id=''></td>
             <td><input type='text' class="form-control nama" id=''></td>
             <td><input type='date' class="form-control tanggal_lahir" id=''></td>
@@ -19,15 +17,9 @@ $(document).on("click", "#btnAddSantri", function () {
                     <option value="P">Perempuan</option>
                 </select>
             </td>
-            <td>
-                <select class="form-control is_mustahiq">
-                    <option value="1">Ya</option>
-                    <option value="0" selected>Tidak</option>
-                </select>
-            </td>
-            <td>
-            <td>
-                <label>On Going</label>
+            <td colspan="2">
+                <input type='text' class="form-control no_hp1" id='' value=''>
+                <input type='text' class="form-control no_hp2" id='' value=''>
             </td>
             <td>
                 <button class='btn btn-primary btnSave' id="btnSave_${className}">Simpan</button>
@@ -45,13 +37,15 @@ $(document).on("click", ".btnCancel", function () {
 function getData(tr) {
   var dataPost = new Object();
   dataPost.id = tr;
-  dataPost.kk = $(`.tr_${tr} .kk`).val().trim();
-  dataPost.nik = $(`.tr_${tr} .nik`).val().trim();
   dataPost.nis = $(`.tr_${tr} .nis`).val().trim();
   dataPost.nama = $(`.tr_${tr} .nama`).val().trim();
+  dataPost.no_hp1 = $(`.tr_${tr} .no_hp1`).val().trim();
+  dataPost.no_hp2 = $(`.tr_${tr} .no_hp2`).val().trim();
+  
   dataPost.tanggal_lahir = $(`.tr_${tr} .tanggal_lahir`).html();
   dataPost.gender = $(`.tr_${tr} .gender`).val();
   dataPost.is_mustahiq = $(`.tr_${tr} .is_mustahiq`).html();
+
 
   return dataPost;
 }
@@ -63,22 +57,6 @@ $(document).on("click", ".btnSave", function () {
 
   var error = 0;
     $(".pesanError").remove();
-    if(dataPost.kk == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .kk`).after(`
-        <span class='pesanError' style="color:red">Kk wajib diisi</span>
-        `);
-    }
-
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.nik == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .nik`).after(`
-        <span class='pesanError' style="color:red">Nik wajib diisi</span>
-        `);
-    }
-
     var error = 0;
     $(".pesanError").remove();
     if(dataPost.nis == ""){
@@ -110,14 +88,12 @@ $(document).on("click", ".btnSave", function () {
           if (data.id != "0") {
             $("tbody").prepend(`
                     <tr class="tr_${data.id}">
-                        <td class="kk">${dataPost.kk}</td>
-                        <td class="nik">${dataPost.nik}</td>
                         <td class="nis">${dataPost.nis}</td> 
                         <td class="nama">${dataPost.nama}</td> 
                         <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td> 
                         <td class="gender">${dataPost.gender}</td> 
-                        <td class="is_mustahiq">${dataPost.is_mustahiq}</td> 
-                        <td class=""></td> 
+                        <td class="no_hp1">${dataPost.no_hp1}</td> 
+                        <td class="no_hp2">${dataPost.no_hp2}</td> 
                         <td>
                             <button class='btn btn-info btn-xs btnEdit' id="tbnEdit_${data.id}">Edit</button> 
                             <button class='btn btn-danger btn-xs btnRemove' id="btnRemove_${data.id}">Hapus</button> 
@@ -148,12 +124,12 @@ $(document).on("click", ".btnEdit", function () {
   console.log('idRow', idRow)
   var dataPost = getData(idRow);
   console.log(dataPost);
-  var kk = $(`.tr_${idRow} .kk`).html().trim();;
-  var nik = $(`.tr_${idRow} .nik`).html().trim();;
   var nis = $(`.tr_${idRow} .nis`).html().trim();;
   var nama = $(`.tr_${idRow} .nama`).html().trim();;
   var tanggal_lahir = $(`.tr_${idRow} .tanggal_lahir`).html().trim();;
   var gender = $(`.tr_${idRow} .gender`).html().trim();;
+  var no_hp1 = $(`.tr_${idRow} .no_hp1`).html().trim();;
+  var no_hp2 = $(`.tr_${idRow} .no_hp2`).html().trim();;
   var is_mustahiq = $(`.tr_${idRow} .is_mustahiq`).html().trim();;
 
   $(`.tr_${idRow}`).hide();
@@ -161,13 +137,14 @@ $(document).on("click", ".btnEdit", function () {
 
   $(`.tr_${idRow}`).before(`
       <tr class="tr_${idRow} formEdit_${idRow}">
-          <td><input type='text' class="form-control kk" id='' value='${kk}'></td>
-          <td><input type='text' class="form-control nik" id='' value='${nik}'></td>
           <td><input type='text' class="form-control nis" id='' value='${nis}'></td>
           <td><input type='text' class="form-control nama" id='' value='${nama}'></td>
           <td><input type='date' class="form-control tanggal_lahir" id='' value='${tanggal_lahir}'></td>
           <td><input type='text' class="form-control gender" id='' value='${gender}'></td>
-          <td><input type='text' class="form-control is_mustahiq" id='' value='${is_mustahiq}'></td>
+          <td colspan="2">
+            <input type='text' class="form-control no_hp1" id='' value='${no_hp1}'>
+            <input type='text' class="form-control no_hp2" id='' value='${no_hp2}'>
+          </td>
           <td>
               <button class='btn btn-primary btnSaveEdit' id="btnSave_${idRow}">Simpan</button>
               <button class='btn btn-danger btnCancelEdit' id="btnCancel_${idRow}">Batal</button>
@@ -185,23 +162,6 @@ $(document).on("click", ".btnSaveEdit", function () {
 
     var error = 0;
     $(".pesanError").remove();
-    if(dataPost.kk == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .kk`).after(`
-        <span class='pesanError' style="color:red">Kk wajib diisi</span>
-        `);
-    }
-    console.log('error', error);
-
-    var error = 0;
-    $(".pesanError").remove();
-    if(dataPost.nik == ""){
-        error = error + 1;
-        $(`.tr_${idRow} td .nik`).after(`
-        <span class='pesanError' style="color:red">Nik wajib diisi</span>
-        `);
-    }
-    console.log('error', error);
 
     var error = 0;
     $(".pesanError").remove();
@@ -238,8 +198,6 @@ $(document).on("click", ".btnSaveEdit", function () {
                 console.log('data id', response);
                 $(`.formEdit_${idRow}`).before(`
                     <tr class="tr_${data.id}">
-                        <td class="kk">${dataPost.kk}</td>
-                        <td class="nik">${dataPost.nik}</td>
                         <td class="nis">${dataPost.nis}</td>
                         <td class="nama">${dataPost.nama}</td>
                         <td class="tanggal_lahir">${dataPost.tanggal_lahir}</td>

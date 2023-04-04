@@ -302,6 +302,7 @@
     new simpleDatatables.DataTable(datatable);
   })
 
+
   
 
   /**

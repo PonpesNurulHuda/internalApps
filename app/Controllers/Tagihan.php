@@ -5,7 +5,8 @@ namespace App\Controllers;
 use App\Models\TagihanModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\TagihanDetailModel;
-
+use App\Models\KelasModel;
+use App\Models\SantriModel;
 class Tagihan extends BaseController
 {
     use ResponseTrait;
@@ -17,7 +18,9 @@ class Tagihan extends BaseController
 
         $this->db = [
             'tagihanDetail' => new TagihanDetailModel(),
-            'tagihan' => new TagihanModel()
+            'tagihan' => new TagihanModel(),
+            'kelas' => new KelasModel(),
+            'santri' => new SantriModel()
         ];
     }
 
@@ -133,7 +136,15 @@ class Tagihan extends BaseController
         $data['data'] = $data;
         return view('tagihan/rekapbulan', $data);
     }
-    
+
+    public function rekapsantri(){
+        $dataRekap = $this->db['tagihanDetail']->rekapPerSantri();
+        // $data['dtSantri'] = $this->db['santri']->GetSantriKelas();
+        $data['dtSantri'] =  $this->db['tagihanDetail']->SumPerSantri();
+        $data['dtKelas'] = $this->db['kelas']->KelasActive();
+        $data['dataRekap'] = $dataRekap;
+        return view('tagihan/rekapsantri', $data);
+    }
 
     public function rekapTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri){
         

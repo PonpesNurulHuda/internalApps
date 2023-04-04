@@ -17,7 +17,7 @@
             <div class="card overflow-x">
                 <div class="card-body dtSemester">
                     <h5 class="card-title">Rekap Tagihan</h5>
-                    <table id="tableRekap" class="display" style="width:100%">
+                    <table id="tableRekap" class="display datatable" style="width:100%">
                         <thead>
                             <tr>
                                 <th hidden>id</th>
@@ -34,6 +34,7 @@
                                 <th>Oktober</th>
                                 <th>November</th>
                                 <th>Desember</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +80,9 @@
                                     <td>
                                         <?php if($d['Des'] != 0){ echo "<button class='btn btn-primary btn-sm detail' bulan='1' id='id_".$d['id']."' >". number_format($d['Des'])."</button>";}  ?>
                                     </td>
+                                    <td>
+                                        <?php if($d['Total'] != 0){ echo "<button class='btn btn-primary btn-sm detail' bulan='1' id='id_".$d['id']."' >". number_format($d['Total'])."</button>";}  ?>
+                                    </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
@@ -90,8 +94,6 @@
 </section>
 
 <?= $this->endSection() ?>
-
-
 <?= $this->section('content') ?>
 <script src="<?php echo base_url('js/tagihan/rekapBulan.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>
