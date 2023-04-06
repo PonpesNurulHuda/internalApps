@@ -16,6 +16,7 @@ RUN a2enmod rewrite headers
 
 # Copy application files to working directory
 COPY . .
+COPY env .env
 
 # Copy the configuration file for Apache
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
