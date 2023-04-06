@@ -1,62 +1,41 @@
-# FROM webdevops/php-nginx:8.1-alpine
-# RUN apk add icu-dev
-# RUN docker-php-ext-configure intl
-# RUN docker-php-ext-install intl
-# RUN docker-php-ext-enable intl
-# RUN docker-php-ext-install mysqli
-# RUN docker-php-ext-enable mysqli
-# RUN php -m | grep intl
+FROM php:8.0-fpm-alpine
 
-# # Copy Composer binary from the Composer official Docker image
-# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Set environment variables
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# ENV WEB_DOCUMENT_ROOT /app/public
-# # ENV APP_ENV production
-# WORKDIR /app
-# COPY . /app
-# COPY env /app/env.env
+# Install required system packages
+RUN apk update && \
+    apk add icu-dev nginx supervisor
 
-# RUN composer install --no-interaction --optimize-autoloader
-# RUN chown -R application:application .
+# Install PHP extensions
+RUN docker-php-ext-install intl mysqli pdo_mysql
 
-# lama
-FROM php:8.0.2-fpm-alpine
+# Set working directory
+WORKDIR /var/www/html
 
-# envirotmen variable
-ENV \
-    APP_DIR="/app" \
-    APP_PORT="8080"
+# Copy Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# memindahkan file ke docker
-COPY . $APP_DIR
-COPY env $APP_DIR/.env
+# Copy Supervisor configuration file
+COPY supervisord.conf /etc/supervisord.conf
 
+# Copy application files to working directory
+COPY . .
 
-# mengistall composer
-RUN curl -sS https://getcomposer.org/installer | php --\
-    --install-dir=/usr/bin --filename=composer
+# Install Composer
+RUN wget https://getcomposer.org/installer -O composer-setup.php && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    rm composer-setup.php
 
-# Menjalankan perintah composer
-RUN cd $APP_DIR composer install
+# Install Composer dependencies
+RUN composer install --no-dev --optimize-autoloader
 
-# tempat kerja
-WORKDIR $APP_DIR
+# Set file permissions
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
 
-#menjalankan perintah
-RUN apk add icu-dev
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl
-RUN docker-php-ext-enable intl
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-enable mysqli
-CMD php spark serve --host 0.0.0.0
+# Expose port 80
+EXPOSE 80
 
-# akses dari luar docker
-EXPOSE $APP_PORT
-
-# docker build . -t enha:009
-# buil docker 
-# . = tempat ini
-# ci4-docker = nama image
-# 002 = versi
-# docker run --name enha -d -p 8080:8080 enha:0.0.3
+# Start Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
