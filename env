@@ -31,10 +31,10 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
+database.default.hostname = mysql
+database.default.database = enha
+database.default.username = rifk!
+database.default.password = Password
 # database.default.DBDriver = MySQLi
 # database.default.DBPrefix =
 # database.default.port = 3306
