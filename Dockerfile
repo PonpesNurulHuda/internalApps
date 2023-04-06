@@ -1,34 +1,35 @@
-FROM php:8.0-fpm-alpine
+FROM php:8.1.9-apache
 
-# Set environment variables
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    bash \
+    libicu-dev \
+    libonig-dev \
+    libzip-dev \
+    unzip \
+    && docker-php-ext-install intl mysqli pdo pdo_mysql zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
-# Install required system packages
-RUN apk update && \
-    apk add icu-dev nginx supervisor
-
-# Install PHP extensions
-RUN docker-php-ext-install intl mysqli pdo_mysql
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copy Supervisor configuration file
-COPY supervisord.conf /etc/supervisord.conf
+# Enable mod_rewrite and mod_headers
+RUN a2enmod rewrite headers
 
 # Copy application files to working directory
 COPY . .
 
-# Install Composer
-RUN wget https://getcomposer.org/installer -O composer-setup.php && \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    rm composer-setup.php
+# Copy the configuration file for Apache
+COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Install Composer dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Set the working directory to the root of the CodeIgniter installation
+WORKDIR /var/www/html
+
+# Run composer install to install dependencies
+COPY composer.json composer.lock ./
+RUN apt-get install -y git zip && \
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    composer install --no-dev && \
+    rm composer-setup.php
 
 # Set file permissions
 RUN chown -R www-data:www-data /var/www/html && \
@@ -37,5 +38,5 @@ RUN chown -R www-data:www-data /var/www/html && \
 # Expose port 80
 EXPOSE 80
 
-# Start Supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+# Start the Apache web server
+CMD ["apache2-foreground"]

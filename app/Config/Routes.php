@@ -42,61 +42,80 @@ $routes->add('kelas/add', 'kelas::add');
 $routes->add('kelas/update', 'kelas::update');
 
 //mapel_kategori
+$routes->get('mapel_kategori', 'mapel_kategori::index');
 $routes->add('mapel_kategori/add', 'mapel_kategori::add');
 $routes->add('mapel_kategori/update', 'mapel_kategori::update');
 
 //mapel_kelas
+$routes->get('mapel_kelas', 'mapel_kelas::index');
 $routes->add('mapel_kelas/add', 'mapel_kelas::add');
 $routes->add('mapel_kelas/update', 'mapel_kelas::update');
 
 //mapel_tipe
+$routes->get('mapel_tipe', 'mapel_tipe::index');
 $routes->add('mapel_tipe/add', 'mapel_tipe::add');
 $routes->add('mapel_tipe/update', 'mapel_tipe::update');
 
 //mapel
+$routes->get('mapel', 'mapel::index');
 $routes->add('mapel/add', 'mapel::add');
 $routes->add('mapel/update', 'mapel::update');
 
 //nilai_akhlaq_santri
+$routes->get('nilai_akhlaq_santri', 'nilai_akhlaq_santri::index');
 $routes->add('nilai_akhlaq_santri/add', 'nilai_akhlaq_santri::add');
 $routes->add('nilai_akhlaq_santri/update', 'nilai_akhlaq_santri::update');
 
 //nilai_santri
+$routes->get('nilai_santri', 'nilai_santri::index');
 $routes->add('nilai_santri/add', 'nilai_santri::add');
 $routes->add('nilai_santri/update', 'nilai_santri::update');
 
 //siswa_kelas
+$routes->get('siswa_kelas', 'siswa_kelas::index');
 $routes->add('siswa_kelas/add', 'Siswa_kelas::add');
 $routes->add('siswa_kelas/update', 'Siswa_kelas::update');
 
 //tahun_ajaran
+$routes->get('tahun_ajaran', 'tahun_ajaran::index');
 $routes->add('tahun_ajaran/add', 'tahun_ajaran::add');
 $routes->add('tahun_ajaran/update', 'tahun_ajaran::update');
 
 //semester
+$routes->get('semester', 'semester::index');
 $routes->add('semester/add', 'semester::add');
 $routes->add('semester/update', 'semester::update');
 
 //tbl01
-$routes->add('tbl01/add', 'tbl01::add'); 
-$routes->add('tbl01/update', 'tbl01::update');
+$routes->get('tingkat', 'tingkat::index');
+$routes->add('tingkat/add', 'tbl01::add'); 
+$routes->add('tingkat/update', 'tbl01::update');
 
 //menu
+$routes->get('menu', 'menu::index');
 $routes->add('menu/add', 'menu::add');
 $routes->add('menu/update', 'menu::update');
 
 //menu_kategori
+$routes->get('menu_kategori', 'menu_kategori::index');
 $routes->add('menu_kategori/add', 'menu_kategori::add');
 $routes->add('menu_kategori/update', 'menu_kategori::update');
 
 // Tagihan
+$routes->get('tagihan', 'tagihan::index');
 $routes->add('terimaPembayaran', 'TagihanDetail::terimaLunas');
 $routes->add('terimaCicilan', 'TagihanDetail::terimaCicilan');
 $routes->add('editJumlahTagihan', 'TagihanDetail::editJumlahTagihan');
 $routes->add('tagihanDetail/generate', 'TagihanDetail::generate');
 $routes->add('add1Tagihan', 'TagihanDetail::add1Tagihan');
 
-$routes->add('tagihanPeriode/add', 'TagihanPeriode::add');
+
+$routes->get('tagihanDetail/index2', 'tagihanDetail::index2');
+$routes->get('tagihanPeriode', 'tagihanPeriode::index');
+$routes->get('tagihanPeriode/add', 'TagihanPeriode::add');
+$routes->get('tagihan/rekapsantri', 'tagihan::rekapsantri');
+$routes->get('tagihan/rekapbulan/(:any)', 'tagihan::rekapbulan');
+
 
 // Login
 $routes->get('/login', 'Auth::index');
