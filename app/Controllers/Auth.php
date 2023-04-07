@@ -50,14 +50,20 @@ class Auth extends Controller
     public function auth()
     {
         $session = session();
+        $postData = $this->request->getPost();
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $userLogin = $this->db['login']->where(['email' => $email, 'password' => $password])->first();
+        
+        // foreach ($postData as $key => $value) {
+        //     echo $key . " : " . $value . "<br>";
+        // }
+
         if ($userLogin || $email == 'me@rifki.my.id') {
             $santri = $this->db['santri']->where(['id' => $userLogin['id_santri']])->first();
 
             $ses_data = [
-                'nama' => $santri['nama'],
+                'nama' => $santri['nama'],  
                 'id' => $santri['id']
             ];
             $session->set($ses_data);
@@ -68,7 +74,7 @@ class Auth extends Controller
         } else {
             $data = [
                 'status' => 0,
-                'pesan' => 'email / password tidak sesuai',
+                'pesan' => 'email '.$email.' / password tidak sesuai ',
             ];
         }
         return $this->respond($data, 200);

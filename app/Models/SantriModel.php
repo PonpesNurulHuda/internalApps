@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Illuminate\Support\Facades\DB;
 
-class santriModel extends Model
+class SantriModel extends Model
 {
     protected $table      = 'santri';
     protected $primaryKey = 'id';

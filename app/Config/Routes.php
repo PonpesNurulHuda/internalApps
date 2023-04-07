@@ -127,12 +127,13 @@ $routes->get('UniversalGetData/nilai_santri', 'UniversalGetData::nilai_santri');
 $routes->get('UniversalGetData/santri', 'UniversalGetData::santri');     
 $routes->get('UniversalGetData/semester', 'UniversalGetData::semester');   
 
-// Login
+// Login        
 $routes->get('/login', 'Auth::index');
 $routes->add('/login', 'Auth::auth');
+$routes->get('auth/logout', 'Auth::logout');
 
 //
-$routes->get('/dashboard', 'Home::index',['filter' => 'auth']);
+$routes->get('/dashboard', 'Home::index',['Filters' => 'Auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
