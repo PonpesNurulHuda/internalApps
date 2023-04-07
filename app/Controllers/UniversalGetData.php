@@ -12,7 +12,7 @@ use App\Models\Nilai_akhlaq_santriModel;
 use App\Models\Nilai_santriModel;
 use App\Models\SantriModel;
 use App\Models\Tahun_ajaranModel;
-use App\Models\TingkatModel;
+use App\Models\TingkatKelasModel;
 use App\Models\SemesterModel;
 
 use CodeIgniter\API\ResponseTrait;
@@ -92,7 +92,7 @@ class UniversalGetData extends BaseController
 
     public function tingkat()
     {
-        $tingkat = new TingkatModel();
+        $tingkat = new TingkatKelasModel();
         $dttingkat = $tingkat->findAll();
         return $this->respond($dttingkat, 200);
     }

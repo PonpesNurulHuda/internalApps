@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Illuminate\Support\Facades\DB;
 
-class TingkatModel extends Model
+class TingkatKelasModel extends Model
 {
     protected $table      = 'tingkat';
     protected $primaryKey = 'id';

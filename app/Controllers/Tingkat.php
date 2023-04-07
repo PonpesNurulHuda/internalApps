@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\TingkatModel;
+use App\Models\TingkatKelasModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Tingkat extends BaseController
@@ -10,7 +10,7 @@ class Tingkat extends BaseController
     use ResponseTrait;
     public function index()
     {
-        $tingkat = new TingkatModel();
+        $tingkat = new TingkatKelasModel();
         $dtTingkat = $tingkat->findAll();
         $data['dtTingkat'] = $dtTingkat;
 
@@ -34,7 +34,7 @@ class Tingkat extends BaseController
 
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new TingkatModel();
+            $data = new TingkatKelasModel();
 
             $id = $data->insert([
                 "seqno" => $this->request->getPost('seqno'),
@@ -72,7 +72,7 @@ class Tingkat extends BaseController
         $isDataValid = $validation->withRequest($this->request)->run();
         // jika data valid, simpan ke database
         if ($isDataValid) {
-            $data = new TingkatModel();
+            $data = new TingkatKelasModel();
 
             $id = $data->update($this->request->getPost('id'), [
                 "seqno" => $this->request->getPost('seqno'),
