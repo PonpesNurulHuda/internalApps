@@ -33,8 +33,8 @@ $routes->get('/', 'Home::index');
 
 //santri
 $routes->get('/santri', 'Santri::index');
-$routes->add('santri/add', 'santri::add');
-$routes->add('santri/update', 'santri::update');
+$routes->add('santri/add', 'Santri::add');
+$routes->add('santri/update', 'Santri::update');
 
 //kelas
 $routes->get('/kelas', 'Kelas::index');
@@ -72,24 +72,24 @@ $routes->add('nilai_santri/add', 'nilai_santri::add');
 $routes->add('nilai_santri/update', 'nilai_santri::update');
 
 //siswa_kelas
-$routes->get('siswa_kelas', 'siswa_kelas::index');
+$routes->get('siswa_kelas', 'Siswa_kelas::index');
 $routes->add('siswa_kelas/add', 'Siswa_kelas::add');
 $routes->add('siswa_kelas/update', 'Siswa_kelas::update');
 
 //tahun_ajaran
-$routes->get('tahun_ajaran', 'tahun_ajaran::index');
-$routes->add('tahun_ajaran/add', 'tahun_ajaran::add');
-$routes->add('tahun_ajaran/update', 'tahun_ajaran::update');
+$routes->get('tahun_ajaran', 'Tahun_ajaran::index');
+$routes->add('tahun_ajaran/add', 'Tahun_ajaran::add');
+$routes->add('tahun_ajaran/update', 'Tahun_ajaran::update');
 
 //semester
-$routes->get('semester', 'semester::index');
-$routes->add('semester/add', 'semester::add');
-$routes->add('semester/update', 'semester::update');
+$routes->get('semester', 'Semester::index');
+$routes->add('semester/add', 'Semester::add');
+$routes->add('semester/update', 'Semester::update');
 
-//tbl01
-$routes->get('tingkat', 'tingkat::index');
-$routes->add('tingkat/add', 'tbl01::add'); 
-$routes->add('tingkat/update', 'tbl01::update');
+//tingkat
+$routes->get('tingkat', 'Tingkat::index');
+$routes->add('tingkat/add', 'Tingkat::add'); 
+$routes->add('tingkat/update', 'Tingkat::update');
 
 //menu
 $routes->get('menu', 'menu::index');
@@ -102,7 +102,7 @@ $routes->add('menu_kategori/add', 'menu_kategori::add');
 $routes->add('menu_kategori/update', 'menu_kategori::update');
 
 // Tagihan
-$routes->get('tagihan', 'tagihan::index');
+$routes->get('tagihan', 'Tagihan::index');
 $routes->add('terimaPembayaran', 'TagihanDetail::terimaLunas');
 $routes->add('terimaCicilan', 'TagihanDetail::terimaCicilan');
 $routes->add('editJumlahTagihan', 'TagihanDetail::editJumlahTagihan');
@@ -116,6 +116,16 @@ $routes->get('tagihanPeriode/add', 'TagihanPeriode::add');
 $routes->get('tagihan/rekapsantri', 'tagihan::rekapsantri');
 $routes->get('tagihan/rekapbulan/(:any)', 'tagihan::rekapbulan');
 
+$routes->get('UniversalGetData/tingkat', 'UniversalGetData::tingkat');
+$routes->get('UniversalGetData/mapel_kategori', 'UniversalGetData::mapel_kategori');
+$routes->get('UniversalGetData/kelas', 'UniversalGetData::kelas');
+$routes->get('UniversalGetData/siswa_kelas', 'UniversalGetData::siswa_kelas');     
+$routes->get('UniversalGetData/mapel_kelas', 'UniversalGetData::mapel_kelas');     
+$routes->get('UniversalGetData/mapel', 'UniversalGetData::mapel');     
+$routes->get('UniversalGetData/nilai_akhlaq_santri', 'UniversalGetData::nilai_akhlaq_santri');     
+$routes->get('UniversalGetData/nilai_santri', 'UniversalGetData::nilai_santri');     
+$routes->get('UniversalGetData/santri', 'UniversalGetData::santri');     
+$routes->get('UniversalGetData/semester', 'UniversalGetData::semester');   
 
 // Login
 $routes->get('/login', 'Auth::index');
