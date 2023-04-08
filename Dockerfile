@@ -13,12 +13,13 @@ RUN apt-get update && apt-get install -y \
 
 # Enable mod_rewrite and mod_headers
 RUN a2enmod rewrite headers
+# RUN a2enmod ssl
 
 # Copy application files to working directory
 COPY . .
 COPY env .env
-COPY docker/cert.pem /etc/apache2/ssl/cert.pem
-COPY docker/key.pem /etc/apache2/ssl/key.pem
+# COPY docker/cert.pem /etc/apache2/ssl/cert.pem
+# COPY docker/key.pem /etc/apache2/ssl/key.pem
 
 
 # Copy the configuration file for Apache
