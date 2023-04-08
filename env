@@ -21,7 +21,7 @@
 # APP
 #--------------------------------------------------------------------
 
-app.baseURL = 'http://enha.rifki.my.id'
+app.baseURL = 'https://enha.rifki.my.id'
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
