@@ -60,13 +60,13 @@
                   <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
-                        <label for="" class="form-label">Surel</label>
-                        <input type="email" name="email" class="form-control" id="email" required>
+                        <label for="" class="form-label">NIS</label>
+                        <input type="email" name="email" class="form-control" id="nis" required>
                     </div>
 
                     <div class="col-12">
-                        <label for="" class="form-label">Password</label>
-                        <input type="Password" name="Password" class="form-control" id="Password" required>
+                        <label for="" class="form-label">Sandi</label>
+                        <input type="Password" name="Password" class="form-control" id="sandi" required>
                     </div>
 
                     <div class="col-12">

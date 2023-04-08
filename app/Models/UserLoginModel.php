@@ -6,5 +6,5 @@ class UserLoginModel extends Model{
     protected $table = 'users_login';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['email', 'password', 'gagal', 'updated_at','id_santri'];
+    protected $allowedFields = ['nis', 'password', 'gagal', 'updated_at','id_santri'];
 }

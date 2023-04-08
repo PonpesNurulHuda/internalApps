@@ -1,8 +1,8 @@
 
 $(document).on("click", ".btnMasuk", function () {
     var dataPost = new Object;
-    dataPost.email = $("#email").val();
-    dataPost.password = $("#Password").val();
+    dataPost.nis = $("#nim").val();
+    dataPost.sandi = $("#sandi").val();
 
     console.log("dataPost", dataPost);
     $.ajax({
