@@ -39,9 +39,11 @@
                                 <tbody>
                                     <?php foreach ($dtSantri as $ds) : ?>
                                         <?php if($d['id'] == $ds['id_kelas']){?>
-                                            <tr style="">
+                                            <tr style="border: 1px solid black; padding-bottom: 25px;">
                                                 <td><?php if($ds['jumlahTagihan'] > 0){ ?> 
-                                                    <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#santri<?= $ds['id'] ?>"  aria-expanded="false" aria-controls="">Detail</a> 
+                                                    <div style="font-size:1.5rem" class="icon" data-bs-toggle="collapse" href="#santri<?= $ds['id'] ?>"  aria-expanded="false" aria-controls="">
+                                                        <i class="bi bi-box-arrow-in-down-right"></i>
+                                                    </div>
                                                     <?php } ?></td>
                                                 <td><?= $ds['nama'] ?></td>
                                                 <td><?= number_format($ds['jumlahTagihan']) ?></td>
@@ -50,7 +52,7 @@
                                                 <td colspan="3">
                                                 <table style="width: 100%;">
                                                     <thead>
-                                                        <tr>
+                                                        <tr style="border: 1px solid black;">
                                                             <th>Tagihan</th>
                                                             <th>Periode</th>
                                                             <th>Jumlah</th>
@@ -95,5 +97,5 @@
 
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-<script src="<?php echo base_url('js/tagihan/rekapBulan.js?y=') . date("Yhis"); ?>"></script>
+<script src="<?php echo base_url('js/tagihan/rekapSantri.js?y=') . date("Yhis"); ?>"></script>
 <?= $this->endSection() ?>
