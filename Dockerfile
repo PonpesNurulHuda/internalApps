@@ -17,6 +17,9 @@ RUN a2enmod rewrite headers
 # Copy application files to working directory
 COPY . .
 COPY env .env
+COPY docker/cert.pem /etc/apache2/ssl/cert.pem
+COPY docker/key.pem /etc/apache2/ssl/key.pem
+
 
 # Copy the configuration file for Apache
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
