@@ -65,6 +65,8 @@ class Filters extends BaseConfig
         'auth' => [
             'before' => [
                 // Tambahkan daftar route yang perlu dicek di sini
+                '', 
+                '/', 
                 'dashboard/*', 
                 'santri/*', 
                 'santri', 

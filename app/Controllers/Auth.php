@@ -78,7 +78,7 @@ class Auth extends Controller
         } else {
             $data = [
                 'status' => 0,
-                'pesan' => 'email '.$email.' / password tidak sesuai ',
+                'pesan' => 'email '.$nis.' / password tidak sesuai ',
             ];
         }
         return $this->respond($data, 200);
