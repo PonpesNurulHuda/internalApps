@@ -115,7 +115,7 @@ $routes->get('tagihanPeriode', 'TagihanPeriode::index');
 $routes->get('tagihanPeriode/add', 'TagihanPeriode::add');
 $routes->get('tagihan/rekapsantri', 'Tagihan::rekapsantri');
 $routes->get('tagihan/rekapbulan/(:any)', 'Tagihan::rekapbulan');
-$routes->get('tagihan/rekapTagihanCustom/(:any)/(:any)/(:any)/(:any)', 'Tagihan::rekapTagihanCustom');
+$routes->get('tagihan/rekapTagihanCustom/(:any)/(:any)/(:any)/(:any)', 'Tagihan::rekapTagihanCustom/$1/$2/$3/$4');
 
 $routes->get('UniversalGetData/tingkat', 'UniversalGetData::tingkat');
 $routes->get('UniversalGetData/mapel_kategori', 'UniversalGetData::mapel_kategori');

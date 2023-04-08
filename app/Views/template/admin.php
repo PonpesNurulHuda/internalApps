@@ -414,6 +414,12 @@ $nama = $session->get('nama');
           </li>
         </ul>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="">
+          <i class="bi bi-grid"></i>
+          <span></span>
+        </a>
+      </li>
     </ul>
 
   </aside><!-- End Sidebar-->
