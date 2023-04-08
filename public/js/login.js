@@ -1,7 +1,7 @@
 
 $(document).on("click", ".btnMasuk", function () {
     var dataPost = new Object;
-    dataPost.nis = $("#nim").val();
+    dataPost.nis = $("#nis").val();
     dataPost.sandi = $("#sandi").val();
 
     console.log("dataPost", dataPost);

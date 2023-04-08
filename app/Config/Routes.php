@@ -135,7 +135,7 @@ $routes->add('/login', 'Auth::auth');
 $routes->get('auth/logout', 'Auth::logout');
 
 //
-$routes->get('/dashboard', 'Home::index',['Filters' => 'Auth']);
+$routes->get('/dashboard', 'Home::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

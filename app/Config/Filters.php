@@ -21,6 +21,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'auth' => \App\Filters\Auth::class,
     ];
 
     /**
@@ -60,5 +61,52 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'auth' => [
+            'before' => [
+                // Tambahkan daftar route yang perlu dicek di sini
+                'dashboard/*', 
+                'santri/*', 
+                'santri', 
+                'kelas/*', 
+                'kelas', 
+                'mapel_kategori/*', 
+                'mapel_kategori', 
+                'mapel_kelas/*', 
+                'mapel_kelas', 
+                'mapel_tipe/*', 
+                'mapel_tipe', 
+                'mapel/*', 
+                'mapel', 
+                'nilai_akhlaq_santri/*', 
+                'nilai_akhlaq_santri', 
+                'nilai_santri/*', 
+                'nilai_santri', 
+                'siswa_kelas/*', 
+                'siswa_kelas', 
+                'tahun_ajaran/*', 
+                'tahun_ajaran', 
+                'semester/*', 
+                'semester', 
+                'tingkat/*', 
+                'tingkat', 
+                'menu/*', 
+                'menu', 
+                'menu_kategori/*', 
+                'menu_kategori', 
+                'tagihan/*', 
+                'tagihan', 
+                'tagihanDetail', 
+                'terimaPembayaran/*', 
+                'terimaCicilan/*', 
+                'editJumlahTagihan/*', 
+                'add1Tagihan/*', 
+                'terimaCicilan/*', 
+                'UniversalGetData/*', 
+                'UniversalGetData', 
+                'tagihanPeriode/*', 
+                'tagihanDetail/*', 
+            ]
+        ],
+    ];
 }
