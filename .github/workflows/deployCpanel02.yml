@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy code
         run: |
-          lftp -c "set ftp:ssl-allow no; open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror --reverse --exclude-glob .git* --exclude .env --exclude .github --exclude node_modules --exclude vendor . /public_html/"
+          lftp -c "set ftp:ssl-allow no; open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror --reverse --exclude-glob .git* --exclude .env --exclude .github --exclude node_modules --exclude vendor . /"
         env:
           FTP_HOST: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USER }}
