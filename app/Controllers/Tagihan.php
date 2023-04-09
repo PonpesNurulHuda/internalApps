@@ -147,13 +147,22 @@ class Tagihan extends BaseController
     }
 
     public function rekapTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri){
-        
-
         $data = $this->db['tagihanDetail']->rekapPerTagihanCustom($idKelas, $idTagihan, $statusPenerimaaan, $idSantri);
         $output = [
             'status' => 1,
             'data' => $data,
         ];
         return $this->respond($output, 200);
+    }
+
+    public function pendingortu($idSantri){
+        $dataRekap = $this->db['tagihanDetail']->detailPerSantri($idSantri);
+        $dataSantri = $this->db['santri']->getByIdMd5($idSantri);
+        $data['namaSantri'] = $dataSantri['nama'];
+        $data['kelas'] = $dataSantri['namaKelas'];
+        $data['tunggakan'] = $dataSantri['tunggakan'];
+
+        $data['dataRekap'] = $dataRekap;
+        return view('tagihan/pendingOrtu', $data);
     }
 }

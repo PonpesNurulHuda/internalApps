@@ -430,7 +430,7 @@ $nama = $session->get('nama');
 
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Rifki Ahmad Sururi</span></strong>.
+      <strong><span>Dibuat oleh Rifki Ahmad Sururi</span></strong>.
     </div>
     <div class="credits">
     </div>

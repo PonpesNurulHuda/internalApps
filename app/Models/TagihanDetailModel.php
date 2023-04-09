@@ -234,6 +234,40 @@ class TagihanDetailModel extends Model
         return $db->query($query)->getResultArray();
     }
 
+    public function detailPerSantri($idSantri)
+    {
+        $db      = \Config\Database::connect();
+        $query = 
+        "
+        select 
+            td.id as idTagihan,
+            t.nama as namaTagihan,
+            tp.nama as periode,
+            td.jumlah,
+            IFNULL(sum(tc.jumlah),0) as jumlahCicilan,
+            td.jumlah-IFNULL(sum(tc.jumlah),0) as total
+        from santri s 
+        left join tagihan_detail td on td.id_santri = s.id 
+        left join tagihan t on t.id = td.id_tagihan
+        left join tagihan_periode tp on tp.id = td.id_periode 
+        left join tagihan_cicilan tc on tc.id_tagihan_detail = td.id 
+        where 
+            td.jumlah is not null
+            and td.status = 0
+            and MD5(s.id) = '$idSantri'
+        group by 
+            td.id, 
+            t.nama,
+            tp.nama,
+            td.jumlah,
+            td.tanggal_jatuh_tempo
+        order by 
+            td.tanggal_jatuh_tempo;"
+        ;
+        return $db->query($query)->getResultArray();
+    }
+
+        
     public function SumPerSantri()
     {
         $db      = \Config\Database::connect();

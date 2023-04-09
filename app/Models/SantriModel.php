@@ -48,4 +48,21 @@ class SantriModel extends Model
 
         return $query;
     }
+
+    public function getByIdMd5($idSantri)
+    {
+        $db      = \Config\Database::connect();
+
+        $query = "
+        select s.nama, k.nama as namaKelas, IFNULL(SUM(td.jumlah),0)-IFNULL(sum(tc.jumlah),0) tunggakan 
+            from santri s
+            left join siswa_kelas sk on s.id = sk.id_siswa and sk.is_active = 1
+            left join kelas k on k.id = sk.id_kelas and sk.is_active = 1
+            left join tagihan_detail td on td.id_santri = s.id and td.status = 0
+            left join tagihan_cicilan tc on tc.id_tagihan_detail = td.id
+            where md5(s.id) = '$idSantri' 
+            group by s.nama, k.nama;
+        ";
+        return $db->query($query)->getRowArray();
+    }
 }
