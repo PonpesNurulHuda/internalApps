@@ -15,7 +15,6 @@ jobs:
 
       - name: Deploy code
         run: |
-          cd path/to/project
           lftp -c "set ftp:ssl-allow no; open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror --reverse --exclude-glob .git* --exclude .env --exclude .github --exclude node_modules --exclude vendor . /public_html/"
         env:
           FTP_HOST: ${{ secrets.FTP_SERVER }}
