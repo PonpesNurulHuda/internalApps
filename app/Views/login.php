@@ -18,12 +18,6 @@
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap-icons/bootstrap-icons.css'); ?>" rel="stylesheet">
-  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/boxicons/css/boxicons.min.css'); ?>" rel="stylesheet">
-  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.snow.css'); ?>" rel="stylesheet">
-  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.bubble.css'); ?>" rel="stylesheet">
-  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/remixicon/remixicon.css'); ?>" rel="stylesheet">
-  <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/simple-datatables/style.css'); ?>" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -70,7 +64,7 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100 btnMasuk" type="submit">Masuk</button>
+                      <button class="btn btn-primary w-100 btnMasuk" type="" onclick="login()">Masuk</button>
                     </div>
                   </form>
 
@@ -97,22 +91,33 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/apexcharts/apexcharts.min.js') ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/chart.js/chart.min.js') ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/echarts/echarts.min.js'); ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/quill/quill.min.js') ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/simple-datatables/simple-datatables.js'); ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/tinymce/tinymce.min.js'); ?>"></script>
-  <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/php-email-form/validate.js'); ?>"></script>
+  <script>
+  function login(){
+    event.preventDefault();
+    var dataPost = new Object;
+      dataPost.nis = $("#nis").val();
+      dataPost.sandi = $("#sandi").val();
 
-  <!-- Template Main JS File -->
-  <script src="<?php echo base_url('niceAdmin/js/main.js?y=') . date("Yhis"); ?>"></script>
-  <script src="<?php echo base_url('js/login.js?y=') . date("Yhis"); ?>"></script>
+      console.log("dataPost", dataPost);
+      $.ajax({
+          url: "login",
+          type: "POST",
+      
+          data: dataPost,
+          success: function (response) {
+            alert(response.pesan)
+            if(response.status == 1){
+              window.location.replace("dashboard");
+            }
+          },
+          error: function () {
+            alert("Terjadi kesalahan");
+          },
+      });
+  }
 
   var ipServer = "<?php echo $ipServer; ?>";
-</script>
+  </script>
 
 </body>
 
