@@ -3,18 +3,21 @@ on:
   push:
     branches:
       - main
-
 jobs:
-  FTP-DEPLOY-ACTION:
-    name: ftp-deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.1.0
-        with:
-          fetch-depth: 2
-      - name: ftp-deploy-action
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
-        with:
-          ftp-server: ${{ secrets.FTP_SERVER }}
-          ftp-username: ${{ secrets.FTP_USER }}
-          ftp-password: ${{ secrets.FTP_PASS }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install lftp
+        run: sudo apt-get install lftp -y
+
+      - name: Deploy code
+        run: |
+          cd path/to/project
+          lftp -c "set ftp:ssl-allow no; open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST; mirror --reverse --exclude-glob .git* --exclude .env --exclude .github --exclude node_modules --exclude vendor . /"
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASS }}
