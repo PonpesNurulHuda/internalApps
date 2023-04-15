@@ -275,6 +275,11 @@ class TagihanDetailModel extends Model
         '
         select 
             s.id, 
+            MD5(s.id) link, 
+            s.no_hp1,
+            s.no_hp2,
+            s.ayah,
+            s.ibu,
             s.nama,
             IFNULL(sum(td.jumlah),0) - IFNULL(sum(tc.jumlah),0)  as jumlahTagihan,
             sk.id_kelas
@@ -286,6 +291,8 @@ class TagihanDetailModel extends Model
         group by 
             s.id, 
             s.nama,
+            s.no_hp1,
+            s.no_hp2,
             sk.id_kelas
         order by s.nama
         ';

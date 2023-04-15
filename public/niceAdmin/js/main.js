@@ -344,3 +344,23 @@ function addAlertSuccess(note, type){
 function removeAlert(id){
   $(`#${id}`).remove();
 }
+
+function sendWa(dest, isiPesan){
+  var form = new FormData();
+  form.append("dest", dest);
+  form.append("pesan", isiPesan);
+  
+  var settings = {
+    "url": "http://notif.enha.rifki.my.id/wa.php",
+    "method": "POST",
+    "timeout": 0,
+    "processData": false,
+    "mimeType": "multipart/form-data",
+    "contentType": false,
+    "data": form
+  };
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+}

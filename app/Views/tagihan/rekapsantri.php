@@ -17,8 +17,9 @@
             <div class="card">
                 <div class="card-body pt-3">
                     <!-- Bordered Tabs -->
+                    <button class="btn btn-success" id="kirimMasal"><i class="bi bi-whatsapp"> Kirim Pesan Tagihan Massal</i></button>
                     <ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
-
+                    
                     <?php foreach ($dtKelas as $d) : ?>
                         <li class="nav-item" role="presentation">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kelas<?= $d['id'] ?>" aria-selected="false" role="tab"><?= $d['nama'] ?></button>
@@ -39,14 +40,27 @@
                                 <tbody>
                                     <?php foreach ($dtSantri as $ds) : ?>
                                         <?php if($d['id'] == $ds['id_kelas']){?>
-                                            <tr style="border: 1px solid black; padding-bottom: 25px;">
+                                            <tr style="border: 1px solid black; padding-bottom: 25px;" id="tr_<?= $ds['id'] ?>">
                                                 <td><?php if($ds['jumlahTagihan'] > 0){ ?> 
-                                                    <div style="font-size:1.5rem" class="icon" data-bs-toggle="collapse" href="#santri<?= $ds['id'] ?>"  aria-expanded="false" aria-controls="">
-                                                        <i class="bi bi-box-arrow-in-down-right"></i>
+                                                    <div class="row">
+                                                        <div style="font-size:1.5rem" class="icon col-1" data-bs-toggle="collapse" href="#santri<?= $ds['id'] ?>"  aria-expanded="false" aria-controls="">
+                                                            <i class="bi bi-box-arrow-in-down-right"></i>
+                                                        </div>
+                                                        <div class="col-5 sendWa">
+                                                            <button class="btn btn-success" id=""><i class="bi bi-whatsapp"> WA</i></button>
+                                                        </div>
                                                     </div>
-                                                    <?php } ?></td>
-                                                <td><?= $ds['nama'] ?></td>
-                                                <td><?= number_format($ds['jumlahTagihan']) ?></td>
+                                                    <input type="text" value="<?= $ds['no_hp1'] ?>" id="no_hp1" readonly hidden>
+                                                    <input type="text" value="<?= $ds['no_hp2'] ?>" id="no_hp2" readonly hidden>
+                                                    <input type="text" value="<?= $ds['ayah'] ?>" id="ayah" readonly hidden>
+                                                    <input type="text" value="<?= $ds['ibu'] ?>" id="ibu" readonly hidden>
+                                                    <input type="text" value="https://enha.rifki.my.id/rekapOrtu/<?= $ds['link'] ?>" id="link" readonly hidden>
+                                                    <?php } ?>
+                                                </td>
+                                                <td class="namaSantri">
+                                                    <?= $ds['nama'] ?>
+                                                </td>
+                                                <td class="total"><?= number_format($ds['jumlahTagihan']) ?></td>
                                             </tr>
                                             <tr class="collapse" id="santri<?= $ds['id'] ?>">
                                                 <td colspan="3">

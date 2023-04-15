@@ -1,7 +1,5 @@
 <html>
-    <body>
-        <link href="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-        
+    <body>        
         <style>
             .table1 {
                 font-family: sans-serif;
@@ -9,51 +7,57 @@
                 border-collapse: collapse;
             }
             
-            .table1, th, td {
+            .table1, .th, .td {
                 border: 1px solid #999;
                 padding: 8px 20px;
             }
+            
+            .table2 {
+                border: none;
+                padding: 8px 20px;
+
+                font-family: sans-serif;
+                color: #232323;
+                border-collapse: collapse;
+            }
         </style>
 
-        <table>
+        <table class="table2">
             <tr>
-                <td>Nama Santri</td>
-                <td><?= $namaSantri ?></td>
+                <td class="table2">Nama Santri</td>
+                <td class="table2"><?= $namaSantri ?></td>
             </tr>
             <tr>
-                <td>Kelas</td>
-                <td><?= $kelas ?></td>
+                <td class="table2">Kelas</td>
+                <td class="table2"><?= $kelas ?></td>
             </tr>
+            
         </table>
         <br>
-        <br>
-        <?php foreach ($dataRekap as $dt) : ?>
-        <table class="table1">
-                <tr>
-                    <td>Tagihan</td>
-                    <td><?= $dt['namaTagihan'] ?></td>
-                </tr>
-                <tr>
-                    <td>Periode</td>
-                    <td><?= $dt['periode'] ?></td>
-                </tr>
-                <tr>
-                    <td>Jumlah Tagihan</td>
-                    <td><?= number_format($dt['jumlah'])?></td>
-                </tr>
-                <tr>
-                    <td>Sudah dicicil</td>
-                    <td><?= number_format($dt['jumlahCicilan']) ?></td>
-                </tr>
-                <tr>
-                    <td>Kekurangan</td>
-                    <td><?=  number_format($dt['total']) ?></td>
-                </tr>
-        </table>
-        <br>
-        <?php endforeach ?>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="<?php echo base_url('niceAdmin/vendorNiceAdmin/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+        <table class="table1">
+            <tr>
+                <td class="td">Tagihan</td>
+                <td class="td">Periode</td>
+                <td class="td">Jumlah Tagihan</td>
+                <td class="td">Sudah dicicil</td>
+                <td class="td">Kekurangan</td>
+            </tr>
+            <?php foreach ($dataRekap as $dt) : ?>
+                <tr>
+                    <td class="td"><?= $dt['namaTagihan'] ?></td>
+                    <td class="td"><?= $dt['periode'] ?></td>
+                    <td class="td">Rp <?= number_format($dt['jumlah'])?></td>
+                    <td class="td">Rp <?= number_format($dt['jumlahCicilan']) ?></td>
+                    <td class="td">Rp <?=  number_format($dt['total']) ?></td>
+                </tr>
+            <?php endforeach ?>
+            <tr>
+                <td colspan=4 class="td">Total</td>
+                <td class="td">Rp <?= number_format($tunggakan) ?></td>
+            </tr>
+        </table>
+        <br>
+        Tanggal Cetak : <?php echo date("d M Y h:i:s"); ?>
     </body>
 </html>
