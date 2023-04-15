@@ -351,7 +351,7 @@ function sendWa(dest, isiPesan){
   form.append("pesan", isiPesan);
   
   var settings = {
-    "url": "http://notif.enha.rifki.my.id/wa.php",
+    "url": "https://notif-enha.rifki.my.id/wa.php",
     "method": "POST",
     "timeout": 0,
     "processData": false,
