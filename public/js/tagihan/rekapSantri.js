@@ -22,11 +22,13 @@ $(document).on("click", ".sendWa", function () {
     link = $(`#${id} #link`).val();
     
     pesan = `Assalamu'alaikum \nDiberitahukan kepada Bapak ${ayah} / Ibu ${ibu} selaku orang tua/ walisanti dari ${namaSantri}, bahwa terdapat tagihan sebesar ${jumlah},\n\nUntuk detail tagihan nya bisa dilihat di ${link}\n\nMatur Suwun\nAdmin Enha`;
-    sendWa('085647451640', pesan);
-    // sendWa(no_hp1, pesan);
-    // sendWa(no_hp2, pesan);
+    if(no_hp1 != ''){
+        sendWa(no_hp1, pesan);
+    }
+    if(no_hp2 != ''){
+        sendWa(no_hp2, pesan);
+    }
     $(`#${id} .btn`).attr('disabled','disabled')    
-    // alert('Pesan sudah dikirim ke Hp, silahkan cek hp pondok');
 });
 
 $(document).on("click", "#kirimMasal", function () {
