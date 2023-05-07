@@ -101,6 +101,9 @@ $routes->get('menu_kategori', 'menu_kategori::index');
 $routes->add('menu_kategori/add', 'menu_kategori::add');
 $routes->add('menu_kategori/update', 'menu_kategori::update');
 
+
+$routes->add('present', 'Present::index');
+
 // Tagihan
 $routes->get('tagihan', 'Tagihan::index');
 $routes->add('terimaPembayaran', 'TagihanDetail::terimaLunas');
