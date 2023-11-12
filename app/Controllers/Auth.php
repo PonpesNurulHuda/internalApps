@@ -24,6 +24,7 @@ class Auth extends Controller
 
     public function index()
     {
+        $userLogin = $this->db['login']->where(['nis' => '', 'password' => ''])->first();
         $curlSession = curl_init();
         curl_setopt($curlSession, CURLOPT_URL, 'https://api.ipify.org');
         curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
