@@ -57,7 +57,7 @@ class Auth extends Controller
         //     'status' => 0,
         //     'pesan' => 'nis '.$nis.' / password tidak sesuai sandi'.$password,
         // ];
-        $userLogin = $this->db['login']->where(['nis' => $nis, 'password' => $password])->first();
+         $userLogin = $this->db['login']->where(['nis' => $email, 'password' => $password])->first();
         
         // foreach ($postData as $key => $value) {
         //     echo $key . " : " . $value . "<br>";
