@@ -106,6 +106,7 @@ $routes->add('present', 'Present::index');
 
 // Tagihan
 $routes->get('tagihan', 'Tagihan::index');
+$routes->add('tagihan/add', 'Tagihan::add');
 $routes->add('terimaPembayaran', 'TagihanDetail::terimaLunas');
 $routes->add('terimaCicilan', 'TagihanDetail::terimaCicilan');
 $routes->add('editJumlahTagihan', 'TagihanDetail::editJumlahTagihan');
@@ -115,7 +116,7 @@ $routes->add('add1Tagihan', 'TagihanDetail::add1Tagihan');
 
 $routes->get('tagihanDetail/index2', 'TagihanDetail::index2');
 $routes->get('tagihanPeriode', 'TagihanPeriode::index');
-$routes->get('tagihanPeriode/add', 'TagihanPeriode::add');
+$routes->add('tagihanPeriode/add', 'TagihanPeriode::add');
 $routes->get('tagihan/rekapsantri', 'Tagihan::rekapsantri');
 $routes->get('tagihan/rekapbulan/(:any)', 'Tagihan::rekapbulan/$1');
 $routes->get('tagihan/rekapTagihanCustom/(:any)/(:any)/(:any)/(:any)', 'Tagihan::rekapTagihanCustom/$1/$2/$3/$4');

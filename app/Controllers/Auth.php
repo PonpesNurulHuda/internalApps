@@ -51,18 +51,10 @@ class Auth extends Controller
     public function auth()
     {
         $session = session();
-        // $postData = $this->request->getPost();
         $nis = $this->request->getPost('nis');
         $password = $this->request->getPost('sandi');
-        // $data = [
-        //     'status' => 0,
-        //     'pesan' => 'nis '.$nis.' / password tidak sesuai sandi'.$password,
-        // ];
-         $userLogin = $this->db['login']->where(['nis' => $email, 'password' => $password])->first();
+        $userLogin = $this->db['login']->where(['nis' => $nis, 'password' => $password])->first();
         
-        // foreach ($postData as $key => $value) {
-        //     echo $key . " : " . $value . "<br>";
-        // }
 
         if ($userLogin) {
             $santri = $this->db['santri']->where(['id' => $userLogin['id_santri']])->first();
