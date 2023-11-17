@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtMenu">
                     <h5 class="card-title">Data Menu</h5>
-                    <table id="tableMenu" class="display datatable" style="width:100%">
+                    <table id="tableMenu" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>

@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtSemester">
                     <h5 class="card-title">Data Semester</h5>
-                    <table id="tableSemester" class="display datatable" style="width:100%">
+                    <table id="tableSemester" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th hidden>Tahun_ajaran_id</th>

@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <br>
-                    <table id="tableRekap" class="display" style="width:100%">
+                    <table id="tableRekap" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th hidden>id</th>

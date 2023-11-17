@@ -17,7 +17,7 @@
             <div class="card overflow-x">
                 <div class="card-body dtSemester">
                     <h5 class="card-title">Rekap Tagihan</h5>
-                    <table id="tableRekap" class="display datatable" style="width:100%">
+                    <table id="tableRekap" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th hidden>id</th>

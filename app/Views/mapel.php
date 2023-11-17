@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtMapel">
                     <h5 class="card-title">Data Mapel</h5>
-                    <table id="tableMapel" class="display datatable" style="width:100%">
+                    <table id="tableMapel" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>

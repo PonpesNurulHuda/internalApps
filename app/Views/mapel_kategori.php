@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtMapel_kategori">
                     <h5 class="card-title">Data Mapel_kategori</h5>
-                    <table id="tableMapel_kategori" class="display datatable" style="width:100%">
+                    <table id="tableMapel_kategori" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>

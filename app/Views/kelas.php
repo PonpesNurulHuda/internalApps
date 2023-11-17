@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtKelas">
                     <h5 class="card-title">Data Kelas</h5>
-                    <table id="tableKelas" class="display datatable" style="width:100%">
+                    <table id="tableKelas" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Kode</th>

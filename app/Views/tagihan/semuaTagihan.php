@@ -8,7 +8,7 @@
                 <div class="card-body dtKelas">
                     <h5 class="card-title">Data Tagihan</h5>
                     <div class="row g-3 align-items-center">
-                        <table>
+                        <table class="display table table-striped table-bordered">
                             <tr>
                                 <th>Kelas</th>
                                 <th>Tagihan</th>

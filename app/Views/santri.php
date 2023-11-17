@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body dtSantri">
                     <h5 class="card-title">Data Santri</h5>
-                    <table id="tableSantri" class="display datatable" style="width:100%">
+                    <table id="tableSantri" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>NIS</th>

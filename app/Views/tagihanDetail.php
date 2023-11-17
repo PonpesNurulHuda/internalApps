@@ -18,7 +18,7 @@
                     <button type="button" class="btn btn-sm btn-primary tambahTagihan" data-bs-toggle="modal" data-bs-target="#tambahTagihan">Tambah Tagihan</button>
                     <button type="button" class="btn btn-sm btn-primary generateTagihan" data-bs-toggle="modal" data-bs-target="#ModalGenerate">Generate Tagihan</button>
 
-                    <table id="tableTagihan" class="display datatable" style="width:100%">
+                    <table id="tableTagihan" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th hidden>id_santri</th>

@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtMapel_kelas">
                     <h5 class="card-title">Data Mapel_kelas</h5>
-                    <table id="tableMapel_kelas" class="display datatable" style="width:100%">
+                    <table id="tableMapel_kelas" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>

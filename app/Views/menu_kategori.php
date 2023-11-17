@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtMenu_kategori">
                     <h5 class="card-title">Data Menu_kategori</h5>
-                    <table id="tableMenu_kategori" class="display datatable" style="width:100%">
+                    <table id="tableMenu_kategori" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>

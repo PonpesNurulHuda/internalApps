@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body dtTahun_ajaran">
                     <h5 class="card-title">Data Tahun_ajaran</h5>
-                    <table id="tableTahun_ajaran" class="display datatable" style="width:100%">
+                    <table id="tableTahun_ajaran" class="display table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>
